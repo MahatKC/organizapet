@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "949927327590",
+    "project_id": "organizapet-26677",
+    "storage_bucket": "organizapet-26677.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:949927327590:android:a647a8851d27cc481e3aa7",
+        "android_client_info": {
+          "package_name": "com.example.organizapet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "949927327590-gm3peg21fkd40pm8i3geft3t1ohvi00h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.organizapet",
+            "certificate_hash": "71d1ef573d6325028bada4aa377d89e83d0ee1ca"
+          }
+        },
+        {
+          "client_id": "949927327590-qo77kbuhm70s17tssos6068lublcd5jj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClrgzgYbDzAc2OC6rnxclw27Vcau78hhY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "949927327590-qo77kbuhm70s17tssos6068lublcd5jj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
