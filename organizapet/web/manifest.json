@@ -1,6 +1,6 @@
 {
-    "name": "organizapet",
-    "short_name": "organizapet",
+    "name": "OrganizaPET",
+    "short_name": "OrganizaPET",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
