@@ -11,13 +11,17 @@ class SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: AppColors.nameApp,
+        backgroundColor: AppColors.background,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Center(child: Image.asset(AppImages.logoOrganiza)),
-            Center(child: Text("OrganizaPET", style: TextStyles.nameApp)),
+            Padding(
+              padding: const EdgeInsets.only(top: 30),
+              child:
+              Center(child: Text("OrganizaPET", style: TextStyles.nameApp)),
+            )
           ],
         ),
       ),
