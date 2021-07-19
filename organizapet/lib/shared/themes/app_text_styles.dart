@@ -7,6 +7,10 @@ class TextStyles {
     fontSize: 48,
     color: AppColors.nameApp,
   );
+  static final nameAppBarra = GoogleFonts.inter(
+    fontSize: 25,
+    color: Colors.white,
+  );
   static final buttonGray = GoogleFonts.inter(
     fontSize: 15,
     fontWeight: FontWeight.w400,

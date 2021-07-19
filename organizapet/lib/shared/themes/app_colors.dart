@@ -6,4 +6,5 @@ class AppColors {
   static final shape = Color(0xFFFAFAFC);
   static final stroke = Color(0xFFE3E3E6);
   static final grey = Color(0xFF585666);
+  static final barraMenu = Color(0xFF28ABE2);
 }
