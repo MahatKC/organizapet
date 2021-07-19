@@ -41,13 +41,16 @@ class SocialLoginButton extends StatelessWidget{
             )),
           Expanded(
             flex: 4,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-            children: [Text('Entrar com o Google',style: TextStyles.buttonGray,
-            ),
-          ],
-          ) 
-          ),
+            
+              child: Align(
+                alignment: Alignment(-0.2,0),
+                child: Text('Entrar com o Google',style: TextStyles.buttonGray,
+                 ),
+                       
+                        
+              ),
+            ) 
+         
         ],
         )
       ),
