@@ -17,13 +17,13 @@ class LoginPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.only(bottom: 30),
+              padding: const EdgeInsets.only(bottom: 40, top: 30),
               child:
-                  Center(child: Text("OrganizaPET", style: TextStyles.nameApp)),
+                  Text("OrganizaPET", style: TextStyles.nameApp),
             ),
             Center(child: Image.asset(AppImages.logoOrganiza)),
             Padding(
-              padding: const EdgeInsets.only(top: 40, left: 15, right: 15),
+              padding: const EdgeInsets.only(top: 100, left: 30, right: 30),
               child: SocialLoginButton(
                 onTap: () {},
               ),

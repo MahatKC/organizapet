@@ -17,7 +17,13 @@ class SocialLoginButton extends StatelessWidget{
       child: Container(
         height: 56,
         decoration: BoxDecoration(color: AppColors.shape, borderRadius: BorderRadius.circular(5),
-        border: Border.fromBorderSide(BorderSide(color: AppColors.stroke))
+        border: Border.fromBorderSide(BorderSide(color: AppColors.stroke)),
+        boxShadow:[
+        BoxShadow(
+          blurRadius: 4,
+          color: Colors.black.withOpacity(0.25),
+          offset: Offset(4, 4)),
+        ]
         ),
         child: Row(
           children: [
