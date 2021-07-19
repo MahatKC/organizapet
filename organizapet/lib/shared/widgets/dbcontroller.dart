@@ -1,3 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+final CollectionReference _mainCollection = _firestore.collection('petianos');
+
 class dadosPetiano {
   final String nome;
   final String? rg;
@@ -14,19 +19,17 @@ class dadosPetiano {
   final String? instagram;
 
   dadosPetiano(
-    this.nome,
-    this.rg,
-    this.cpf,
-    this.ra,
-    this.telefone,
-    this.email,
-    this.dataNascimento,
-    this.ano,
-    this.temaICV,
-    this.orientador,
-    this.camiseta,
-    this.github,
-    this.instagram);
-
-  
+      this.nome,
+      this.rg,
+      this.cpf,
+      this.ra,
+      this.telefone,
+      this.email,
+      this.dataNascimento,
+      this.ano,
+      this.temaICV,
+      this.orientador,
+      this.camiseta,
+      this.github,
+      this.instagram);
 }
