@@ -16,12 +16,12 @@ class PerfilUsuario extends StatelessWidget {
       appBar: AppBar(
         title: BarraApp(),
       ),
-      body: //Column(
-         
-        //children:[
-          Padding(
-            padding: const EdgeInsets.only(top: 30),
-            child: Text("Dados do Petiano", style: TextStyle(
+      body: Column(
+        children:[
+          Center(
+            heightFactor: 3,
+            child: 
+             Text("Dados do Petiano", style: TextStyle(
               fontSize: 27,
               shadows:[
                 Shadow(
@@ -32,14 +32,49 @@ class PerfilUsuario extends StatelessWidget {
                 ] 
               )
             )
+          ),
+            TextField(
+              decoration: InputDecoration(hintText: " Nome"),
+            ),
+            TextField(
+              decoration: InputDecoration(hintText: " RG"),
+            ),
+            TextField(
+              decoration: InputDecoration(hintText: " CPF"),
+            ),
+            TextField(
+              decoration: InputDecoration(hintText: " RA"),
+            ),
+            TextField(
+              decoration: InputDecoration(hintText: " Telefone"),
+            ),
+            TextField(
+              decoration: InputDecoration(hintText: " E-mail"),
+            ),
+            TextField(
+              decoration: InputDecoration(hintText: " Data de nascimento"),
+            ),
+            TextField(
+              decoration: InputDecoration(hintText: " Ano"),
+            ),
+            TextField(
+              decoration: InputDecoration(hintText: " Tema ICV"),
+            ),
+          //  TextField(
+           //   decoration: InputDecoration(hintText: " Orientador"),
+          //  ),
+           // TextField(
+           //   decoration: InputDecoration(hintText: " Camiseta"),
+            //),
+            //TextField(
+             // decoration: InputDecoration(hintText: " Github"),
+           // ),
+            //TextField(
+            //  decoration: InputDecoration(hintText: " Instagram"),
+            //),
+
+          ]
           )
-         // Center(child: Text("Dados do Petiano")),
-          //Padding(
-           // padding: const EdgeInsets.only(top: 100, left: 30, right: 30),
-           // child: TextField(
-           // decoration: InputDecoration(hintText: ' Nome'),
-       // ]
-        //  ),
         ),
       );
     
