@@ -16,4 +16,16 @@ class TextStyles {
     fontWeight: FontWeight.w400,
     color: AppColors.grey,
   );
+  static final title = GoogleFonts.inter(
+    fontSize: 27,
+    color: AppColors.title,
+    fontWeight: FontWeight.w400,
+    shadows: [
+      Shadow( 
+        blurRadius: 4,
+        color: Colors.black.withOpacity(0.25),
+        offset: Offset(0, 3),
+    )
+  ]
+  );
 }
