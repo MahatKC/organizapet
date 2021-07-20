@@ -58,6 +58,9 @@ class PerfilUsuario extends StatelessWidget {
               decoration: InputDecoration(hintText: " Ano"),
             ),
             TextField(
+              onChanged: (icv){
+                print(icv);
+              },
               decoration: InputDecoration(hintText: " Tema ICV"),
             ),
           //  TextField(
@@ -72,7 +75,6 @@ class PerfilUsuario extends StatelessWidget {
             //TextField(
             //  decoration: InputDecoration(hintText: " Instagram"),
             //),
-
           ]
           )
         ),
