@@ -28,4 +28,9 @@ class TextStyles {
     )
   ]
   );
+  static final button = GoogleFonts.actor(
+    fontSize: 19,
+    fontWeight: FontWeight.w400,
+    color: Colors.white,
+  );
 }

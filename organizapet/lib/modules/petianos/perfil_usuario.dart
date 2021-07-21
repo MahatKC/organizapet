@@ -34,6 +34,9 @@ class PerfilUsuario extends StatelessWidget {
             )
           ),
             TextField(
+              onChanged: (nome){
+                print('$nome');
+              },
               decoration: InputDecoration(hintText: " Nome"),
             ),
             TextField(
@@ -59,7 +62,7 @@ class PerfilUsuario extends StatelessWidget {
             ),
             TextField(
               onChanged: (icv){
-                print(icv);
+                print('$icv');
               },
               decoration: InputDecoration(hintText: " Tema ICV"),
             ),
@@ -75,10 +78,26 @@ class PerfilUsuario extends StatelessWidget {
             //TextField(
             //  decoration: InputDecoration(hintText: " Instagram"),
             //),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(AppColors.button),
+                    elevation: MaterialStateProperty.all(5),
+                    padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 40, vertical: 9.5))
+                  ),
+                  onPressed: () {},
+                  child: 
+                    (  Text("Salvar", 
+                    style: TextStyles.button,
+                  )
+                ),
+              ),
+            )  
           ]
-          )
-        ),
-      );
+        )
+      ),
+    );
     
   }
 }

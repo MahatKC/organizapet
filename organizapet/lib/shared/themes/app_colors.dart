@@ -8,4 +8,5 @@ class AppColors {
   static final grey = Color(0xFF585666);
   static final barraMenu = Color(0xFF28ABE2);
   static final title = Color(0xFF000000).withOpacity(0.67);
+  static final button = Color(0xFF2085B0);
  }
