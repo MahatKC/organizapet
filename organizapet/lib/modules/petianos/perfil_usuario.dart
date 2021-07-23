@@ -18,7 +18,7 @@ class PerfilUsuario extends StatefulWidget {
 class _PerfilUsuarioState extends State<PerfilUsuario> {
   final controller = petianosController();
   bool in_database = false;
-  bool access_db = true;
+  bool access_db = false;
   var dbController = dadosPetiano(nome: "");
 
   @override
