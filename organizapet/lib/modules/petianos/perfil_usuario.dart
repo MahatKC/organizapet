@@ -36,81 +36,87 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
           appBar: AppBar(
             title: BarraApp(),
           ),
-          body: ListView(children: [
-            Center(
-                heightFactor: 3,
-                child: Text("Dados do Petiano",
-                    style: TextStyle(fontSize: 27, shadows: [
-                      Shadow(
-                        blurRadius: 4,
-                        color: Colors.black.withOpacity(0.25),
-                        offset: Offset(0, 4),
-                      )
-                    ]))),
-            TextField(
-              controller: controller.nomeController,
-              decoration: InputDecoration(hintText: " Nome"),
-              enabled: !in_database,
-            ),
-            TextField(
-              controller: controller.rgController,
-              decoration: InputDecoration(hintText: " RG"),
-            ),
-            TextField(
-              controller: controller.cpfController,
-              decoration: InputDecoration(hintText: " CPF"),
-            ),
-            TextField(
-              controller: controller.raController,
-              decoration: InputDecoration(hintText: " RA"),
-            ),
-            TextField(
-              controller: controller.telefoneController,
-              decoration: InputDecoration(hintText: " Telefone"),
-            ),
-            TextField(
-              controller: controller.emailController,
-              decoration: InputDecoration(hintText: " E-mail"),
-            ),
-            TextField(
-              controller: controller.dataNascimentoController,
-              decoration: InputDecoration(hintText: " Data de nascimento"),
-            ),
-            TextField(
-              controller: controller.anoController,
-              decoration: InputDecoration(hintText: " Ano"),
-            ),
-            TextField(
-              controller: controller.temaICVController,
-              decoration: InputDecoration(hintText: " Tema ICV"),
-            ),
-            TextField(
-              controller: controller.orientadorController,
-              decoration: InputDecoration(hintText: " Orientador"),
-            ),
-            TextField(
-              controller: controller.camisetaController,
-              decoration: InputDecoration(hintText: " Camiseta"),
-            ),
-            TextField(
-              controller: controller.githubController,
-              decoration: InputDecoration(hintText: " Github"),
-            ),
-            TextField(
-              controller: controller.instagramController,
-              decoration: InputDecoration(hintText: " Instagram"),
-            ),
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
+          body: ListView(
+            children: [
+              Center(
+                  heightFactor: 3,
+                  child: Text("Dados do Petiano",
+                      style: TextStyle(fontSize: 27, shadows: [
+                        Shadow(
+                          blurRadius: 4,
+                          color: Colors.black.withOpacity(0.25),
+                          offset: Offset(0, 4),
+                        )
+                      ]))),
+              Padding(
+                padding: const EdgeInsets.only(left: 50, right: 50),
+                child: Column(children: [
+                  TextField(
+                    controller: controller.nomeController,
+                    decoration: InputDecoration(hintText: " Nome"),
+                    enabled: !in_database,
+                  ),
+                  TextField(
+                    controller: controller.rgController,
+                    decoration: InputDecoration(hintText: " RG"),
+                  ),
+                  TextField(
+                    controller: controller.cpfController,
+                    decoration: InputDecoration(hintText: " CPF"),
+                  ),
+                  TextField(
+                    controller: controller.raController,
+                    decoration: InputDecoration(hintText: " RA"),
+                  ),
+                  TextField(
+                    controller: controller.telefoneController,
+                    decoration: InputDecoration(hintText: " Telefone"),
+                  ),
+                  TextField(
+                    controller: controller.emailController,
+                    decoration: InputDecoration(hintText: " E-mail"),
+                  ),
+                  TextField(
+                    controller: controller.dataNascimentoController,
+                    decoration:
+                        InputDecoration(hintText: " Data de nascimento"),
+                  ),
+                  TextField(
+                    controller: controller.anoController,
+                    decoration: InputDecoration(hintText: " Ano"),
+                  ),
+                  TextField(
+                    controller: controller.temaICVController,
+                    decoration: InputDecoration(hintText: " Tema ICV"),
+                  ),
+                  TextField(
+                    controller: controller.orientadorController,
+                    decoration: InputDecoration(hintText: " Orientador"),
+                  ),
+                  TextField(
+                    controller: controller.camisetaController,
+                    decoration: InputDecoration(hintText: " Camiseta"),
+                  ),
+                  TextField(
+                    controller: controller.githubController,
+                    decoration: InputDecoration(hintText: " Github"),
+                  ),
+                  TextField(
+                    controller: controller.instagramController,
+                    decoration: InputDecoration(hintText: " Instagram"),
+                  ),
+                ]),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Center(
                   child: ElevatedButton(
                     style: ButtonStyle(
                         backgroundColor:
                             MaterialStateProperty.all(AppColors.button),
                         elevation: MaterialStateProperty.all(5),
                         padding: MaterialStateProperty.all(EdgeInsets.symmetric(
-                            horizontal: 40, vertical: 9.5))),
+                            horizontal: 40, vertical: 15))),
                     onPressed: () {
                       if (access_db == true) {
                         createDB(controller.get_all_texts());
@@ -122,7 +128,8 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
                     )),
                   ),
                 ),
-                Padding(
+              ),
+              /*Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: ElevatedButton(
                     style: ButtonStyle(
@@ -141,10 +148,9 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
                       style: TextStyles.button,
                     )),
                   ),
-                )
-              ],
-            )
-          ])),
+                )*/
+            ],
+          )),
     );
   }
 
