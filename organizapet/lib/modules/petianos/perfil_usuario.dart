@@ -157,16 +157,13 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
   }
 
   void createDB(List all_texts) {
-    if (in_database) {
+    if (all_texts.first.isNotEmpty) {
+      dbController = dadosPetiano(nome: all_texts.first);
+      dbController.dadosPetianoFromLista(all_texts);
+      dbController.write();
     } else {
-      if (all_texts.first.isNotEmpty) {
-        final dbController = dadosPetiano(nome: all_texts.first);
-        dbController.dadosPetianoFromLista(all_texts);
-        dbController.write();
-      } else {
-        print("Caro tutor, faltou o nome!");
-        //exibir mensagem de que faltou inserir o nome
-      }
+      print("Caro tutor, faltou o nome!");
+      //exibir mensagem de que faltou inserir o nome
     }
   }
 
