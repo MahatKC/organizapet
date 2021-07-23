@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:organizapet/modules/login/login_page.dart';
+import 'package:organizapet/modules/petianos/lista_petianos.dart';
 import 'package:organizapet/modules/petianos/perfil_usuario.dart';
 import 'package:organizapet/modules/splash/splash_page.dart';
 
@@ -33,7 +34,8 @@ class _AppState extends State<App> {
 
         // Once complete, show your application
         if (snapshot.connectionState == ConnectionState.done) {
-          return PerfilUsuario(nome: "Mateus Karvat Camara");
+          //return PerfilUsuario(nome: "Mateus Karvat Camara");
+          return ListaPetianos();
         }
 
         // Otherwise, show something whilst waiting for initialization to complete
