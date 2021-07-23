@@ -27,7 +27,11 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
       readDB();
     }
 
-    controller.instantiateAll(dbController);
+    print("pikachu $in_database");
+    if (in_database == true) {
+      controller.instantiateAll(dbController);
+      setState(() {});
+    }
 
     return MaterialApp(
       home: Scaffold(
