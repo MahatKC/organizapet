@@ -18,7 +18,7 @@ class PerfilUsuario extends StatefulWidget {
 class _PerfilUsuarioState extends State<PerfilUsuario> {
   final controller = petianosController();
   bool in_database = false;
-  bool access_db = false;
+  bool access_db = true;
   var dbController = dadosPetiano(nome: "");
 
   @override
@@ -27,7 +27,11 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
       readDB();
     }
 
-    controller.instantiateAll(dbController);
+    print("pikachu $in_database");
+    if (in_database == true) {
+      controller.instantiateAll(dbController);
+      setState(() {});
+    }
 
     return MaterialApp(
       home: Scaffold(
