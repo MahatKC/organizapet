@@ -18,11 +18,14 @@ class PerfilUsuario extends StatefulWidget {
 class _PerfilUsuarioState extends State<PerfilUsuario> {
   final controller = petianosController();
   bool in_database = false;
+  bool access_db = false;
   var dbController = dadosPetiano(nome: "");
 
   @override
   Widget build(BuildContext context) {
-    readDB();
+    if (access_db == true) {
+      readDB();
+    }
 
     controller.instantiateAll(dbController);
 
@@ -109,7 +112,9 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
                         padding: MaterialStateProperty.all(EdgeInsets.symmetric(
                             horizontal: 40, vertical: 9.5))),
                     onPressed: () {
-                      createDB(controller.get_all_texts());
+                      if (access_db == true) {
+                        createDB(controller.get_all_texts());
+                      }
                     },
                     child: (Text(
                       "Salvar",
@@ -127,7 +132,9 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
                         padding: MaterialStateProperty.all(EdgeInsets.symmetric(
                             horizontal: 40, vertical: 9.5))),
                     onPressed: () {
-                      eliminado(controller.nomeController.text);
+                      if (access_db == true) {
+                        eliminado(controller.nomeController.text);
+                      }
                     },
                     child: (Text(
                       "Deletar",
