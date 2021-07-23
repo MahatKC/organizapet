@@ -27,7 +27,6 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
       readDB();
     }
 
-    print("pikachu $in_database");
     if (in_database == true) {
       controller.instantiateAll(dbController);
       setState(() {});
