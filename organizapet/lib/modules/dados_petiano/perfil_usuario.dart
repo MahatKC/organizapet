@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:organizapet/modules/dados_petiano/document_title.dart';
+import 'package:organizapet/modules/useful_functions/document_title.dart';
 import 'package:organizapet/modules/dados_petiano/petianos_controller.dart';
 import 'package:organizapet/modules/dados_petiano/petianos_db_controller.dart';
+import 'package:organizapet/modules/useful_functions/print_current_time.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/themes/app_text_styles.dart';
 import 'package:organizapet/shared/widgets/app_bar/appBar.dart';
 import 'package:organizapet/shared/widgets/menu/menuSanduiche.dart';
+import 'package:organizapet/shared/widgets/page_title/page_title.dart';
 
 class PerfilUsuario extends StatefulWidget {
   final String nome;
@@ -18,19 +20,23 @@ class PerfilUsuario extends StatefulWidget {
 class _PerfilUsuarioState extends State<PerfilUsuario> {
   final controller = petianosController();
   bool in_database = false;
-  bool access_db = false;
+  bool access_db = true;
   var dbController = dadosPetiano(nome: "");
 
   @override
   Widget build(BuildContext context) {
-    if (access_db == true) {
+    if (access_db == true && widget.nome.isNotEmpty && in_database == false) {
       readDB();
     }
-    print("before if");
+    print_time_now("before if");
     if (in_database == true) {
+      /*if (dbController.rg == null) {
+        setState(() {});
+        print("rg null");
+      } else {*/
       controller.instantiateAll(dbController);
-      print("in if");
-      setState(() {});
+      print_time_now("in if");
+      //}
     }
 
     return MaterialApp(
@@ -43,16 +49,7 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
           ),
           body: ListView(
             children: [
-              Center(
-                  heightFactor: 3,
-                  child: Text("Dados do Petiano",
-                      style: TextStyle(fontSize: 27, shadows: [
-                        Shadow(
-                          blurRadius: 4,
-                          color: Colors.black.withOpacity(0.25),
-                          offset: Offset(0, 4),
-                        )
-                      ]))),
+              PageTitle(title: "Dados do Petiano"),
               Padding(
                 padding: const EdgeInsets.only(left: 50, right: 50),
                 child: Column(children: [
@@ -160,11 +157,10 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
   }
 
   void readDB() async {
-    if (widget.nome.isNotEmpty && in_database == false) {
-      dbController = dadosPetiano(nome: widget.nome);
-      await dbController.read();
-      in_database = true;
-    }
+    dbController = dadosPetiano(nome: widget.nome);
+    await dbController.read();
+    in_database = true;
+    print_time_now("readdb func");
   }
 
   void createDB(List all_texts) {
