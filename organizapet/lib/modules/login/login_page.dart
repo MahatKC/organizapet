@@ -4,7 +4,7 @@ import 'package:organizapet/modules/login/login_controller.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/themes/app_images.dart';
 import 'package:organizapet/shared/themes/app_text_styles.dart';
-import 'package:organizapet/shared/widgets/social_login_button.dart';
+import 'package:organizapet/shared/widgets/social_login_button/social_login_button.dart';
 
 FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -21,6 +21,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: AppColors.background,
         body: Column(

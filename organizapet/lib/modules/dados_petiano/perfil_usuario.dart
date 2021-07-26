@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:organizapet/modules/petianos/document_title.dart';
-import 'package:organizapet/modules/petianos/petianos_controller.dart';
-import 'package:organizapet/modules/petianos/petianos_db_controller.dart';
+import 'package:organizapet/modules/dados_petiano/document_title.dart';
+import 'package:organizapet/modules/dados_petiano/petianos_controller.dart';
+import 'package:organizapet/modules/dados_petiano/petianos_db_controller.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/themes/app_text_styles.dart';
-import 'package:organizapet/shared/widgets/appBar.dart';
-import 'package:organizapet/shared/widgets/menuSanduiche.dart';
+import 'package:organizapet/shared/widgets/app_bar/appBar.dart';
+import 'package:organizapet/shared/widgets/menu/menuSanduiche.dart';
 
 class PerfilUsuario extends StatefulWidget {
   final String nome;
@@ -26,13 +26,15 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
     if (access_db == true) {
       readDB();
     }
-
+    print("before if");
     if (in_database == true) {
       controller.instantiateAll(dbController);
+      print("in if");
       setState(() {});
     }
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
           backgroundColor: AppColors.background,
           drawer: MenuSanduiche(),

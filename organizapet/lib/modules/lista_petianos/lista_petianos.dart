@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
-import 'package:organizapet/shared/widgets/appBar.dart';
-import 'package:organizapet/shared/widgets/menuSanduiche.dart';
+import 'package:organizapet/shared/widgets/app_bar/appBar.dart';
+import 'package:organizapet/shared/widgets/menu/menuSanduiche.dart';
 
 class ListaPetianos extends StatefulWidget {
   const ListaPetianos({Key? key}) : super(key: key);

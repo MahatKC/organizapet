@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:organizapet/modules/petianos/petianos_db_controller.dart';
+import 'package:organizapet/modules/dados_petiano/petianos_db_controller.dart';
 
 class petianosController {
   final nomeController = TextEditingController();
