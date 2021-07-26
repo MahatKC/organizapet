@@ -34,7 +34,7 @@ class _AppState extends State<App> {
 
         // Once complete, show your application
         if (snapshot.connectionState == ConnectionState.done) {
-          return PerfilUsuario(nome: "Mateus Karvat Camara");
+          return PerfilUsuario(nome: "");
           //return PerfilUsuario(nome: "Leonardo Vanzin");
           //return SplashPage();
           //return LoginPage();
@@ -42,7 +42,7 @@ class _AppState extends State<App> {
         }
 
         // Otherwise, show something whilst waiting for initialization to complete
-        return Center(child: CircularProgressIndicator());;
+        return Center(child: CircularProgressIndicator());
       },
     );
   }

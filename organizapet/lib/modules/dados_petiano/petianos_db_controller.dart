@@ -135,13 +135,13 @@ class dadosPetiano {
   }
 
   Future<void> read() async {
-    _mainCollection.doc(document_title(nome)).get().then((snapshot) {
+    await _mainCollection.doc(document_title(nome)).get().then((snapshot) {
       if (snapshot.exists) {
         dadosPetianoFromJson(snapshot.data() as Map<String, dynamic>);
         in_db = true;
       } else {
         print("Non Ecziste");
       }
-    }).catchError((error) => print("Falha"));
+    }).then((value) => print("$nome lido")).catchError((error) => print("Falha $error"));
   }
 }

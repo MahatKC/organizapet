@@ -44,6 +44,6 @@ class _ListaPetianosState extends State<ListaPetianos> {
         color: Colors.red, //                   <--- border color
         width: 5.0,
       ),
-    );
+    );*/
   }
 }
