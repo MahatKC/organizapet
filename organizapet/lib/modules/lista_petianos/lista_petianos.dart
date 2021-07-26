@@ -14,6 +14,7 @@ class _ListaPetianosState extends State<ListaPetianos> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold());
     /*Scaffold(
         backgroundColor: AppColors.background,
