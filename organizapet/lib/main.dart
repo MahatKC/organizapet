@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:organizapet/modules/login/login_page.dart';
 import 'package:organizapet/modules/lista_petianos/lista_petianos.dart';
-import 'package:organizapet/modules/dados_petiano/perfil_usuario.dart';
+import 'package:organizapet/modules/dados_petiano/petiano.dart';
 import 'package:organizapet/modules/splash/splash_page.dart';
 
 void main() {
@@ -34,14 +34,15 @@ class _AppState extends State<App> {
 
         // Once complete, show your application
         if (snapshot.connectionState == ConnectionState.done) {
-          return PerfilUsuario(nome: "");
+          return PerfilUsuario(nome: "Mateus Karvat Camara");
+          //return PerfilUsuario(nome: "Leonardo Vanzin");
           //return SplashPage();
           //return LoginPage();
           //return ListaPetianos();
         }
 
         // Otherwise, show something whilst waiting for initialization to complete
-        return MyLoadingApp();
+        return Center(child: CircularProgressIndicator());;
       },
     );
   }
@@ -64,24 +65,11 @@ class MyBadApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'OrganizaPET',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(title: 'Deu ruim, parça'),
-    );
-  }
-}
-
-class MyLoadingApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Carregando'),
     );
   }
 }
