@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:organizapet/modules/login/login_page.dart';
-import 'package:organizapet/modules/petianos/lista_petianos.dart';
-import 'package:organizapet/modules/petianos/perfil_usuario.dart';
+import 'package:organizapet/modules/lista_petianos/lista_petianos.dart';
+import 'package:organizapet/modules/dados_petiano/perfil_usuario.dart';
 import 'package:organizapet/modules/splash/splash_page.dart';
 
 void main() {
@@ -34,8 +34,9 @@ class _AppState extends State<App> {
 
         // Once complete, show your application
         if (snapshot.connectionState == ConnectionState.done) {
-          //return PerfilUsuario(nome: "Mateus Karvat Camara");
-          return LoginPage();
+          return PerfilUsuario(nome: "");
+          //return SplashPage();
+          //return LoginPage();
           //return ListaPetianos();
         }
 

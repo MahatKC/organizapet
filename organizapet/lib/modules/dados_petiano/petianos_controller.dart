@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:organizapet/modules/petianos/petianos_db_controller.dart';
+import 'package:organizapet/modules/dados_petiano/petianos_db_controller.dart';
+import 'package:organizapet/modules/useful_functions/print_current_time.dart';
 
 class petianosController {
   final nomeController = TextEditingController();
@@ -41,7 +42,9 @@ class petianosController {
   void not_null() {}
 
   void instantiateAll(dadosPetiano dbController) {
+    print_time_now("outside controller");
     if (dbController.rg != null) {
+      print_time_now("in controller");
       nomeController.text = dbController.nome;
       rgController.text = dbController.rg.toString();
       cpfController.text = dbController.cpf.toString();
