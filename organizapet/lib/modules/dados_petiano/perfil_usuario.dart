@@ -8,6 +8,7 @@ import 'package:organizapet/shared/themes/app_text_styles.dart';
 import 'package:organizapet/shared/widgets/app_bar/appBar.dart';
 import 'package:organizapet/shared/widgets/menu/menuSanduiche.dart';
 import 'package:organizapet/shared/widgets/page_title/page_title.dart';
+import 'package:organizapet/shared/widgets/single_page_button/single_page_button.dart';
 
 class PerfilUsuario extends StatefulWidget {
   final String nome;
@@ -109,28 +110,7 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
                   ),
                 ]),
               ),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Center(
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(AppColors.button),
-                        elevation: MaterialStateProperty.all(5),
-                        padding: MaterialStateProperty.all(EdgeInsets.symmetric(
-                            horizontal: 40, vertical: 15))),
-                    onPressed: () {
-                      if (access_db == true) {
-                        createDB(controller.get_all_texts());
-                      }
-                    },
-                    child: (Text(
-                      "Salvar",
-                      style: TextStyles.button,
-                    )),
-                  ),
-                ),
-              ),
+              SinglePageButton(buttonLabel: "Salvar", callback: save_button_function)
               /*Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: ElevatedButton(
@@ -179,6 +159,12 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
       final dbController = dadosPetiano(nome: nome);
       dbController.delete();
       //mensagem de que a remoção deu certo
+    }
+  }
+
+  void save_button_function() {
+    if (access_db == true) {
+      createDB(controller.get_all_texts());
     }
   }
 }
