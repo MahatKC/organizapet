@@ -34,11 +34,11 @@ class _AppState extends State<App> {
 
         // Once complete, show your application
         if (snapshot.connectionState == ConnectionState.done) {
-          return PerfilUsuario(nome: "");
+          //return PerfilUsuario(nome: "");
           //return PerfilUsuario(nome: "Leonardo Vanzin");
           //return SplashPage();
           //return LoginPage();
-          //return ListaPetianos();
+          return ListaPetianos();
         }
 
         // Otherwise, show something whilst waiting for initialization to complete
