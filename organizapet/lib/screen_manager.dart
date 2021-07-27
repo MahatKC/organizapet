@@ -5,7 +5,7 @@ import 'package:organizapet/modules/dados_petiano/petiano.dart';
 import 'package:organizapet/modules/splash/splash_page.dart';
 
 class ScreenManager extends StatelessWidget {
-  const ScreenManager({ Key? key }) : super(key: key);
+  const ScreenManager({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,8 @@ class ScreenManager extends StatelessWidget {
         '/splash': (context) => SplashPage(),
         '/lista_petianos': (context) => ListaPetianos(),
         //'/visualizar_petiano': (context) =>
-        '/dados_petiano': (context) => PerfilUsuario(nome: ModalRoute.of(context)!.settings.arguments as String)
+        '/dados_petiano': (context) => PerfilUsuario(
+            nome: ModalRoute.of(context)!.settings.arguments as String)
       },
     );
   }

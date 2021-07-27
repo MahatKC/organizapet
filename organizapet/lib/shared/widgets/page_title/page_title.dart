@@ -10,7 +10,7 @@ class PageTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-        heightFactor: 1.5,
+        heightFactor: 4,
         child: Text(title,
             style: TextStyle(fontSize: 27, shadows: [
               Shadow(

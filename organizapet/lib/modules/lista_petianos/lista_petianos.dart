@@ -24,10 +24,7 @@ class _ListaPetianosState extends State<ListaPetianos> {
               title: BarraApp(),
             ),
             body: ListView(children: [
-              Center(
-                  heightFactor: 3,
-                  child: PageTitle(title: "Petianos"),
-                  ),
+                  PageTitle(title: "Petianos"),
                   BoxList(titulo: "Davi Giacomel", subtitulo: "1 ano",),
             ])));
   }
