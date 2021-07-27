@@ -1,14 +1,15 @@
-
 import 'package:flutter/material.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/themes/app_images.dart';
 import 'package:organizapet/shared/themes/app_text_styles.dart';
 
 class SplashPage extends StatelessWidget {
-  const SplashPage({ Key? key }) : super(key: key);
+  const SplashPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    change_screen(context);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -21,11 +22,16 @@ class SplashPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 30),
               child:
-              Center(child: Text("OrganizaPET", style: TextStyles.nameApp)),
+                  Center(child: Text("OrganizaPET", style: TextStyles.nameApp)),
             )
           ],
         ),
       ),
     );
+  }
+
+  Future<void> change_screen(BuildContext context) async {
+    await Future.delayed(Duration(seconds: 3));
+    Navigator.pushReplacementNamed(context, "/dados_petiano", arguments: "");
   }
 }
