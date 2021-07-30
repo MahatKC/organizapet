@@ -13,4 +13,5 @@ class AppColors {
   static final boxList = Color(0xFF6FC3E8).withOpacity(0.15);
   static final boxListBorder = Color(0xFF6FC3E8);
   static final arrow = Color(0xFF646161).withOpacity(0.88);
+  static final infoBox = Color(0xFF666666);
 }

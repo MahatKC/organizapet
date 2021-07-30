@@ -20,17 +20,16 @@ class TextStyles {
   );
 
   static final title = GoogleFonts.inter(
-    fontSize: 27,
-    color: AppColors.title,
-    fontWeight: FontWeight.w400,
-    shadows: [
-      Shadow( 
-        blurRadius: 4,
-        color: Colors.black.withOpacity(0.25),
-        offset: Offset(0, 3),
-    )
-  ]
-  );
+      fontSize: 27,
+      color: AppColors.title,
+      fontWeight: FontWeight.w400,
+      shadows: [
+        Shadow(
+          blurRadius: 4,
+          color: Colors.black.withOpacity(0.25),
+          offset: Offset(0, 3),
+        )
+      ]);
 
   static final button = GoogleFonts.actor(
     fontSize: 19,
@@ -46,5 +45,10 @@ class TextStyles {
   static final subtitleBoxList = GoogleFonts.inter(
     fontSize: 16,
     color: AppColors.subtitleBoxList,
+  );
+
+  static final infoBox = GoogleFonts.inter(
+    fontSize: 18,
+    color: AppColors.infoBox,
   );
 }

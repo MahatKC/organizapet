@@ -12,7 +12,7 @@ class PageTitle extends StatelessWidget {
     return Center(
         heightFactor: 4,
         child: Text(title,
-            style: TextStyle(fontSize: 27, shadows: [
+            style: TextStyle(fontSize: 29, shadows: [
               Shadow(
                 blurRadius: 4,
                 color: Colors.black.withOpacity(0.25),
