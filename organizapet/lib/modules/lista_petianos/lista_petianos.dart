@@ -21,9 +21,7 @@ class _ListaPetianosState extends State<ListaPetianos> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
+    return Scaffold(
             backgroundColor: AppColors.background,
             drawer: MenuSanduiche(),
             appBar: AppBar(
@@ -49,11 +47,16 @@ class _ListaPetianosState extends State<ListaPetianos> {
                           document.data() as Map<String, dynamic>;
                       return new BoxList(
                           titulo: first_and_last_name(data),
-                          subtitulo: ano_formatter(data));
+                          subtitulo: ano_formatter(data),
+                          callback: (){go_to_petiano(context, data['nome']);});
                     }).toList(),
                   );
                 },
               )
-            ])));
+            ]));
   }
+}
+
+void go_to_petiano(BuildContext context, String nome){
+  Navigator.pushReplacementNamed(context, "/dados_petiano", arguments: nome);
 }

@@ -5,7 +5,12 @@ import 'package:organizapet/shared/themes/app_text_styles.dart';
 class BoxList extends StatelessWidget {
   final String titulo;
   final String subtitulo;
-  const BoxList({Key? key, required this.titulo, required this.subtitulo})
+  final VoidCallback callback;
+  const BoxList(
+      {Key? key,
+      required this.titulo,
+      required this.subtitulo,
+      required this.callback})
       : super(key: key);
 
   @override
@@ -24,21 +29,23 @@ class BoxList extends StatelessWidget {
             children: [
               Align(
                 child: ListTile(
-                  title: Text(
-                    titulo,
-                    style: TextStyles.titleBoxList,
-                  ),
-                  subtitle: Text(
-                    subtitulo,
-                    style: TextStyles.subtitleBoxList,
-                  ),
-                  // leading: Icon(Icons.flash_on),
-                  trailing: Icon(
-                    Icons.keyboard_arrow_right,
-                    size: 32,
-                    color: AppColors.arrow,
-                  ),
-                ),
+                    title: Text(
+                      titulo,
+                      style: TextStyles.titleBoxList,
+                    ),
+                    subtitle: Text(
+                      subtitulo,
+                      style: TextStyles.subtitleBoxList,
+                    ),
+                    // leading: Icon(Icons.flash_on),
+                    trailing: IconButton(
+                      icon: Icon(
+                        Icons.keyboard_arrow_right,
+                        size: 32,
+                        color: AppColors.arrow,
+                      ),
+                      onPressed: callback,
+                    )),
               )
             ],
           )),
