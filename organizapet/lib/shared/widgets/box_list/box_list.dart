@@ -25,8 +25,7 @@ class BoxList extends StatelessWidget {
                   bottomLeft: Radius.circular(10)),
               color: AppColors.boxList,
               border: Border.all(color: AppColors.boxListBorder, width: 1)),
-          child: ListView(
-            children: [
+          child:             
               Align(
                 child: ListTile(
                     title: Text(
@@ -47,8 +46,8 @@ class BoxList extends StatelessWidget {
                       onPressed: callback,
                     )),
               )
-            ],
-          )),
+            
+          ),
     );
   }
 }

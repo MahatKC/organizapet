@@ -38,12 +38,12 @@ class TextStyles {
   );
 
   static final titleBoxList = GoogleFonts.inter(
-    fontSize: 18,
+    fontSize: 19,
     color: AppColors.button,
   );
 
   static final subtitleBoxList = GoogleFonts.inter(
-    fontSize: 16,
+    fontSize: 14,
     color: AppColors.subtitleBoxList,
   );
 

@@ -27,8 +27,10 @@ class _ListaPetianosState extends State<ListaPetianos> {
             appBar: AppBar(
               title: BarraApp(),
             ),
-            body: ListView(children: [
-              PageTitle(title: "Petianos"),
+            body: ListView(
+              children: [
+              PageTitle(
+                title: "Petianos"),
               StreamBuilder<QuerySnapshot>(
                 stream: _petianosStream,
                 builder: (BuildContext context,
