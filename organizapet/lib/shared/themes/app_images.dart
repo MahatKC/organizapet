@@ -11,7 +11,8 @@ class AppImages {
   static const email = "assets/images/mail.png";
   static const orientador = "assets/images/Orientador.png";
   static const telefone = "assets/images/phone.png";
-  static const camiseta = "assets/images/tshirt.png";
-  static const unioeste = "assets/images/Unio.png";
-  static const usuario = "assets/images/user.png";
+  static const camiseta = "assets/images/tshirt.png"; 
+  static const unioeste = "assets/images/Unio.png"; 
+  static const usuario = "assets/images/user.png"; 
+
 }
