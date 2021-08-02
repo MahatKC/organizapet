@@ -3,6 +3,7 @@ import 'package:organizapet/modules/dados_petiano/petianos_db_controller.dart';
 
 class petianosController {
   final nomeController = TextEditingController();
+  final nomeCurtoController = TextEditingController();
   final rgController = TextEditingController();
   final cpfController = TextEditingController();
   final raController = TextEditingController();
@@ -22,6 +23,7 @@ class petianosController {
     List<String> all_texts = List.empty(growable: true);
 
     all_texts.add(nomeController.text);
+    all_texts.add(nomeCurtoController.text);
     all_texts.add(rgController.text);
     all_texts.add(cpfController.text);
     all_texts.add(raController.text);
@@ -38,10 +40,9 @@ class petianosController {
     return all_texts;
   }
 
-  void not_null() {}
-
   void instantiateAll(dadosPetiano dbController) {
     nomeController.text = dbController.nome;
+    nomeCurtoController.text = dbController.nomeCurto.toString();
     rgController.text = dbController.rg.toString();
     cpfController.text = dbController.cpf.toString();
     raController.text = dbController.ra.toString();
