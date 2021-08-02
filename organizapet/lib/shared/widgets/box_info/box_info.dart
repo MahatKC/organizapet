@@ -5,12 +5,13 @@ import 'package:organizapet/shared/themes/app_text_styles.dart';
 
 class BoxInfo extends StatelessWidget {
   final String imagem;
-  const BoxInfo({Key? key, required this.imagem}) : super(key: key);
+  final String texto;
+  const BoxInfo({Key? key, required this.imagem, required this.texto}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 30, left: 42, right: 42),
+      padding: const EdgeInsets.only(bottom: 20, left: 42, right: 42),
       child: Container(
           height: 49,
           decoration: BoxDecoration(
@@ -21,7 +22,7 @@ class BoxInfo extends StatelessWidget {
               Align(
                 child: ListTile(
                     title: Text(
-                      "Mateus Edival Rodrigues da Silveira",
+                      texto,
                       style: TextStyles.infoBox,
                     ),
                     leading: Image.asset(imagem)),

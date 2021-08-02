@@ -27,9 +27,57 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
             body: ListView(children: [
               PageTitle(title: "Dados do Petiano"),
               BoxInfo(
-                imagem: AppImages.google,
+                imagem: AppImages.usuario,
+                texto: "Mateus Edival Rodrigues da Silveira",
               ),
-              Center(child: Image.asset(AppImages.usuario)),
+              BoxInfo(
+                imagem: AppImages.cpf,
+                texto: "100.111.234-56",
+              ),
+              BoxInfo(
+                imagem: AppImages.rg,
+                texto: "10.111.234-5",
+              ),
+              BoxInfo(
+                imagem: AppImages.unioeste,
+                texto: "45678",
+              ),
+              BoxInfo(
+                imagem: AppImages.telefone,
+                texto: "45 99999-3456",
+              ),
+              BoxInfo(
+                imagem: AppImages.email,
+                texto: "mateusedival@gmail.com",
+              ),
+              BoxInfo(
+                imagem: AppImages.dataNascimento,
+                texto: "23/02/1999",
+              ),
+              BoxInfo(
+                imagem: AppImages.ano,
+                texto: "4°",
+              ),
+              BoxInfo(
+                imagem: AppImages.icv,
+                texto: "AM",
+              ),
+              BoxInfo(
+                imagem: AppImages.orientador,
+                texto: "André Brun",
+              ),
+              BoxInfo(
+                imagem: AppImages.camiseta,
+                texto: "G",
+              ),
+              BoxInfo(
+                imagem: AppImages.github,
+                texto: "mateusedival",
+              ),
+              BoxInfo(
+                imagem: AppImages.insta,
+                texto: "mateusedival",
+              ),
             ])));
   }
 }
