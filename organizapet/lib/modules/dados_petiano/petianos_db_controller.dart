@@ -6,6 +6,7 @@ final CollectionReference _mainCollection = _firestore.collection('petianos');
 
 class dadosPetiano {
   String nome;
+  String? nomeCurto;
   String? rg;
   String? cpf;
   String? ra;
@@ -19,13 +20,10 @@ class dadosPetiano {
   String? github;
   String? instagram;
   bool? in_db;
-  final dadosPetianoRef = _mainCollection.withConverter<dadosPetiano>(
-    fromFirestore: (snapshot, _) => dadosPetiano.fromJson(snapshot.data()!),
-    toFirestore: (petiano, _) => petiano.toJson(),
-  );
 
   dadosPetiano(
       {required this.nome,
+      this.nomeCurto,
       this.rg,
       this.cpf,
       this.ra,
@@ -41,21 +39,23 @@ class dadosPetiano {
       this.in_db});
 
   dadosPetianoFromLista(List lista) {
-    this.rg = lista.elementAt(1);
-    this.cpf = lista.elementAt(2);
-    this.ra = lista.elementAt(3);
-    this.telefone = lista.elementAt(4);
-    this.email = lista.elementAt(5);
-    this.dataNascimento = lista.elementAt(6);
-    this.ano = lista.elementAt(7);
-    this.temaICV = lista.elementAt(8);
-    this.orientador = lista.elementAt(9);
-    this.camiseta = lista.elementAt(10);
-    this.github = lista.elementAt(11);
-    this.instagram = lista.elementAt(12);
+    this.nomeCurto = lista.elementAt(1);
+    this.rg = lista.elementAt(2);
+    this.cpf = lista.elementAt(3);
+    this.ra = lista.elementAt(4);
+    this.telefone = lista.elementAt(5);
+    this.email = lista.elementAt(6);
+    this.dataNascimento = lista.elementAt(7);
+    this.ano = lista.elementAt(8);
+    this.temaICV = lista.elementAt(9);
+    this.orientador = lista.elementAt(10);
+    this.camiseta = lista.elementAt(11);
+    this.github = lista.elementAt(12);
+    this.instagram = lista.elementAt(13);
   }
 
   dadosPetianoFromJson(Map<String, dynamic> data) {
+    this.nomeCurto = data['nome_curto'];
     this.rg = data['rg'];
     this.cpf = data['cpf'];
     this.ra = data['ra'];
@@ -68,40 +68,6 @@ class dadosPetiano {
     this.camiseta = data['camiseta'];
     this.github = data['github'];
     this.instagram = data['instagram'];
-  }
-
-  dadosPetiano.fromJson(Map<String, Object?> json)
-      : this(
-            nome: json['nome']! as String,
-            rg: json['rg'] as String,
-            cpf: json['cpf'] as String,
-            ra: json['ra'] as String,
-            telefone: json['telefone'] as String,
-            email: json['email'] as String,
-            dataNascimento: json['dataNascimento'] as String,
-            ano: json['ano'] as String,
-            temaICV: json['temaICV'] as String,
-            orientador: json['orientador'] as String,
-            camiseta: json['camiseta'] as String,
-            github: json['github'] as String,
-            instagram: json['instagram'] as String);
-
-  Map<String, Object?> toJson() {
-    return {
-      'nome': nome,
-      'rg': rg,
-      'cpf': cpf,
-      'ra': ra,
-      'telefone': telefone,
-      'email': email,
-      'dataNascimento': dataNascimento,
-      'ano': ano,
-      'temaICV': temaICV,
-      'orientador': orientador,
-      'camiseta': camiseta,
-      'github': github,
-      'instagram': instagram
-    };
   }
 
   Future<void> write() async {
@@ -135,13 +101,18 @@ class dadosPetiano {
   }
 
   Future<void> read() async {
-    await _mainCollection.doc(document_title(nome)).get().then((snapshot) {
-      if (snapshot.exists) {
-        dadosPetianoFromJson(snapshot.data() as Map<String, dynamic>);
-        in_db = true;
-      } else {
-        print("Non Ecziste");
-      }
-    }).then((value) => print("$nome lido")).catchError((error) => print("Falha $error"));
+    await _mainCollection
+        .doc(document_title(nome))
+        .get()
+        .then((snapshot) {
+          if (snapshot.exists) {
+            dadosPetianoFromJson(snapshot.data() as Map<String, dynamic>);
+            in_db = true;
+          } else {
+            print("Non Ecziste");
+          }
+        })
+        .then((value) => print("$nome lido"))
+        .catchError((error) => print("Falha $error"));
   }
 }
