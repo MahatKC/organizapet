@@ -43,6 +43,7 @@ class _ListaPetianosState extends State<ListaPetianos> {
                   }
                   return new ListView(
                     shrinkWrap: true,
+                    physics: ClampingScrollPhysics(),
                     children:
                         snapshot.data!.docs.map((DocumentSnapshot document) {
                       Map<String, dynamic> data =
