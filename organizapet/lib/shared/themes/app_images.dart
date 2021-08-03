@@ -11,8 +11,11 @@ class AppImages {
   static const email = "assets/images/mail.png";
   static const orientador = "assets/images/orientador.png";
   static const telefone = "assets/images/phone.png";
-  static const camiseta = "assets/images/tshirt.png"; 
-  static const unioeste = "assets/images/unio.png"; 
-  static const usuario = "assets/images/user.png"; 
-
+  static const camiseta = "assets/images/tshirt.png";
+  static const unioeste = "assets/images/unio.png";
+  static const usuario = "assets/images/user.png";
+  static const projeto = "assets/images/projeto.png";
+  static const membros = "assets/images/membros.png";
+  static const cronograma = "assets/images/cronograma.png";
+  static const usuarioBranco = "assets/images/usuario_branco.png";
 }
