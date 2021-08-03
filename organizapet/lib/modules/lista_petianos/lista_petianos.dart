@@ -27,8 +27,10 @@ class _ListaPetianosState extends State<ListaPetianos> {
             appBar: AppBar(
               title: BarraApp(),
             ),
-            body: ListView(children: [
-              PageTitle(title: "Petianos"),
+            body: ListView(
+              children: [
+              PageTitle(
+                title: "Petianos"),
               StreamBuilder<QuerySnapshot>(
                 stream: _petianosStream,
                 builder: (BuildContext context,
@@ -41,6 +43,7 @@ class _ListaPetianosState extends State<ListaPetianos> {
                   }
                   return new ListView(
                     shrinkWrap: true,
+                    physics: ClampingScrollPhysics(),
                     children:
                         snapshot.data!.docs.map((DocumentSnapshot document) {
                       Map<String, dynamic> data =
