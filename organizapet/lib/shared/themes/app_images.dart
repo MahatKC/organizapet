@@ -17,5 +17,5 @@ class AppImages {
   static const projeto = "assets/images/projeto.png";
   static const membros = "assets/images/membros.png";
   static const cronograma = "assets/images/cronograma.png";
-  static const usuarioBranco = "assets/images/usuarioBranco.png";
+  static const usuarioBranco = "assets/images/usuario_branco.png";
 }
