@@ -17,7 +17,7 @@ class MenuSanduiche extends StatelessWidget {
             onTap: () {},
           ),
           ListTile(
-            leading: Image.asset(AppImages.membros),
+            leading: Image.asset(AppImages.usuario),
             title: Text('Membros'),
             onTap: () {},
           ),
