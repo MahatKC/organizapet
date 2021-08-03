@@ -31,9 +31,7 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
+    return Scaffold(
             backgroundColor: AppColors.background,
             drawer: MenuSanduiche(),
             appBar: AppBar(title: BarraApp()),
@@ -99,7 +97,7 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
                   );
                 }
               },
-            )));
+            ));
   }
 
   Future<dadosPetiano> read_db() async {
