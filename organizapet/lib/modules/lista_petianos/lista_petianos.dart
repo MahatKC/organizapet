@@ -61,5 +61,5 @@ class _ListaPetianosState extends State<ListaPetianos> {
 }
 
 void go_to_petiano(BuildContext context, String nome){
-  Navigator.pushReplacementNamed(context, "/dados_petiano", arguments: nome);
+  Navigator.pushReplacementNamed(context, "/visualizar_dados_petiano", arguments: nome);
 }
