@@ -18,7 +18,8 @@ class ScreenManager extends StatelessWidget {
       routes: {
         '/splash': (context) => SplashPage(),
         '/lista_petianos': (context) => ListaPetianos(),
-        '/visualizar_dados_petiano': (context) => VisualizarDadosPetiano(),
+        '/visualizar_dados_petiano': (context) => VisualizarDadosPetiano(
+            nome: ModalRoute.of(context)!.settings.arguments as String),
         //'/visualizar_petiano': (context) =>
         '/dados_petiano': (context) => PerfilUsuario(
             nome: ModalRoute.of(context)!.settings.arguments as String),
