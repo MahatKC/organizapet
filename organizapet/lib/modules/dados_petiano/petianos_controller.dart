@@ -42,18 +42,18 @@ class petianosController {
 
   void instantiateAll(dadosPetiano dbController) {
     nomeController.text = dbController.nome;
-    nomeCurtoController.text = dbController.nomeCurto.toString();
-    rgController.text = dbController.rg.toString();
-    cpfController.text = dbController.cpf.toString();
-    raController.text = dbController.ra.toString();
-    telefoneController.text = dbController.telefone.toString();
-    emailController.text = dbController.email.toString();
-    dataNascimentoController.text = dbController.dataNascimento.toString();
-    anoController.text = dbController.ano.toString();
-    temaICVController.text = dbController.temaICV.toString();
-    orientadorController.text = dbController.orientador.toString();
-    camisetaController.text = dbController.camiseta.toString();
-    githubController.text = dbController.github.toString();
-    instagramController.text = dbController.instagram.toString();
+    nomeCurtoController.text = dbController.nomeCurto ?? "";
+    rgController.text = dbController.rg ?? "";
+    cpfController.text = dbController.cpf ?? "";
+    raController.text = dbController.ra ?? "";
+    telefoneController.text = dbController.telefone ?? "";
+    emailController.text = dbController.email ?? "";
+    dataNascimentoController.text = dbController.dataNascimento ?? "";
+    anoController.text = dbController.ano ?? "";
+    temaICVController.text = dbController.temaICV ?? "";
+    orientadorController.text = dbController.orientador ?? "";
+    camisetaController.text = dbController.camiseta ?? "";
+    githubController.text = dbController.github ?? "";
+    instagramController.text = dbController.instagram ?? "";
   }
 }
