@@ -51,4 +51,9 @@ class TextStyles {
     fontSize: 18,
     color: AppColors.infoBox,
   );
+
+  static final userMenu = GoogleFonts.inter(
+    fontSize: 19,
+    color: Colors.white,
+  );
 }
