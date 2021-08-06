@@ -13,7 +13,7 @@ class BoxInfo extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 20, left: 42, right: 42),
       child: Container(
-          height: 55,
+         // height: 55,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(7),
               border: Border.all(color: AppColors.boxListBorder, width: 1)),
