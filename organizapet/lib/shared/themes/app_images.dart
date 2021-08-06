@@ -18,4 +18,6 @@ class AppImages {
   static const membros = "assets/images/membros.png";
   static const cronograma = "assets/images/cronograma.png";
   static const usuarioBranco = "assets/images/usuario_branco.png";
+  static const logoMenor = "assets/images/logo_menor.png";
+  static const sair = "assets/images/logout.png";
 }
