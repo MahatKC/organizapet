@@ -14,7 +14,7 @@ class ScreenManager extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'OrganizaPET',
-      initialRoute: '/lista_petianos',
+      initialRoute: '/splash',
       routes: {
         '/splash': (context) => SplashPage(),
         '/lista_petianos': (context) => ListaPetianos(),
