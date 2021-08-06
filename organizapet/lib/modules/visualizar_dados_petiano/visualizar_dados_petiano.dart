@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:organizapet/modules/dados_petiano/petianos_controller.dart';
 import 'package:organizapet/modules/dados_petiano/petianos_db_controller.dart';
+import 'package:organizapet/modules/lista_petianos/lista_petianos.dart';
 import 'package:organizapet/modules/useful_functions/back_to_previous.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/themes/app_images.dart';
@@ -10,9 +11,9 @@ import 'package:organizapet/shared/widgets/menu/menuSanduiche.dart';
 import 'package:organizapet/shared/widgets/page_title/page_title.dart';
 
 class VisualizarDadosPetiano extends StatefulWidget {
-  final String nome;
+  final VisualizarDadosArguments dados;
 
-  const VisualizarDadosPetiano({required this.nome, Key? key})
+  const VisualizarDadosPetiano({required this.dados, Key? key})
       : super(key: key);
 
   @override
@@ -49,6 +50,8 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
                   return Center(child: CircularProgressIndicator());
                 } else {
                   final dbController = snapshot.data as dadosPetiano;
+                  print("ó lá rapaiz");
+                  print(widget.dados.enable_edit);
                   controller.instantiateAll(dbController);
                   return ListView(children: [
                     PageTitle(title: "Dados do Petiano"),
@@ -111,8 +114,8 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
   }
 
   Future<dadosPetiano> read_db() async {
-    var dbController = dadosPetiano(nome: widget.nome);
-    if (access_db == true && widget.nome.isNotEmpty) {
+    var dbController = dadosPetiano(nome: widget.dados.nome);
+    if (access_db == true && widget.dados.nome.isNotEmpty) {
       await dbController.read();
     }
     return dbController;

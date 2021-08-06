@@ -11,7 +11,7 @@ class SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     UserData user = UserData();
     user.set_perfil("gerente");
-    
+
     change_screen(context);
 
     return MaterialApp(
@@ -35,9 +35,9 @@ class SplashPage extends StatelessWidget {
   }
 
   Future<void> change_screen(BuildContext context) async {
-    await Future.delayed(Duration(seconds: 3));
     UserData user = UserData();
-    user.print_shared_prefs();
-    Navigator.pushReplacementNamed(context, "/dados_petiano", arguments: "");
+    await Future.delayed(Duration(seconds: 3));
+    Navigator.pushReplacementNamed(context, "/lista_petianos",
+        arguments: user.isTutor);
   }
 }

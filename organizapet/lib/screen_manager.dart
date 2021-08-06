@@ -17,13 +17,15 @@ class ScreenManager extends StatelessWidget {
       initialRoute: '/splash',
       routes: {
         '/splash': (context) => SplashPage(),
-        '/lista_petianos': (context) => ListaPetianos(),
+        '/lista_petianos': (context) => ListaPetianos(
+            isTutor: ModalRoute.of(context)!.settings.arguments as bool),
         '/visualizar_dados_petiano': (context) => VisualizarDadosPetiano(
-            nome: ModalRoute.of(context)!.settings.arguments as String),
+            dados: ModalRoute.of(context)!.settings.arguments as VisualizarDadosArguments),
         //'/visualizar_petiano': (context) =>
         '/dados_petiano': (context) => PerfilUsuario(
             nome: ModalRoute.of(context)!.settings.arguments as String),
-        '/visualizar_dados_petianos_editavel': (context) => VisualizarDadosPetianoEditavel(),
+        //'/visualizar_dados_petianos_editavel': (context) => VisualizarDadosPetianoEditavel(
+        //    enable_edit: ModalRoute.of(context)!.settings.arguments as bool),
       },
     );
   }
