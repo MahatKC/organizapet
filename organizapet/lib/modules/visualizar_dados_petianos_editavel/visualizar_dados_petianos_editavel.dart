@@ -10,15 +10,15 @@ class VisualizarDadosPetianoEditavel extends StatefulWidget {
   const VisualizarDadosPetianoEditavel({Key? key}) : super(key: key);
 
   @override
-  _VisualizarDadosPetianoEditavelState createState() => _VisualizarDadosPetianoEditavelState();
+  _VisualizarDadosPetianoEditavelState createState() =>
+      _VisualizarDadosPetianoEditavelState();
 }
 
-class _VisualizarDadosPetianoEditavelState extends State<VisualizarDadosPetianoEditavel> {
+class _VisualizarDadosPetianoEditavelState
+    extends State<VisualizarDadosPetianoEditavel> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
+    return Scaffold(
             backgroundColor: AppColors.background,
             drawer: MenuSanduiche(),
             appBar: AppBar(
@@ -78,17 +78,15 @@ class _VisualizarDadosPetianoEditavelState extends State<VisualizarDadosPetianoE
                 imagem: AppImages.insta,
                 texto: "mateusedival",
               ),
-            
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                   FloatingActionButton(
                     onPressed: () {},
-                  child:  Icon(Icons.add), 
+                    child: Icon(Icons.add),
                   ),
                 ],
               ),
-              
-            ])));
+            ]));
   }
 }

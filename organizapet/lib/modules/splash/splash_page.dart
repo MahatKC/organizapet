@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:organizapet/modules/authentication/user_data.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/themes/app_images.dart';
 import 'package:organizapet/shared/themes/app_text_styles.dart';
@@ -8,6 +9,9 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UserData user = UserData();
+    user.set_perfil("gerente");
+
     change_screen(context);
 
     return MaterialApp(
@@ -31,7 +35,9 @@ class SplashPage extends StatelessWidget {
   }
 
   Future<void> change_screen(BuildContext context) async {
+    UserData user = UserData();
     await Future.delayed(Duration(seconds: 3));
-    Navigator.pushReplacementNamed(context, "/dados_petiano", arguments: "");
+    Navigator.pushReplacementNamed(context, "/lista_petianos",
+        arguments: user.isTutor);
   }
 }
