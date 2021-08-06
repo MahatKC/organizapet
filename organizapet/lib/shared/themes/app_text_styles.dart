@@ -51,4 +51,22 @@ class TextStyles {
     fontSize: 18,
     color: AppColors.infoBox,
   );
+
+  static final nameAppMenu = GoogleFonts.inter(
+    fontSize: 30,
+    color: AppColors.nameApp,
+    shadows: [
+        Shadow(
+          blurRadius: 2,
+          color: Colors.black.withOpacity(0.25),
+          offset: Offset(0, 3),
+        )
+      ]
+  );
+
+  static final textItemMenu = GoogleFonts.inter(
+    fontSize: 17,
+    color: Colors.white,
+    
+  );
 }

@@ -4,7 +4,7 @@ import 'package:organizapet/modules/lista_petianos/lista_petianos.dart';
 import 'package:organizapet/modules/dados_petiano/petiano.dart';
 import 'package:organizapet/modules/splash/splash_page.dart';
 import 'package:organizapet/modules/visualizar_dados_petiano/visualizar_dados_petiano.dart';
-import 'package:organizapet/modules/visualizar_dados_petiano_editavel/visualizar_dados_petiano_editavel.dart';
+
 
 
 class ScreenManager extends StatelessWidget {
@@ -15,16 +15,18 @@ class ScreenManager extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'OrganizaPET',
-      initialRoute: '/visualizar_dados_petiano_editavel',
+      initialRoute: '/splash',
       routes: {
         '/splash': (context) => SplashPage(),
-        '/lista_petianos': (context) => ListaPetianos(),
+        '/lista_petianos': (context) => ListaPetianos(
+            isTutor: ModalRoute.of(context)!.settings.arguments as bool),
         '/visualizar_dados_petiano': (context) => VisualizarDadosPetiano(
-            nome: ModalRoute.of(context)!.settings.arguments as String),
+            dados: ModalRoute.of(context)!.settings.arguments as VisualizarDadosArguments),
         //'/visualizar_petiano': (context) =>
         '/dados_petiano': (context) => PerfilUsuario(
             nome: ModalRoute.of(context)!.settings.arguments as String),
-        '/visualizar_dados_petiano_editavel': (context) => VisualizarDadosPetianoEditavel(),
+        //'/visualizar_dados_petianos_editavel': (context) => VisualizarDadosPetianoEditavel(
+        //    enable_edit: ModalRoute.of(context)!.settings.arguments as bool),
       },
     );
   }

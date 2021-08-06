@@ -20,7 +20,6 @@ class PerfilUsuario extends StatefulWidget {
 class _PerfilUsuarioState extends State<PerfilUsuario> {
   final controller = petianosController();
   bool in_database = false;
-  bool access_db = true;
   late Future<void> start;
 
   @override
@@ -102,7 +101,7 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
 
   Future<dadosPetiano> read_db() async {
     var dbController = dadosPetiano(nome: widget.nome);
-    if (access_db == true && widget.nome.isNotEmpty && in_database == false) {
+    if (widget.nome.isNotEmpty && in_database == false) {
       await dbController.read();
       in_database = true;
     }
@@ -129,14 +128,10 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
   }
 
   void save_button_function() {
-    if (access_db == true) {
-      createDB(controller.get_all_texts());
-    }
+    createDB(controller.get_all_texts());
   }
 
   void delete_button_function() {
-    if (access_db == true) {
-      eliminado(controller.nomeController.text);
-    }
+    eliminado(controller.nomeController.text);
   }
 }
