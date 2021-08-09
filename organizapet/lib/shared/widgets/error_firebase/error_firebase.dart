@@ -9,8 +9,8 @@ class ErrorFirebaseMessage extends StatelessWidget {
       child: AlertDialog(
           title: Text("Deu ruim"),
           content: Text("Não foi possivel acessar o firebase, porfavor reinicio o app!"),
-          actions: <Widget[
-            TextButton(onPressed: (){}, child: Text("OK"));
+          actions: <Widget>[
+            TextButton(onPressed: (){}, child: Text("OK"))
           ],
       ),
     );
