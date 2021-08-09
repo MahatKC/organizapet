@@ -109,17 +109,20 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
                       imagem: AppImages.insta,
                       texto: controller.instagramController.text,
                     ),
+                    enableButton(),
                   ]);
                 }
               })),
     );
   }
 
-  void enableButtton(){
+  Widget enableButton(){
       if(widget.dados.is_tutor == true){
-        ButtonPicker(isDouble: isDouble, tipoBotao1: tipoBotao1)
+       return ButtonPicker(isDouble: true, tipoBotao1: 'edit', tipoBotao2: 'bla',);
+      }else if(widget.dados.is_self == true) {
+        return ButtonPicker(isDouble: false, tipoBotao1: 'edit');
       }else {
-
+        return Container();
       }
   }
   Future<dadosPetiano> read_db() async {
