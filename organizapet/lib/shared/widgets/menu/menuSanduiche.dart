@@ -81,12 +81,14 @@ class MenuSanduiche extends StatelessWidget {
             selectedTileColor: AppColors.boxListBorder,
             onTap: () {},
           ),
-          Container(
-            height: 199,
+          Expanded(
+            child: Container(
+            height: 100,
             decoration: BoxDecoration(
                 color: AppColors.barraMenu,
                 border: Border(
                     bottom: BorderSide(color: Colors.white70, width: 1))),
+          ),
           ),
           ListTile(
             tileColor: AppColors.barraMenu,
