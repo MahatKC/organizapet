@@ -56,9 +56,8 @@ class _ListaPetianosState extends State<ListaPetianos> {
                       callback: () {
                         bool is_self = (data['nome'] == user.name);
                         bool is_tutor = user.isTutor;
-                        bool enable_edit = is_self || is_tutor;
                         go_to_petiano(
-                            context, data['nome'], enable_edit, is_tutor);
+                            context, data['nome'], is_self, is_tutor);
                       });
                 }).toList(),
               );
@@ -69,7 +68,7 @@ class _ListaPetianosState extends State<ListaPetianos> {
 }
 
 void go_to_petiano(
-    BuildContext context, String nome, bool enable_edit, bool is_tutor) {
+    BuildContext context, String nome, bool is_self, bool is_tutor) {
   Navigator.pushNamed(context, "/visualizar_dados_petiano",
-      arguments: VisualizarDadosArguments(nome, enable_edit, is_tutor));
+      arguments: VisualizarDadosArguments(nome, is_self, is_tutor));
 }

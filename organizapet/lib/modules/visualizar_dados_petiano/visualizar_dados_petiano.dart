@@ -53,7 +53,7 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
                   return Center(child: CircularProgressIndicator());
                 } else {
                   final dbController = snapshot.data as dadosPetiano;
-                  print("enable_edit: "+widget.dados.enable_edit.toString());
+                  print("enable_edit: "+widget.dados.is_self.toString());
                   controller.instantiateAll(dbController);
                   return ListView(children: [
                     PageTitle(title: "Dados do Petiano"),
