@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:organizapet/modules/dados_petiano/petiano_arguments.dart';
 import 'package:organizapet/modules/login/login_page.dart';
 import 'package:organizapet/modules/lista_petianos/lista_petianos.dart';
 import 'package:organizapet/modules/dados_petiano/petiano.dart';
@@ -24,7 +25,7 @@ class ScreenManager extends StatelessWidget {
         '/visualizar_dados_petiano': (context) => VisualizarDadosPetiano(
             dados: ModalRoute.of(context)!.settings.arguments as VisualizarDadosArguments),
         '/dados_petiano': (context) => PerfilUsuario(
-            nome: ModalRoute.of(context)!.settings.arguments as String),
+            dados: ModalRoute.of(context)!.settings.arguments as PetianoArguments),
       },
     );
   }

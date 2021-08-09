@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:organizapet/modules/dados_petiano/petiano_arguments.dart';
 import 'package:organizapet/modules/dados_petiano/petianos_controller.dart';
 import 'package:organizapet/modules/dados_petiano/petianos_db_controller.dart';
 import 'package:organizapet/modules/useful_functions/print_current_time.dart';
@@ -10,8 +11,9 @@ import 'package:organizapet/shared/widgets/petiano_input_field/petiano_input_fie
 import 'package:organizapet/shared/widgets/single_page_button/single_page_button.dart';
 
 class PerfilUsuario extends StatefulWidget {
-  final String nome;
-  PerfilUsuario({required this.nome, Key? key}) : super(key: key);
+  final PetianoArguments dados;
+
+  PerfilUsuario({required this.dados, Key? key}) : super(key: key);
 
   @override
   _PerfilUsuarioState createState() => _PerfilUsuarioState();
@@ -31,77 +33,75 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-            backgroundColor: AppColors.background,
-            drawer: MenuSanduiche(),
-            appBar: AppBar(title: BarraApp()),
-            body: FutureBuilder(
-              future: start,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState != ConnectionState.done) {
-                  return Center(child: CircularProgressIndicator());
-                } else {
-                  final dbController = snapshot.data as dadosPetiano;
-                  if (in_database == true && widget.nome.isNotEmpty) {
-                    controller.instantiateAll(dbController);
-                  }
-                  return ListView(
-                    children: [
-                      PageTitle(title: "Dados do Petiano"),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 50, right: 50),
-                        child: Column(children: [
-                          PetianoInputField(
-                              ctrl: controller.nomeController,
-                              hint: "Nome",
-                              not_in_database: !in_database),
-                          PetianoInputField(
-                            ctrl: controller.nomeCurtoController,
-                            hint: "Nome Curto"),
-                          PetianoInputField(
-                              ctrl: controller.rgController, hint: "RG"),
-                          PetianoInputField(
-                              ctrl: controller.cpfController, hint: "CPF"),
-                          PetianoInputField(
-                              ctrl: controller.raController, hint: "RA"),
-                          PetianoInputField(
-                              ctrl: controller.telefoneController,
-                              hint: "Telefone"),
-                          PetianoInputField(
-                              ctrl: controller.emailController, hint: "E-mail"),
-                          PetianoInputField(
-                              ctrl: controller.dataNascimentoController,
-                              hint: "Data de nascimento"),
-                          PetianoInputField(
-                              ctrl: controller.anoController, hint: "Ano"),
-                          PetianoInputField(
-                              ctrl: controller.temaICVController,
-                              hint: "Tema ICV"),
-                          PetianoInputField(
-                              ctrl: controller.orientadorController,
-                              hint: "Orientador"),
-                          PetianoInputField(
-                              ctrl: controller.camisetaController,
-                              hint: "Camiseta"),
-                          PetianoInputField(
-                              ctrl: controller.githubController,
-                              hint: "Github"),
-                          PetianoInputField(
-                              ctrl: controller.instagramController,
-                              hint: "Instagram"),
-                        ]),
-                      ),
-                      SinglePageButton(
-                          buttonLabel: "Salvar", callback: save_button_function)
-                    ],
-                  );
-                }
-              },
-            ));
+        backgroundColor: AppColors.background,
+        drawer: MenuSanduiche(user: widget.dados.user),
+        appBar: AppBar(title: BarraApp()),
+        body: FutureBuilder(
+          future: start,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState != ConnectionState.done) {
+              return Center(child: CircularProgressIndicator());
+            } else {
+              final dbController = snapshot.data as dadosPetiano;
+              if (in_database == true && widget.dados.nome.isNotEmpty) {
+                controller.instantiateAll(dbController);
+              }
+              return ListView(
+                children: [
+                  PageTitle(title: "Dados do Petiano"),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 50, right: 50),
+                    child: Column(children: [
+                      PetianoInputField(
+                          ctrl: controller.nomeController,
+                          hint: "Nome",
+                          not_in_database: !in_database),
+                      PetianoInputField(
+                          ctrl: controller.nomeCurtoController,
+                          hint: "Nome Curto"),
+                      PetianoInputField(
+                          ctrl: controller.rgController, hint: "RG"),
+                      PetianoInputField(
+                          ctrl: controller.cpfController, hint: "CPF"),
+                      PetianoInputField(
+                          ctrl: controller.raController, hint: "RA"),
+                      PetianoInputField(
+                          ctrl: controller.telefoneController,
+                          hint: "Telefone"),
+                      PetianoInputField(
+                          ctrl: controller.emailController, hint: "E-mail"),
+                      PetianoInputField(
+                          ctrl: controller.dataNascimentoController,
+                          hint: "Data de nascimento"),
+                      PetianoInputField(
+                          ctrl: controller.anoController, hint: "Ano"),
+                      PetianoInputField(
+                          ctrl: controller.temaICVController, hint: "Tema ICV"),
+                      PetianoInputField(
+                          ctrl: controller.orientadorController,
+                          hint: "Orientador"),
+                      PetianoInputField(
+                          ctrl: controller.camisetaController,
+                          hint: "Camiseta"),
+                      PetianoInputField(
+                          ctrl: controller.githubController, hint: "Github"),
+                      PetianoInputField(
+                          ctrl: controller.instagramController,
+                          hint: "Instagram"),
+                    ]),
+                  ),
+                  SinglePageButton(
+                      buttonLabel: "Salvar", callback: save_button_function)
+                ],
+              );
+            }
+          },
+        ));
   }
 
   Future<dadosPetiano> read_db() async {
-    var dbController = dadosPetiano(nome: widget.nome);
-    if (widget.nome.isNotEmpty && in_database == false) {
+    var dbController = dadosPetiano(nome: widget.dados.nome);
+    if (widget.dados.nome.isNotEmpty && in_database == false) {
       await dbController.read();
       in_database = true;
     }

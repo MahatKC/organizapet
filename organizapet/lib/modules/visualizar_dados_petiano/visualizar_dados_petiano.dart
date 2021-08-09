@@ -41,7 +41,7 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
       },
       child: Scaffold(
           backgroundColor: AppColors.background,
-          drawer: MenuSanduiche(),
+          drawer: MenuSanduiche(user: widget.dados.user),
           appBar: AppBar(
             title: BarraApp(),
           ),

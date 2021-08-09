@@ -26,7 +26,7 @@ class _ListaPetianosState extends State<ListaPetianos> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColors.background,
-        drawer: MenuSanduiche(),
+        drawer: MenuSanduiche(user: widget.user),
         appBar: AppBar(
           title: BarraApp(),
         ),
