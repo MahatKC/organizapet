@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:organizapet/modules/authentication/user_data.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/themes/app_images.dart';
 import 'package:organizapet/shared/themes/app_text_styles.dart';
@@ -59,7 +60,9 @@ class MenuSanduiche extends StatelessWidget {
               style: TextStyles.textItemMenu,
             ),
             selectedTileColor: AppColors.boxListBorder,
-            onTap: () {},
+            onTap: () {
+              go_to_lista_petianos(context);
+            },
           ),
           ListTile(
             leading: Image.asset(AppImages.projeto),
@@ -101,5 +104,11 @@ class MenuSanduiche extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<void> go_to_lista_petianos(BuildContext context) async {
+    UserData user = await UserData();
+    Navigator.pushReplacementNamed(context, "/lista_petianos",
+        arguments: user.isTutor);
   }
 }
