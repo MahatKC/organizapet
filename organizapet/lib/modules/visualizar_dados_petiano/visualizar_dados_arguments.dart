@@ -4,4 +4,5 @@ class VisualizarDadosArguments {
   final bool is_tutor;
 
   VisualizarDadosArguments(this.nome, this.enable_edit, this.is_tutor);
+  
 }

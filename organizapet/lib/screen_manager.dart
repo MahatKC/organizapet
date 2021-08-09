@@ -3,6 +3,7 @@ import 'package:organizapet/modules/login/login_page.dart';
 import 'package:organizapet/modules/lista_petianos/lista_petianos.dart';
 import 'package:organizapet/modules/dados_petiano/petiano.dart';
 import 'package:organizapet/modules/splash/splash_page.dart';
+import 'package:organizapet/modules/visualizar_dados_petiano/visualizar_dados_arguments.dart';
 import 'package:organizapet/modules/visualizar_dados_petiano/visualizar_dados_petiano.dart';
 
 
