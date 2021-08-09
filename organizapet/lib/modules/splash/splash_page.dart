@@ -34,10 +34,9 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   Future<void> change_screen(BuildContext context, UserData user) async {
-    print(user.name);
     await Future.delayed(Duration(seconds: 3));
     Navigator.pushReplacementNamed(context, "/lista_petianos",
-        arguments: user.isTutor);
+        arguments: user);
   }
 
   Future<UserData> getSharedPreferences() async {
