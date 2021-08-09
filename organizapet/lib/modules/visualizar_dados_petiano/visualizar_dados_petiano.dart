@@ -4,13 +4,12 @@ import 'package:organizapet/modules/dados_petiano/petianos_db_controller.dart';
 import 'package:organizapet/modules/lista_petianos/lista_petianos.dart';
 import 'package:organizapet/modules/useful_functions/back_to_previous.dart';
 import 'package:organizapet/modules/visualizar_dados_petiano/visualizar_dados_arguments.dart';
-import 'package:organizapet/modules/visualizar_dados_petianos_editavel/visualizar_dados_petianos_editavel.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/themes/app_images.dart';
 import 'package:organizapet/shared/widgets/app_bar/appBar.dart';
 import 'package:organizapet/shared/widgets/box_info/box_info.dart';
 import 'package:organizapet/shared/widgets/button_picker/button_picker.dart';
-import 'package:organizapet/shared/widgets/menu/menuSanduiche.dart';
+import 'package:organizapet/shared/widgets/menu/menu_sanduiche.dart';
 import 'package:organizapet/shared/widgets/page_title/page_title.dart';
 
 class VisualizarDadosPetiano extends StatefulWidget {
@@ -117,7 +116,7 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
   }
 
   Widget enableButton(){
-      if(widget.dados.is_tutor == true){
+      if(widget.dados.user.isTutor == true){
        return ButtonPicker(isDouble: true, tipoBotao1: 'edit', tipoBotao2: 'bla',);
       }else if(widget.dados.is_self == true) {
         return ButtonPicker(isDouble: false, tipoBotao1: 'edit');
@@ -125,6 +124,7 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
         return Container();
       }
   }
+
   Future<dadosPetiano> read_db() async {
     var dbController = dadosPetiano(nome: widget.dados.nome);
     if (access_db == true && widget.dados.nome.isNotEmpty) {

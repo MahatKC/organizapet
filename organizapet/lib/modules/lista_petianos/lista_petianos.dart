@@ -11,8 +11,8 @@ import 'package:organizapet/shared/widgets/menu/menu_sanduiche.dart';
 import 'package:organizapet/shared/widgets/page_title/page_title.dart';
 
 class ListaPetianos extends StatefulWidget {
-  final bool isTutor;
-  const ListaPetianos({Key? key, required this.isTutor}) : super(key: key);
+  final UserData user;
+  const ListaPetianos({Key? key, required this.user}) : super(key: key);
 
   @override
   _ListaPetianosState createState() => _ListaPetianosState();
@@ -21,8 +21,6 @@ class ListaPetianos extends StatefulWidget {
 class _ListaPetianosState extends State<ListaPetianos> {
   final Stream<QuerySnapshot> _petianosStream =
       FirebaseFirestore.instance.collection('petianos').snapshots();
-
-  UserData user = UserData();
 
   @override
   Widget build(BuildContext context) {
@@ -54,14 +52,13 @@ class _ListaPetianosState extends State<ListaPetianos> {
                       titulo: first_and_last_name(data),
                       subtitulo: ano_formatter(data),
                       callback: () {
-                        bool is_self = (data['nome'] == user.name);
+                        bool is_self = (data['nome'] == widget.user.name);
                         print("--------");
                         print(is_self);
                         print("data nome" + data['nome']);
-                        print("user name" + user.name);
+                        print("user name" + widget.user.name);
                         print("--------");
-                        bool is_tutor = user.isTutor;
-                        go_to_petiano(context, data['nome'], is_self, is_tutor);
+                        go_to_petiano(context, data['nome'], is_self, widget.user);
                       });
                 }).toList(),
               );
@@ -72,7 +69,7 @@ class _ListaPetianosState extends State<ListaPetianos> {
 }
 
 void go_to_petiano(
-    BuildContext context, String nome, bool is_self, bool is_tutor) {
+    BuildContext context, String nome, bool is_self, UserData user) {
   Navigator.pushNamed(context, "/visualizar_dados_petiano",
-      arguments: VisualizarDadosArguments(nome, is_self, is_tutor));
+      arguments: VisualizarDadosArguments(nome, is_self, user));
 }
