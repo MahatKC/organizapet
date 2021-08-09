@@ -35,7 +35,7 @@ class SplashPage extends StatelessWidget {
   }
 
   Future<void> change_screen(BuildContext context) async {
-    UserData user = UserData();
+    UserData user = await UserData();
     await Future.delayed(Duration(seconds: 3));
     Navigator.pushReplacementNamed(context, "/lista_petianos",
         arguments: user.isTutor);
