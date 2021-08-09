@@ -36,15 +36,20 @@ class UserData {
 
   Future<void> set_perfil(String perfil) async {
     if (perfil == 'tutor') {
-      await set_prefs(new_isTutor: true, new_name: "Marcio Seiji Oyamada");
+      await set_prefs(
+          new_isTutor: true,
+          new_name: "Marcio Seiji Oyamada",
+          new_nomeCurto: "Marcio Oyamada");
     } else if (perfil == 'gerente') {
       await set_prefs(
           new_isTutor: false,
-          new_name: "Leonardo Vanzin"); //TO-DO: Inicializar projetos
+          new_name: "Leonardo Vanzin",
+          new_nomeCurto: "Leonardo Vanzin"); //TO-DO: Inicializar projetos
     } else {
       await set_prefs(
           new_isTutor: false,
           new_name: "Mateus Karvat Camara",
+          new_nomeCurto: "Mateus Karvat",
           new_gerenciaProjetos: []);
     }
   }
