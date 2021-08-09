@@ -3,18 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:organizapet/modules/authentication/user_data.dart';
 import 'package:organizapet/modules/useful_functions/ano_formatter.dart';
 import 'package:organizapet/modules/useful_functions/first_and_last_name.dart';
+import 'package:organizapet/modules/visualizar_dados_petiano/visualizar_dados_arguments.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/widgets/app_bar/appBar.dart';
 import 'package:organizapet/shared/widgets/box_list/box_list.dart';
 import 'package:organizapet/shared/widgets/menu/menu_sanduiche.dart';
 import 'package:organizapet/shared/widgets/page_title/page_title.dart';
-
-class VisualizarDadosArguments {
-  final String nome;
-  final bool enable_edit;
-
-  VisualizarDadosArguments(this.nome, this.enable_edit);
-}
 
 class ListaPetianos extends StatefulWidget {
   final bool isTutor;
@@ -62,8 +56,8 @@ class _ListaPetianosState extends State<ListaPetianos> {
                       callback: () {
                         bool is_self = (data['nome'] == user.name);
                         bool is_tutor = user.isTutor;
-                        bool enable_edit = is_self || is_tutor;
-                        go_to_petiano(context, data['nome'], enable_edit);
+                        go_to_petiano(
+                            context, data['nome'], is_self, is_tutor);
                       });
                 }).toList(),
               );
@@ -73,7 +67,8 @@ class _ListaPetianosState extends State<ListaPetianos> {
   }
 }
 
-void go_to_petiano(BuildContext context, String nome, bool enable_edit) {
+void go_to_petiano(
+    BuildContext context, String nome, bool is_self, bool is_tutor) {
   Navigator.pushNamed(context, "/visualizar_dados_petiano",
-      arguments: VisualizarDadosArguments(nome, enable_edit));
+      arguments: VisualizarDadosArguments(nome, is_self, is_tutor));
 }

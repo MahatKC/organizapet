@@ -1,8 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserData {
   bool isTutor = false;
+  String nomeCurto = "";
   String name = "";
   List<String> gerenciaProjetos = [];
 
@@ -12,17 +12,20 @@ class UserData {
     prefs = await SharedPreferences.getInstance();
     isTutor = prefs.getBool('isTutor') ?? false;
     name = prefs.getString('name') ?? "";
+    name = prefs.getString('nomeCurto') ?? "";
     gerenciaProjetos = prefs.getStringList('gerenciaProjetos') ?? [];
   }
 
   Future<void> set_prefs(
       {bool? new_isTutor,
       String? new_name,
+      String? new_nomeCurto,
       List<String>? new_gerenciaProjetos}) async {
     await _get_prefs_from_file();
 
     prefs.setBool('isTutor', new_isTutor ?? isTutor);
     prefs.setString('name', new_name ?? name);
+    prefs.setString('name', new_nomeCurto ?? nomeCurto);
     prefs.setStringList(
         'gerenciaProjetos', new_gerenciaProjetos ?? gerenciaProjetos);
   }
@@ -50,21 +53,7 @@ class UserData {
     await _get_prefs_from_file();
     print(isTutor);
     print(name);
+    print(nomeCurto);
     print(gerenciaProjetos);
-  }
-
-  Future<String> get_name() async {
-    await _get_prefs_from_file();
-    return name;
-  }
-
-  Future<bool> get_isTutor() async {
-    await _get_prefs_from_file();
-    return isTutor;
-  }
-
-  Future<List<String>> get_gerenciaProjetos() async {
-    await _get_prefs_from_file();
-    return gerenciaProjetos;
   }
 }
