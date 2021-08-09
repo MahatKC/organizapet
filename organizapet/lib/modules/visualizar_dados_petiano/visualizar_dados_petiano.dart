@@ -7,7 +7,7 @@ import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/themes/app_images.dart';
 import 'package:organizapet/shared/widgets/app_bar/appBar.dart';
 import 'package:organizapet/shared/widgets/box_info/box_info.dart';
-import 'package:organizapet/shared/widgets/menu/menuSanduiche.dart';
+import 'package:organizapet/shared/widgets/menu/menu_sanduiche.dart';
 import 'package:organizapet/shared/widgets/page_title/page_title.dart';
 
 class VisualizarDadosPetiano extends StatefulWidget {

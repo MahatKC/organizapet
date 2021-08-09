@@ -6,7 +6,7 @@ import 'package:organizapet/modules/useful_functions/first_and_last_name.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/widgets/app_bar/appBar.dart';
 import 'package:organizapet/shared/widgets/box_list/box_list.dart';
-import 'package:organizapet/shared/widgets/menu/menuSanduiche.dart';
+import 'package:organizapet/shared/widgets/menu/menu_sanduiche.dart';
 import 'package:organizapet/shared/widgets/page_title/page_title.dart';
 
 class VisualizarDadosArguments {
