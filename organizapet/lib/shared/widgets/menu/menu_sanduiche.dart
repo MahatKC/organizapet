@@ -92,7 +92,7 @@ class MenuSanduiche extends StatelessWidget {
                     },
                   ),
                   Container(
-                    height: 400,
+                    height: 800,
                     decoration: BoxDecoration(
                         color: AppColors.barraMenu,
                     ),
