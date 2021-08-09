@@ -52,7 +52,6 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
                   return Center(child: CircularProgressIndicator());
                 } else {
                   final dbController = snapshot.data as dadosPetiano;
-                  print("enable_edit: "+widget.dados.is_self.toString());
                   controller.instantiateAll(dbController);
                   return ListView(children: [
                     PageTitle(title: "Dados do Petiano"),
@@ -117,7 +116,7 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
 
   Widget enableButton(){
       if(widget.dados.user.isTutor == true){
-       return ButtonPicker(isDouble: true, tipoBotao1: 'edit', tipoBotao2: 'bla',);
+       return ButtonPicker(isDouble: true, tipoBotao1: 'bla', tipoBotao2: 'edit',);
       }else if(widget.dados.is_self == true) {
         return ButtonPicker(isDouble: false, tipoBotao1: 'edit');
       }else {

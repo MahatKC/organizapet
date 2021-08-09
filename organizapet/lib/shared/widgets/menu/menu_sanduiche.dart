@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:organizapet/modules/authentication/user_data.dart';
+import 'package:organizapet/modules/dados_petiano/petiano_arguments.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/themes/app_images.dart';
 import 'package:organizapet/shared/themes/app_text_styles.dart';
@@ -127,7 +128,10 @@ class MenuSanduiche extends StatelessWidget {
   }
 
   Future<void> go_to_dados_petiano(BuildContext context, UserData user) async {
+    print("go_to_dados");
+    print(user.name);
+    print("-----");
     Navigator.pushReplacementNamed(context, "/dados_petiano",
-        arguments: user);
+        arguments: PetianoArguments(nome: user.name, user: user));
   }
 }

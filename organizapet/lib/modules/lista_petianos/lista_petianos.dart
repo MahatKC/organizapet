@@ -53,12 +53,8 @@ class _ListaPetianosState extends State<ListaPetianos> {
                       subtitulo: ano_formatter(data),
                       callback: () {
                         bool is_self = (data['nome'] == widget.user.name);
-                        print("--------");
-                        print(is_self);
-                        print("data nome" + data['nome']);
-                        print("user name" + widget.user.name);
-                        print("--------");
-                        go_to_petiano(context, data['nome'], is_self, widget.user);
+                        go_to_petiano(
+                            context, data['nome'], is_self, widget.user);
                       });
                 }).toList(),
               );

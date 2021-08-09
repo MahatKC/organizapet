@@ -12,7 +12,7 @@ class UserData {
     prefs = await SharedPreferences.getInstance();
     isTutor = prefs.getBool('isTutor') ?? false;
     name = prefs.getString('name') ?? "";
-    name = prefs.getString('nomeCurto') ?? "";
+    nomeCurto = prefs.getString('nomeCurto') ?? "";
     gerenciaProjetos = prefs.getStringList('gerenciaProjetos') ?? [];
   }
 
@@ -25,13 +25,9 @@ class UserData {
 
     prefs.setBool('isTutor', new_isTutor ?? isTutor);
     prefs.setString('name', new_name ?? name);
-    prefs.setString('name', new_nomeCurto ?? nomeCurto);
+    prefs.setString('nomeCurto', new_nomeCurto ?? nomeCurto);
     prefs.setStringList(
         'gerenciaProjetos', new_gerenciaProjetos ?? gerenciaProjetos);
-  }
-
-  UserData() {
-    _get_prefs_from_file();
   }
 
   Future<void> set_perfil(String perfil) async {

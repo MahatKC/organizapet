@@ -15,7 +15,7 @@ class PetianoInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool enable;
-    enable = (not_in_database) ?? false;
+    enable = (not_in_database) ?? true;
 
     return TextField(
       controller: ctrl,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:organizapet/main.dart';
 import 'package:organizapet/modules/authentication/user_data.dart';
 import 'package:organizapet/modules/splash/splash_page_widget.dart';
 
@@ -21,28 +22,26 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future:  start,
-      builder: (context, snapshot) {
-      if (snapshot.connectionState != ConnectionState.done) {
-        return SplashPageWidget();
-      } else {
-        final UserData user = snapshot.data as UserData;
-        change_screen(context, user);
-        return SplashPageWidget();
-      }
-    });
+        future: start,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState != ConnectionState.done) {
+            return SplashPageWidget();
+          } else {
+            change_screen(context, snapshot.data as UserData);
+            return SplashPageWidget();
+          }
+        });
   }
 
   Future<void> change_screen(BuildContext context, UserData user) async {
     await Future.delayed(Duration(seconds: 3));
-    Navigator.pushReplacementNamed(context, "/lista_petianos",
-        arguments: user);
+    Navigator.pushReplacementNamed(context, "/lista_petianos", arguments: user);
   }
 
   Future<UserData> getSharedPreferences() async {
-    UserData user = await UserData();
-    user.set_perfil("gerente");
-    print(user.name);
+    UserData user = UserData();
+    await user.set_perfil(perfil_user());
+    user.print_shared_prefs();
     return user;
   }
 }
