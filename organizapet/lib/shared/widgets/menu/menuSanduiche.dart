@@ -82,7 +82,9 @@ class MenuSanduiche extends StatelessWidget {
               style: TextStyles.textItemMenu,
             ),
             selectedTileColor: AppColors.boxListBorder,
-            onTap: () {},
+            onTap: () {
+              go_to_dados_petiano(context);
+            },
           ),
           Container(
             height: 199,
@@ -111,4 +113,12 @@ class MenuSanduiche extends StatelessWidget {
     Navigator.pushReplacementNamed(context, "/lista_petianos",
         arguments: user.isTutor);
   }
+
+  Future<void> go_to_dados_petiano(BuildContext context) async {
+    UserData user = await UserData();
+    Navigator.pushReplacementNamed(context, "/dados_petiano",
+        arguments: user.name);
+  }
+
+
 }
