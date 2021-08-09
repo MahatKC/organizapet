@@ -4,7 +4,7 @@ import 'package:organizapet/modules/dados_petiano/petianos_db_controller.dart';
 import 'package:organizapet/modules/useful_functions/print_current_time.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/widgets/app_bar/appBar.dart';
-import 'package:organizapet/shared/widgets/menu/menuSanduiche.dart';
+import 'package:organizapet/shared/widgets/menu/menu_sanduiche.dart';
 import 'package:organizapet/shared/widgets/page_title/page_title.dart';
 import 'package:organizapet/shared/widgets/petiano_input_field/petiano_input_field.dart';
 import 'package:organizapet/shared/widgets/single_page_button/single_page_button.dart';
