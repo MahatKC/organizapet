@@ -4,7 +4,6 @@ import 'package:organizapet/modules/dados_petiano/petianos_db_controller.dart';
 import 'package:organizapet/modules/lista_petianos/lista_petianos.dart';
 import 'package:organizapet/modules/useful_functions/back_to_previous.dart';
 import 'package:organizapet/modules/visualizar_dados_petiano/visualizar_dados_arguments.dart';
-import 'package:organizapet/modules/visualizar_dados_petianos_editavel/visualizar_dados_petianos_editavel.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/themes/app_images.dart';
 import 'package:organizapet/shared/widgets/app_bar/appBar.dart';
@@ -42,7 +41,7 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
       },
       child: Scaffold(
           backgroundColor: AppColors.background,
-          drawer: MenuSanduiche(),
+          drawer: MenuSanduiche(user: widget.dados.user),
           appBar: AppBar(
             title: BarraApp(),
           ),
@@ -53,7 +52,6 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
                   return Center(child: CircularProgressIndicator());
                 } else {
                   final dbController = snapshot.data as dadosPetiano;
-                  print("enable_edit: "+widget.dados.is_self.toString());
                   controller.instantiateAll(dbController);
                   return ListView(children: [
                     PageTitle(title: "Dados do Petiano"),
@@ -117,14 +115,15 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
   }
 
   Widget enableButton(){
-      if(widget.dados.is_tutor == true){
-       return ButtonPicker(isDouble: true, tipoBotao1: 'edit', tipoBotao2: 'bla',);
+      if(widget.dados.user.isTutor == true){
+       return ButtonPicker(isDouble: true, tipoBotao1: 'bla', tipoBotao2: 'edit',);
       }else if(widget.dados.is_self == true) {
         return ButtonPicker(isDouble: false, tipoBotao1: 'edit');
       }else {
         return Container();
       }
   }
+
   Future<dadosPetiano> read_db() async {
     var dbController = dadosPetiano(nome: widget.dados.nome);
     if (access_db == true && widget.dados.nome.isNotEmpty) {

@@ -1,7 +1,9 @@
+import 'package:organizapet/modules/authentication/user_data.dart';
+
 class VisualizarDadosArguments {
   final String nome;
   final bool is_self;
-  final bool is_tutor;
+  final UserData user;
 
-  VisualizarDadosArguments(this.nome, this.is_self, this.is_tutor);
+  VisualizarDadosArguments(this.nome, this.is_self, this.user);
 }

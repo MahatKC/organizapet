@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:organizapet/modules/authentication/user_data.dart';
+import 'package:organizapet/modules/dados_petiano/petiano_arguments.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/themes/app_images.dart';
 import 'package:organizapet/shared/themes/app_text_styles.dart';
@@ -8,7 +9,9 @@ import 'package:organizapet/shared/widgets/popup/popup_duas_opcoes.dart';
 import 'package:organizapet/shared/widgets/popup/popup_uma_opcao.dart';
 
 class MenuSanduiche extends StatelessWidget {
-  const MenuSanduiche({Key? key}) : super(key: key);
+  final UserData user;
+
+  const MenuSanduiche({Key? key, required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +72,7 @@ class MenuSanduiche extends StatelessWidget {
                   ),
                   selectedTileColor: AppColors.boxListBorder,
                   onTap: () {
-                    go_to_lista_petianos(context);
+                    go_to_lista_petianos(context, user);
                   },
                 ),
                 ListTile(
@@ -91,7 +94,7 @@ class MenuSanduiche extends StatelessWidget {
                   ),
                   selectedTileColor: AppColors.boxListBorder,
                   onTap: () {
-                    go_to_dados_petiano(context);
+                    go_to_dados_petiano(context, user);
                   },
                 ),
                 Container(
@@ -128,15 +131,15 @@ class MenuSanduiche extends StatelessWidget {
     );
   }
 
-  Future<void> go_to_lista_petianos(BuildContext context) async {
-    UserData user = await UserData();
-    Navigator.pushReplacementNamed(context, "/lista_petianos",
-        arguments: user.isTutor);
+  Future<void> go_to_lista_petianos(BuildContext context, UserData user) async {
+    Navigator.pushReplacementNamed(context, "/lista_petianos", arguments: user);
   }
 
-  Future<void> go_to_dados_petiano(BuildContext context) async {
-    UserData user = await UserData();
+  Future<void> go_to_dados_petiano(BuildContext context, UserData user) async {
+    print("go_to_dados");
+    print(user.name);
+    print("-----");
     Navigator.pushReplacementNamed(context, "/dados_petiano",
-        arguments: user.name);
+        arguments: PetianoArguments(nome: user.name, user: user));
   }
 }

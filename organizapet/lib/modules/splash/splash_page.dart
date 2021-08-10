@@ -1,43 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:organizapet/main.dart';
 import 'package:organizapet/modules/authentication/user_data.dart';
-import 'package:organizapet/shared/themes/app_colors.dart';
-import 'package:organizapet/shared/themes/app_images.dart';
-import 'package:organizapet/shared/themes/app_text_styles.dart';
+import 'package:organizapet/modules/splash/splash_page_widget.dart';
 
-class SplashPage extends StatelessWidget {
+class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    UserData user = UserData();
-    user.set_perfil("gerente");
+  _SplashPageState createState() => _SplashPageState();
+}
 
-    change_screen(context);
+class _SplashPageState extends State<SplashPage> {
+  late Future<void> start;
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: AppColors.background,
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Center(child: Image.asset(AppImages.logoOrganiza)),
-            Padding(
-              padding: const EdgeInsets.only(top: 30),
-              child:
-                  Center(child: Text("OrganizaPET", style: TextStyles.nameApp)),
-            )
-          ],
-        ),
-      ),
-    );
+  @override
+  void initState() {
+    super.initState();
+    start = getSharedPreferences();
   }
 
-  Future<void> change_screen(BuildContext context) async {
-    UserData user = await UserData();
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+        future: start,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState != ConnectionState.done) {
+            return SplashPageWidget();
+          } else {
+            change_screen(context, snapshot.data as UserData);
+            return SplashPageWidget();
+          }
+        });
+  }
+
+  Future<void> change_screen(BuildContext context, UserData user) async {
     await Future.delayed(Duration(seconds: 3));
-    Navigator.pushReplacementNamed(context, "/lista_petianos",
-        arguments: user.isTutor);
+    Navigator.pushReplacementNamed(context, "/lista_petianos", arguments: user);
+  }
+
+  Future<UserData> getSharedPreferences() async {
+    UserData user = UserData();
+    await user.set_perfil(perfil_user());
+    user.print_shared_prefs();
+    return user;
   }
 }
