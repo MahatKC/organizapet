@@ -7,6 +7,7 @@ import 'package:organizapet/shared/widgets/app_bar/appBar.dart';
 import 'package:organizapet/shared/widgets/menu/menu_sanduiche.dart';
 import 'package:organizapet/shared/widgets/page_title/page_title.dart';
 import 'package:organizapet/shared/widgets/petiano_input_field/petiano_input_field.dart';
+import 'package:organizapet/shared/widgets/popup/popup_uma_opcao.dart';
 import 'package:organizapet/shared/widgets/single_page_button/single_page_button.dart';
 
 class PerfilUsuario extends StatefulWidget {
@@ -114,8 +115,11 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
       dbController.dadosPetianoFromLista(all_texts);
       dbController.write();
     } else {
-      print("Caro tutor, faltou o nome!");
-      //TO-DO: exibir mensagem de que faltou inserir o nome
+      showDialog<String>(
+        context: context,
+        builder: (BuildContext context) =>
+              PopupUmaOpcao(title: "Erro", message: "Impossível adicionar membro sem informar seu nome!"),
+      );
     }
   }
 
@@ -123,7 +127,12 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
     if (nome.isNotEmpty) {
       final dbController = dadosPetiano(nome: nome);
       dbController.delete();
-      //TO-DO: mensagem de que a remoção deu certo
+
+      showDialog<String>(
+        context: context,
+        builder: (BuildContext context) =>
+              PopupUmaOpcao(title: "Sucesso", message: "Petiano removido do OrganizaPET!"),
+      );
     }
   }
 
