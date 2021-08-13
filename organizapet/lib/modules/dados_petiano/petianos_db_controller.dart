@@ -75,6 +75,7 @@ class dadosPetiano {
         .doc(document_title(nome))
         .set({
           'nome': nome,
+          'nome_curto': nomeCurto,
           'rg': rg,
           'cpf': cpf,
           'ra': ra,

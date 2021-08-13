@@ -6,7 +6,6 @@ import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/themes/app_images.dart';
 import 'package:organizapet/shared/themes/app_text_styles.dart';
 import 'package:organizapet/shared/widgets/popup/popup_duas_opcoes.dart';
-import 'package:organizapet/shared/widgets/popup/popup_uma_opcao.dart';
 
 class MenuSanduiche extends StatelessWidget {
   final UserData user;
