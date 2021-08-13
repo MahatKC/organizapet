@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 
 class PopupDuasOpcoes extends StatelessWidget {
   final String title;
+  final VoidCallback yes_callback;
   final String message;
 
-  const PopupDuasOpcoes({
-    Key? key,
-    required this.title,
-    required this.message,
-  }) : super(key: key);
+  const PopupDuasOpcoes(
+      {Key? key,
+      required this.title,
+      required this.message,
+      required this.yes_callback})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +23,11 @@ class PopupDuasOpcoes extends StatelessWidget {
       content: Text(message),
       actions: [
         TextButton(
-          child: const Text("Sim"),
-          onPressed: () => Navigator.pop(context, 'sim'),
-        ),
+            child: const Text("Sim"),
+            onPressed: () {
+              yes_callback();
+              Navigator.pop(context, 'sim');
+            }),
         TextButton(
           child: const Text("Não"),
           onPressed: () => Navigator.pop(context, 'não'),

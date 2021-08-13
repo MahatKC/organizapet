@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 class circleButton extends StatelessWidget {
   final String tipoBotao;
+  final VoidCallback callback;
   const circleButton({
     required this.tipoBotao,
+    required this.callback,
     Key? key,
   }) : super(key: key);
 
@@ -29,16 +31,7 @@ class circleButton extends StatelessWidget {
       padding: const EdgeInsets.only(right: 20, top: 15, bottom: 30, left: 20),
       child: Column(crossAxisAlignment: alinhamento, children: [
         RawMaterialButton(
-          onPressed: () {
-            //TO-DO!!!
-            if (tipoBotao == 'edit') {
-              //go_to_edicao();
-            } else if (tipoBotao == 'add') {
-              //go_to_adicao();
-            } else {
-              //delete_this_person();
-            }
-          },
+          onPressed: callback,
           fillColor: cor,
           elevation: 2.0,
           child: Icon(
