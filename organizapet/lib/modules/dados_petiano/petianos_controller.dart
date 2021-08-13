@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:organizapet/modules/dados_petiano/petianos_db_controller.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class petianosController {
   final nomeController = TextEditingController();
@@ -16,6 +17,10 @@ class petianosController {
   final camisetaController = TextEditingController();
   final githubController = TextEditingController();
   final instagramController = TextEditingController();
+
+  final maskTelefone = new MaskTextInputFormatter(
+      mask: '(##) #####-####', 
+      filter: {"#": RegExp(r'[0-9]')});  
 
   petianosController();
 

@@ -68,6 +68,7 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
                           ctrl: controller.raController, hint: "RA"),
                       PetianoInputField(
                           ctrl: controller.telefoneController,
+                          mascara: controller.maskTelefone,
                           hint: "Telefone"),
                       PetianoInputField(
                           ctrl: controller.emailController, hint: "E-mail"),
