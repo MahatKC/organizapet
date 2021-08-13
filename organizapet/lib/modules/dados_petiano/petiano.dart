@@ -126,19 +126,32 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
 
   void createDB(List all_texts) {
     if (all_texts.first.isNotEmpty) {
-      var dbController = dadosPetiano(nome: all_texts.first);
+      String nome = all_texts.first;
+      var dbController = dadosPetiano(nome: nome);
       dbController.dadosPetianoFromLista(all_texts);
       dbController.write();
+      showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => PopupUmaOpcao(
+            title: "Sucesso",
+            message: nome + " adicionado ao OrganizaPET!",
+            after_func: save_concluded),
+      );
     } else {
       showDialog<String>(
         context: context,
-        builder: (BuildContext context) =>
-              PopupUmaOpcao(title: "Erro", message: "Impossível adicionar membro sem informar seu nome!"),
+        builder: (BuildContext context) => PopupUmaOpcao(
+            title: "Erro",
+            message: "Impossível adicionar membro sem informar seu nome!"),
       );
     }
   }
 
   void save_button_function() {
     createDB(controller.get_all_texts());
+  }
+
+  void save_concluded() {
+    Navigator.popUntil(context, ModalRoute.withName('/lista_petianos'));
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:organizapet/modules/dados_petiano/petiano_arguments.dart';
 import 'package:organizapet/modules/dados_petiano/petianos_controller.dart';
 import 'package:organizapet/modules/dados_petiano/petianos_db_controller.dart';
 import 'package:organizapet/modules/lista_petianos/lista_petianos.dart';
@@ -146,13 +147,21 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
     if (nome.isNotEmpty) {
       final dbController = dadosPetiano(nome: nome);
       dbController.delete();
+      Navigator.pop(context, 'sim');
 
       showDialog<String>(
         context: context,
         builder: (BuildContext context) => PopupUmaOpcao(
-            title: "Sucesso", message: "Petiano removido do OrganizaPET!"),
+          title: "Sucesso",
+          message: "Petiano removido do OrganizaPET!",
+          after_func: delete_concluded,
+        ),
       );
     }
+  }
+
+  void delete_concluded() {
+    Navigator.popUntil(context, ModalRoute.withName('/lista_petianos'));
   }
 
   void delete_button() {
@@ -166,6 +175,7 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
   }
 
   void edit_button() {
-    print("EDITA ISSO AI");
+    Navigator.pushNamed(context, "/dados_petiano",
+        arguments: PetianoArguments(nome: widget.dados.nome, user: widget.dados.user));
   }
 }
