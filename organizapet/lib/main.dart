@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:organizapet/modules/erro_firebase/erro_firebase.dart';
 import 'package:organizapet/modules/splash/splash_page_widget.dart';
 import 'package:organizapet/screen_manager.dart';
-import 'package:organizapet/shared/widgets/error_firebase/error_firebase.dart';
+
 
 String perfil_user() {
   return "tutor";
@@ -45,6 +46,6 @@ class _AppState extends State<App> {
 class DeuRuim extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ErrorFirebaseMessage();
+    return ErroFirebase();
   }
 }
