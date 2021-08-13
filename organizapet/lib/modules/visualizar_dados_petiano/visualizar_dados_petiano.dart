@@ -11,6 +11,7 @@ import 'package:organizapet/shared/widgets/box_info/box_info.dart';
 import 'package:organizapet/shared/widgets/button_picker/button_picker.dart';
 import 'package:organizapet/shared/widgets/menu/menu_sanduiche.dart';
 import 'package:organizapet/shared/widgets/page_title/page_title.dart';
+import 'package:organizapet/shared/widgets/popup/popup_uma_opcao.dart';
 
 class VisualizarDadosPetiano extends StatefulWidget {
   final VisualizarDadosArguments dados;
@@ -107,21 +108,30 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
                       imagem: AppImages.insta,
                       texto: controller.instagramController.text,
                     ),
-                    enableButton(),
+                    enableButton(context),
                   ]);
                 }
               })),
     );
   }
 
-  Widget enableButton(){
-      if(widget.dados.user.isTutor == true){
-       return ButtonPicker(isDouble: true, tipoBotao1: 'bla', tipoBotao2: 'edit',);
-      }else if(widget.dados.is_self == true) {
-        return ButtonPicker(isDouble: false, tipoBotao1: 'edit');
-      }else {
-        return Container();
-      }
+  Widget enableButton(BuildContext context) {
+    if (widget.dados.user.isTutor == true) {
+      return ButtonPicker(
+        isDouble: true,
+        tipoBotao1: 'bla',
+        tipoBotao2: 'edit',
+        callback1: delete_button,
+        callback2: edit_button,
+      );
+    } else if (widget.dados.is_self == true) {
+      return ButtonPicker(
+          isDouble: false,
+          tipoBotao1: 'edit',
+          callback1: edit_button);
+    } else {
+      return Container();
+    }
   }
 
   Future<dadosPetiano> read_db() async {
@@ -130,5 +140,26 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
       await dbController.read();
     }
     return dbController;
+  }
+
+  void eliminado(String nome) {
+    if (nome.isNotEmpty) {
+      final dbController = dadosPetiano(nome: nome);
+      dbController.delete();
+
+      showDialog<String>(
+        context: context,
+        builder: (BuildContext context) =>
+              PopupUmaOpcao(title: "Sucesso", message: "Petiano removido do OrganizaPET!"),
+      );
+    }
+  }
+
+  void delete_button() {
+    eliminado(controller.nomeController.text);
+  }
+
+  void edit_button() {
+    print("EDITA ISSO AI");
   }
 }

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:organizapet/modules/authentication/user_data.dart';
+import 'package:organizapet/modules/dados_petiano/petiano_arguments.dart';
 import 'package:organizapet/modules/useful_functions/ano_formatter.dart';
 import 'package:organizapet/modules/useful_functions/first_and_last_name.dart';
 import 'package:organizapet/modules/visualizar_dados_petiano/visualizar_dados_arguments.dart';
@@ -65,18 +66,27 @@ class _ListaPetianosState extends State<ListaPetianos> {
           enableButton(widget.user),
         ]));
   }
-}
 
-void go_to_petiano(
-    BuildContext context, String nome, bool is_self, UserData user) {
-  Navigator.pushNamed(context, "/visualizar_dados_petiano",
-      arguments: VisualizarDadosArguments(nome, is_self, user));
-}
-
-Widget enableButton(UserData user){
-      if(user.isTutor == true){
-       return ButtonPicker(isDouble: false, tipoBotao1: 'add');
-      }else {
-        return Container();
-      }
+  void go_to_petiano(
+      BuildContext context, String nome, bool is_self, UserData user) {
+    Navigator.pushNamed(context, "/visualizar_dados_petiano",
+        arguments: VisualizarDadosArguments(nome, is_self, user));
   }
+
+  Widget enableButton(UserData user) {
+    if (user.isTutor == true) {
+      return ButtonPicker(
+        isDouble: false,
+        tipoBotao1: 'add',
+        callback1: add_buton,
+      );
+    } else {
+      return Container();
+    }
+  }
+
+  void add_buton() {
+    Navigator.pushNamed(context, "/dados_petiano",
+        arguments: PetianoArguments(nome: "", user: widget.user));
+  }
+}

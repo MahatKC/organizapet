@@ -123,24 +123,7 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
     }
   }
 
-  void eliminado(String nome) {
-    if (nome.isNotEmpty) {
-      final dbController = dadosPetiano(nome: nome);
-      dbController.delete();
-
-      showDialog<String>(
-        context: context,
-        builder: (BuildContext context) =>
-              PopupUmaOpcao(title: "Sucesso", message: "Petiano removido do OrganizaPET!"),
-      );
-    }
-  }
-
   void save_button_function() {
     createDB(controller.get_all_texts());
-  }
-
-  void delete_button_function() {
-    eliminado(controller.nomeController.text);
   }
 }
