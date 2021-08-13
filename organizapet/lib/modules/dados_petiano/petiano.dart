@@ -61,22 +61,36 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
                           ctrl: controller.nomeCurtoController,
                           hint: "Nome Curto"),
                       PetianoInputField(
-                          ctrl: controller.rgController, hint: "RG"),
+                          ctrl: controller.rgController, 
+                          mascara: controller.maskRg,
+                          isNumeric: true,
+                          hint: "RG"),
                       PetianoInputField(
-                          ctrl: controller.cpfController, hint: "CPF"),
+                          ctrl: controller.cpfController,
+                          mascara: controller.maskCpf,
+                          isNumeric: true,
+                          hint: "CPF"),
                       PetianoInputField(
-                          ctrl: controller.raController, hint: "RA"),
+                          ctrl: controller.raController, 
+                          isNumeric: true,
+                          hint: "RA"),
                       PetianoInputField(
                           ctrl: controller.telefoneController,
                           mascara: controller.maskTelefone,
+                          isNumeric: true,
                           hint: "Telefone"),
                       PetianoInputField(
                           ctrl: controller.emailController, hint: "E-mail"),
                       PetianoInputField(
                           ctrl: controller.dataNascimentoController,
+                          mascara: controller.maskDtNascimento,
+                          isNumeric: true,
                           hint: "Data de nascimento"),
                       PetianoInputField(
-                          ctrl: controller.anoController, hint: "Ano"),
+                          ctrl: controller.anoController, 
+                          mascara: controller.maskAno,
+                          isNumeric: true,
+                          hint: "Ano"),
                       PetianoInputField(
                           ctrl: controller.temaICVController, hint: "Tema ICV"),
                       PetianoInputField(
