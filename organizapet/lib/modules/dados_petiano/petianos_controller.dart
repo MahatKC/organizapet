@@ -25,9 +25,9 @@ class petianosController {
   final maskRg = new MaskTextInputFormatter(
       mask: '##.###.###-#', filter: {"#": RegExp(r'[0-9]')});
   final maskDtNascimento = new MaskTextInputFormatter(
-       mask: '##/##/####', filter: {"#": RegExp(r'[0-9]')});
-  final maskAno = new MaskTextInputFormatter(
-       mask: '#°', filter: {"#": RegExp(r'[1-9]')});
+      mask: '##/##/####', filter: {"#": RegExp(r'[0-9]')});
+  final maskAno =
+      new MaskTextInputFormatter(mask: '#°', filter: {"#": RegExp(r'[1-9]')});
 
   petianosController();
 

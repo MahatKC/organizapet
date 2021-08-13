@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class PetianoInputField extends StatelessWidget {
@@ -22,9 +23,20 @@ class PetianoInputField extends StatelessWidget {
     bool enable;
     TextInputType tipo = TextInputType.text;
     enable = (not_in_database) ?? true;
-    
-    if(isNumeric == true){
+
+    if (isNumeric == true) {
       tipo = TextInputType.number;
+    }
+
+    if (hint == "RA") {
+      return TextField(
+      controller: ctrl,
+      decoration: InputDecoration(hintText: " " + hint),
+      enabled: enable,
+      //inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+      inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*'))],
+      keyboardType: tipo,
+    );
     }
 
     return TextField(
