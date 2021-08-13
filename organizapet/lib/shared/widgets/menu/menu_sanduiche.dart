@@ -121,14 +121,21 @@ class MenuSanduiche extends StatelessWidget {
             onTap: () {
               showDialog<String>(
                 context: context,
-                builder: (BuildContext context) =>
-                PopupDuasOpcoes(title: "Atenção", message: "Deseja sair do OrganizaPET?"),
-      );
+                builder: (BuildContext context) => PopupDuasOpcoes(
+                    title: "Atenção",
+                    message: "Deseja sair do OrganizaPET?",
+                    yes_callback: logout_function),
+              );
             },
           ),
         ],
       ),
     );
+  }
+
+  void logout_function() {
+    //TO-DO
+    print("SAI DAI VEI");
   }
 
   Future<void> go_to_lista_petianos(BuildContext context, UserData user) async {

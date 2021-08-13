@@ -11,6 +11,7 @@ import 'package:organizapet/shared/widgets/box_info/box_info.dart';
 import 'package:organizapet/shared/widgets/button_picker/button_picker.dart';
 import 'package:organizapet/shared/widgets/menu/menu_sanduiche.dart';
 import 'package:organizapet/shared/widgets/page_title/page_title.dart';
+import 'package:organizapet/shared/widgets/popup/popup_duas_opcoes.dart';
 import 'package:organizapet/shared/widgets/popup/popup_uma_opcao.dart';
 
 class VisualizarDadosPetiano extends StatefulWidget {
@@ -126,9 +127,7 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
       );
     } else if (widget.dados.is_self == true) {
       return ButtonPicker(
-          isDouble: false,
-          tipoBotao1: 'edit',
-          callback1: edit_button);
+          isDouble: false, tipoBotao1: 'edit', callback1: edit_button);
     } else {
       return Container();
     }
@@ -142,21 +141,28 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
     return dbController;
   }
 
-  void eliminado(String nome) {
+  void eliminado() {
+    String nome = controller.nomeController.text;
     if (nome.isNotEmpty) {
       final dbController = dadosPetiano(nome: nome);
       dbController.delete();
 
       showDialog<String>(
         context: context,
-        builder: (BuildContext context) =>
-              PopupUmaOpcao(title: "Sucesso", message: "Petiano removido do OrganizaPET!"),
+        builder: (BuildContext context) => PopupUmaOpcao(
+            title: "Sucesso", message: "Petiano removido do OrganizaPET!"),
       );
     }
   }
 
   void delete_button() {
-    eliminado(controller.nomeController.text);
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => PopupDuasOpcoes(
+          title: "Atenção",
+          message: "Deseja sair do OrganizaPET?",
+          yes_callback: eliminado),
+    );
   }
 
   void edit_button() {
