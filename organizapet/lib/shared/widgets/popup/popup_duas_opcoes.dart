@@ -24,10 +24,9 @@ class PopupDuasOpcoes extends StatelessWidget {
       actions: [
         TextButton(
             child: const Text("Sim"),
-            onPressed: () {
-              yes_callback();
-              Navigator.pop(context, 'sim');
-            }),
+            onPressed: yes_callback
+              //return Navigator.pop(context, 'sim');
+            ),
         TextButton(
           child: const Text("Não"),
           onPressed: () => Navigator.pop(context, 'não'),

@@ -146,13 +146,21 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
     if (nome.isNotEmpty) {
       final dbController = dadosPetiano(nome: nome);
       dbController.delete();
+      Navigator.pop(context, 'sim');
 
       showDialog<String>(
         context: context,
         builder: (BuildContext context) => PopupUmaOpcao(
-            title: "Sucesso", message: "Petiano removido do OrganizaPET!"),
+          title: "Sucesso",
+          message: "Petiano removido do OrganizaPET!",
+          after_func: delete_concluded,
+        ),
       );
     }
+  }
+
+  void delete_concluded() {
+    Navigator.popUntil(context, ModalRoute.withName('/lista_petianos'));
   }
 
   void delete_button() {

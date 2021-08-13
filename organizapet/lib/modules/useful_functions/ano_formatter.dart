@@ -1,6 +1,6 @@
 String ano_formatter(Map<String, dynamic> data) {
   String? ano = data['ano'];
-  if (ano != null) {
+  if (ano != null && ano!="" && ano!=" ") {
     ano = ano + " ano";
   } else {
     ano = "";
