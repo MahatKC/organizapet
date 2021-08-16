@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/themes/app_text_styles.dart';
-import 'package:organizapet/shared/widgets/popup/popup_uma_opcao.dart';
 
 class BoxInfo extends StatelessWidget {
   final String imagem;
@@ -25,12 +25,12 @@ class BoxInfo extends StatelessWidget {
             style: TextStyles.infoBox,
           ),
           leading: Image.asset(imagem),
-          onTap: () {
+          onLongPress: () {
             copyToClipboard();
-            /*Tooltip(
-              message: 'play',
-              child: Icon(Icons.play_arrow),
-            );*/
+            final snackBar = SnackBar(
+              content: Text("Dado copiado!", style: TextStyles.textCopy,),
+            );
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
           },
         ),
       ),

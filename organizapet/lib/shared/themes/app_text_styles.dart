@@ -69,9 +69,15 @@ class TextStyles {
     color: Colors.white,
     
   );
+
   static final deuRuim = GoogleFonts.inter(
     fontSize: 22,
     color: Colors.yellow,
     fontWeight: FontWeight.bold
+  );
+
+  static final textCopy = GoogleFonts.inter(
+    fontSize: 16,
+    color: Colors.white,
   );
 }

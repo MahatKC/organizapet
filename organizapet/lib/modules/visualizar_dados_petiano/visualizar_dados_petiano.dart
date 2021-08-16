@@ -59,6 +59,8 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
                   return ListView(children: [
                     PageTitle(title: "Dados do Petiano"),
                     Tooltip(message: controller.nomeController.text+" copiado!",
+                    
+                    preferBelow: false,
                     child: BoxInfo(
                       imagem: AppImages.usuario,
                       texto: controller.nomeController.text,
