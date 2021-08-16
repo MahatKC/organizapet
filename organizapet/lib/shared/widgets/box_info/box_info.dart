@@ -26,11 +26,11 @@ class BoxInfo extends StatelessWidget {
           ),
           leading: Image.asset(imagem),
           onTap: () {
-            //copyToClipboard();
-            Tooltip(
+            copyToClipboard();
+            /*Tooltip(
               message: 'play',
               child: Icon(Icons.play_arrow),
-            );
+            );*/
           },
         ),
       ),
