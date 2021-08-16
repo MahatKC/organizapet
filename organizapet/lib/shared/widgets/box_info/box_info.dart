@@ -39,8 +39,5 @@ class BoxInfo extends StatelessWidget {
 
   Future<void> copyToClipboard() async {
     await Clipboard.setData(ClipboardData(text: texto));
-    // _scaffoldKey.currentState.showSnackBar(SnackBar(
-    // content: Text('Copied to clipboard'),
-    //));
   }
 }
