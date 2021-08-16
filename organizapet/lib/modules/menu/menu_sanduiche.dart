@@ -115,7 +115,7 @@ class MenuSanduiche extends StatelessWidget {
             trailing: Image.asset(AppImages.sair),
             selectedTileColor: AppColors.boxListBorder,
             title: Text(
-              "Roberta Alcantara",
+              user.nomeCurto,
               style: TextStyles.textItemMenu,
             ),
             onTap: () {

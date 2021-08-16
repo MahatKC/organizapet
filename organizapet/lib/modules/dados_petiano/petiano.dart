@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:organizapet/modules/dados_petiano/petiano_arguments.dart';
 import 'package:organizapet/modules/dados_petiano/petianos_controller.dart';
 import 'package:organizapet/modules/dados_petiano/petianos_db_controller.dart';
+import 'package:organizapet/modules/menu/menu_sanduiche.dart';
 import 'package:organizapet/modules/useful_functions/print_current_time.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/widgets/app_bar/appBar.dart';
-import 'package:organizapet/shared/widgets/menu/menu_sanduiche.dart';
 import 'package:organizapet/shared/widgets/page_title/page_title.dart';
 import 'package:organizapet/shared/widgets/petiano_input_field/petiano_input_field.dart';
 import 'package:organizapet/shared/widgets/popup/popup_uma_opcao.dart';
@@ -61,7 +61,7 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
                           ctrl: controller.nomeCurtoController,
                           hint: "Nome Curto"),
                       PetianoInputField(
-                          ctrl: controller.rgController, 
+                          ctrl: controller.rgController,
                           mascara: controller.maskRg,
                           isNumeric: true,
                           hint: "RG"),
@@ -71,7 +71,7 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
                           isNumeric: true,
                           hint: "CPF"),
                       PetianoInputField(
-                          ctrl: controller.raController, 
+                          ctrl: controller.raController,
                           isNumeric: true,
                           hint: "RA"),
                       PetianoInputField(
@@ -87,7 +87,7 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
                           isNumeric: true,
                           hint: "Data de nascimento"),
                       PetianoInputField(
-                          ctrl: controller.anoController, 
+                          ctrl: controller.anoController,
                           mascara: controller.maskAno,
                           isNumeric: true,
                           hint: "Ano"),
