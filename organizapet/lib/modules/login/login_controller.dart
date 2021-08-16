@@ -1,29 +1,87 @@
-import 'package:firebase_auth/firebase_auth.dart';
-//import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter/material.dart';
+import 'package:organizapet/modules/authentication/user_data.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:organizapet/modules/dados_petiano/petianos_db_controller.dart';
+
+import 'login_google_auth.dart';
 
 class loginController {
-  final String ok = "fez login";
+  late String email;
+  late String name_key;
 
   loginController();
 
-  Future<void> googleLogin() async{
-    //GoogleSignIn
+  bool googleLogin(BuildContext context) {
+    bool has_access = false;
+    executeLogin(context).then((value) => has_access = value);
+
+    return has_access;
   }
 
-  Future<UserCredential> signInWithGoogle() async {
-  // Trigger the authentication flow
-  //final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
+  Future<bool> executeLogin(BuildContext context) async {
+    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    final CollectionReference _users = _firestore.collection('users');
+    final user = await Authentication.signInWithGoogle(context: context);
 
-  // Obtain the auth details from the request
-  //final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+    String? email = user!.email;
+    bool has_access = false;
 
-  // Create a new credential
-  final credential = GoogleAuthProvider.credential(
-    //accessToken: googleAuth.accessToken,
-    //idToken: googleAuth.idToken,
-  );
+    await _users
+        .doc(email)
+        .get()
+        .then((snapshot) {
+          if (snapshot.exists) {
+            has_access = true;
+            nameKeyFromJson(snapshot.data() as Map<String, dynamic>);
+          }
+        })
+        .then((value) => print("Usuário $email lido"))
+        .catchError((error) => print("Falha $error"));
 
-  // Once signed in, return the UserCredential
-  return await FirebaseAuth.instance.signInWithCredential(credential);
-}
+    return has_access;
+  }
+
+  nameKeyFromJson(Map<String, dynamic> data) {
+    this.name_key = data['name_key'];
+  }
+
+  Future<UserData> getUser() async {
+    dadosPetiano dadosUsuario = dadosPetiano(nome: "");
+    await dadosUsuario.read_from_login(name_key);
+
+    bool isTutor = await readIsTutor(name_key);
+
+    UserData user = UserData();
+    await user.set_prefs(
+        new_name: dadosUsuario.nome,
+        new_nomeCurto: dadosUsuario.nomeCurto,
+        new_isTutor: isTutor);
+
+    return user;
+  }
+
+  bool isTutor(String name_key) {
+    bool isTutor = false;
+    readIsTutor(name_key).then((value) => isTutor = value);
+    return isTutor;
+  }
+
+  Future<bool> readIsTutor(String name_key) async {
+    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    final CollectionReference _tutor = _firestore.collection('tutor');
+    bool isTutor = false;
+
+    await _tutor
+        .doc(name_key)
+        .get()
+        .then((snapshot) {
+          if (snapshot.exists) {
+            isTutor = true;
+          }
+        })
+        .then((value) => print("Tutor lido"))
+        .catchError((error) => print("Falha $error"));
+
+    return isTutor;
+  }
 }

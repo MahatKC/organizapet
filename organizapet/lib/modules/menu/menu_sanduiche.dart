@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:organizapet/modules/authentication/user_data.dart';
 import 'package:organizapet/modules/dados_petiano/petiano_arguments.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
@@ -9,11 +11,23 @@ import 'package:organizapet/shared/widgets/popup/popup_duas_opcoes.dart';
 
 class MenuSanduiche extends StatelessWidget {
   final UserData user;
-
   const MenuSanduiche({Key? key, required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    void logout_function() async {
+      print("SAI DAI VEI");
+      await GoogleSignIn().signOut();
+      FirebaseAuth auth = await FirebaseAuth.instance;
+      await auth
+          .signOut()
+          .then((value) => print("deu certo"))
+          .catchError((error) => print(error));
+      UserData user = UserData();
+      user.clear();
+      Navigator.pushReplacementNamed(context, '/splash');
+    }
+
     return Drawer(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -119,22 +133,16 @@ class MenuSanduiche extends StatelessWidget {
             ),
             onTap: () {
               showDialog<String>(
-                context: context,
-                builder: (BuildContext context) => PopupDuasOpcoes(
-                    title: "Atenção",
-                    message: "Deseja sair do OrganizaPET?",
-                    yes_callback: logout_function),
-              );
+                  context: context,
+                  builder: (BuildContext context) => PopupDuasOpcoes(
+                      title: "Atenção",
+                      message: "Deseja sair do OrganizaPET?",
+                      yes_callback: logout_function));
             },
           ),
         ],
       ),
     );
-  }
-
-  void logout_function() {
-    //TO-DO
-    print("SAI DAI VEI");
   }
 
   Future<void> go_to_lista_petianos(BuildContext context, UserData user) async {

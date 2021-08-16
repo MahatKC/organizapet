@@ -41,6 +41,11 @@ class UserData {
           new_isTutor: false,
           new_name: "Leonardo Vanzin",
           new_nomeCurto: "Leonardo Vanzin"); //TO-DO: Inicializar projetos
+    } else if (perfil == 'clear') {
+      await set_prefs(
+          new_isTutor: false,
+          new_name: "",
+          new_nomeCurto: ""); //TO-DO: Inicializar projetos
     } else {
       await set_prefs(
           new_isTutor: false,
@@ -56,5 +61,13 @@ class UserData {
     print(name);
     print(nomeCurto);
     print(gerenciaProjetos);
+  }
+
+  void clear() {
+    set_prefs(
+        new_name: "",
+        new_nomeCurto: "",
+        new_isTutor: false,
+        new_gerenciaProjetos: []);
   }
 }

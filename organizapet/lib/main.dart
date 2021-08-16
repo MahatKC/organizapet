@@ -6,7 +6,7 @@ import 'package:organizapet/screen_manager.dart';
 
 
 String perfil_user() {
-  return "tutor";
+  return "clear";
 }
 
 void main() {

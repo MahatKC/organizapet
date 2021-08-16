@@ -91,14 +91,31 @@ class dadosPetiano {
         }, SetOptions(merge: true))
         .then((value) => print("$nome atualizado com sucesso"))
         .catchError((error) => print("Fail: $error"));
+    if (email != null) {
+      await _firestore
+          .collection('users')
+          .doc(document_title(email!))
+          .set({'email': email}, SetOptions(merge: true))
+          .then((value) => print("Usuário $email atualizado com sucesso"))
+          .catchError((error) => print("Fail: $error"));
+    }
   }
 
   Future<void> delete() async {
+    await read();
     _mainCollection
         .doc(document_title(nome))
         .delete()
         .then((value) => print("$nome removido com sucesso"))
         .catchError((error) => print("Fail: $error"));
+    if (email != null) {
+      _firestore
+          .collection('users')
+          .doc(document_title(email!))
+          .delete()
+          .then((value) => print("Usuário $email removido com sucesso"))
+          .catchError((error) => print("Fail: $error"));
+    }
   }
 
   Future<void> read() async {
@@ -115,5 +132,26 @@ class dadosPetiano {
         })
         .then((value) => print("$nome lido"))
         .catchError((error) => print("Falha $error"));
+  }
+
+  Future<void> read_from_login(String name_key) async {
+    await _mainCollection
+        .doc(name_key)
+        .get()
+        .then((snapshot) {
+          if (snapshot.exists) {
+            dadosUsuarioFromJson(snapshot.data() as Map<String, dynamic>);
+            in_db = true;
+          } else {
+            print("Non Ecziste");
+          }
+        })
+        .then((value) => print("$nome lido"))
+        .catchError((error) => print("Falha $error"));
+  }
+
+  dadosUsuarioFromJson(Map<String, dynamic> data) {
+    this.nome = data['nome'];
+    this.nomeCurto = data['nome_curto'];
   }
 }

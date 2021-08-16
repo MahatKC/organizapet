@@ -24,10 +24,12 @@ class ScreenManager extends StatelessWidget {
         '/lista_petianos': (context) => ListaPetianos(
             user: ModalRoute.of(context)!.settings.arguments as UserData),
         '/visualizar_dados_petiano': (context) => VisualizarDadosPetiano(
-            dados: ModalRoute.of(context)!.settings.arguments as VisualizarDadosArguments),
+            dados: ModalRoute.of(context)!.settings.arguments
+                as VisualizarDadosArguments),
         '/dados_petiano': (context) => PerfilUsuario(
-            dados: ModalRoute.of(context)!.settings.arguments as PetianoArguments),
-        '/erro_firebase' : (context) =>ErroFirebase(),
+            dados:
+                ModalRoute.of(context)!.settings.arguments as PetianoArguments),
+        '/login_page': (context) => LoginPage(),
       },
     );
   }

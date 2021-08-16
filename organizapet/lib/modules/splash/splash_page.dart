@@ -27,7 +27,13 @@ class _SplashPageState extends State<SplashPage> {
           if (snapshot.connectionState != ConnectionState.done) {
             return SplashPageWidget();
           } else {
-            change_screen(context, snapshot.data as UserData);
+            final UserData user = snapshot.data as UserData;
+            if (user.name.isEmpty) {
+              go_to_login_page(context, user);
+            } else {
+              change_screen(context, user);
+            }
+
             return SplashPageWidget();
           }
         });
@@ -38,9 +44,15 @@ class _SplashPageState extends State<SplashPage> {
     Navigator.pushReplacementNamed(context, "/lista_petianos", arguments: user);
   }
 
+  Future<void> go_to_login_page(BuildContext context, UserData user) async {
+    await Future.delayed(Duration(seconds: 3));
+    Navigator.pushReplacementNamed(context, "/login_page", arguments: user);
+  }
+
   Future<UserData> getSharedPreferences() async {
     UserData user = UserData();
-    await user.set_perfil(perfil_user());
+    await user.set_prefs();
+    //await user.set_perfil(perfil_user());
     user.print_shared_prefs();
     return user;
   }
