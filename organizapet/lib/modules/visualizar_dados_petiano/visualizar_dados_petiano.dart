@@ -58,10 +58,13 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
                   controller.instantiateAll(dbController);
                   return ListView(children: [
                     PageTitle(title: "Dados do Petiano"),
-                    BoxInfo(
+                    Tooltip(message: controller.nomeController.text+" copiado!",
+                    child: BoxInfo(
                       imagem: AppImages.usuario,
                       texto: controller.nomeController.text,
-                    ),
+                    )
+                    )
+                    ,
                     BoxInfo(
                       imagem: AppImages.rg,
                       texto: controller.rgController.text,
