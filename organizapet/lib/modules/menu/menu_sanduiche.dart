@@ -38,7 +38,7 @@ class MenuSanduiche extends StatelessWidget {
               padding: EdgeInsets.zero,
               children: <Widget>[
                 Container(
-                    height: 160,
+                    height: 162,
                     decoration: BoxDecoration(
                         color: AppColors.boxListBorder,
                         boxShadow: [
