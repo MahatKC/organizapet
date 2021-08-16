@@ -153,7 +153,7 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
         context: context,
         builder: (BuildContext context) => PopupUmaOpcao(
           title: "Sucesso",
-          message: "Petiano removido do OrganizaPET!",
+          message: widget.dados.nome+" removido do OrganizaPET!",
           after_func: delete_concluded,
         ),
       );
@@ -169,7 +169,7 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
       context: context,
       builder: (BuildContext context) => PopupDuasOpcoes(
           title: "Atenção",
-          message: "Deseja sair do OrganizaPET?",
+          message: "Deseja remover "+widget.dados.nome+"?",
           yes_callback: eliminado),
     );
   }

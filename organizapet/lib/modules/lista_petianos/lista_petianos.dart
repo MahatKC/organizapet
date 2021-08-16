@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:organizapet/modules/authentication/user_data.dart';
 import 'package:organizapet/modules/dados_petiano/petiano_arguments.dart';
