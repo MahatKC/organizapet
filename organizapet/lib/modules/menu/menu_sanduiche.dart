@@ -33,6 +33,7 @@ class MenuSanduiche extends StatelessWidget {
         children: <Widget>[
           Flexible(
             child: ListView(
+              physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               padding: EdgeInsets.zero,
               children: <Widget>[
@@ -110,7 +111,7 @@ class MenuSanduiche extends StatelessWidget {
                   },
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.306,
+                  height: MediaQuery.of(context).size.height * 0.5,
                   decoration: BoxDecoration(
                     color: AppColors.barraMenu,
                   ),
