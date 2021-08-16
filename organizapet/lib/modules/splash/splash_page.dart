@@ -51,8 +51,8 @@ class _SplashPageState extends State<SplashPage> {
 
   Future<UserData> getSharedPreferences() async {
     UserData user = UserData();
-    await user.set_prefs();
-    //await user.set_perfil(perfil_user());
+    //await user.set_prefs();
+    await user.set_perfil(perfil_user());
     user.print_shared_prefs();
     return user;
   }

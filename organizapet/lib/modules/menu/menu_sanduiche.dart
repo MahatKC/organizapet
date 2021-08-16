@@ -16,6 +16,7 @@ class MenuSanduiche extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void logout_function() async {
+      print("fodeu");
       await GoogleSignIn().signOut();
       FirebaseAuth auth = await FirebaseAuth.instance;
       await auth
@@ -111,7 +112,7 @@ class MenuSanduiche extends StatelessWidget {
                   },
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.5,
+                  height: MediaQuery.of(context).size.height * 0.8,
                   decoration: BoxDecoration(
                     color: AppColors.barraMenu,
                   ),
