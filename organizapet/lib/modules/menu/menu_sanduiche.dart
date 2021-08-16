@@ -16,12 +16,11 @@ class MenuSanduiche extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void logout_function() async {
-      print("SAI DAI VEI");
       await GoogleSignIn().signOut();
       FirebaseAuth auth = await FirebaseAuth.instance;
       await auth
           .signOut()
-          .then((value) => print("deu certo"))
+          .then((value) => print("LogOut bem sucedido."))
           .catchError((error) => print(error));
       UserData user = UserData();
       user.clear();
@@ -150,9 +149,6 @@ class MenuSanduiche extends StatelessWidget {
   }
 
   Future<void> go_to_dados_petiano(BuildContext context, UserData user) async {
-    print("go_to_dados");
-    print(user.name);
-    print("-----");
     Navigator.pushReplacementNamed(context, "/dados_petiano",
         arguments: PetianoArguments(nome: user.name, user: user));
   }
