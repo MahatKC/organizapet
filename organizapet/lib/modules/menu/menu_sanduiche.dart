@@ -114,7 +114,7 @@ class MenuSanduiche extends StatelessWidget {
                   },
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.5,
+                  height: MediaQuery.of(context).size.height * 0.8,
                   decoration: BoxDecoration(
                     color: AppColors.barraMenu,
                   ),

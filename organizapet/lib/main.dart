@@ -4,7 +4,6 @@ import 'package:organizapet/modules/erro_firebase/erro_firebase.dart';
 import 'package:organizapet/modules/splash/splash_page_widget.dart';
 import 'package:organizapet/screen_manager.dart';
 
-
 String perfil_user() {
   return "clear";
 }
@@ -34,10 +33,9 @@ class _AppState extends State<App> {
           return ScreenManager();
         }
         return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'OrganizaPET',
-          home: SplashPageWidget()
-          );
+            debugShowCheckedModeBanner: false,
+            title: 'OrganizaPET',
+            home: SplashPageWidget());
       },
     );
   }
