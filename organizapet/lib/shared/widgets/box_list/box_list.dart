@@ -18,7 +18,7 @@ class BoxList extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 30, left: 60, right: 60),
       child: Container(
-          height: 67,
+          height: 80,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                   topRight: Radius.circular(10),
