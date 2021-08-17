@@ -35,91 +35,94 @@ class MenuSanduiche extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Flexible(
-            child: ListView(
-              physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              padding: EdgeInsets.zero,
-              children: <Widget>[
-                Container(
-                    height: 182,
+            child: Container(
+              color: AppColors.barraMenu,
+              child: ListView(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                padding: EdgeInsets.zero,
+                children: <Widget>[
+                  Container(
+                      height: 182,
+                      decoration: BoxDecoration(
+                          color: AppColors.boxListBorder,
+                          boxShadow: [
+                            BoxShadow(
+                                blurRadius: 10,
+                                color: AppColors.nameApp.withOpacity(0.25),
+                                offset: Offset(4, 4)),
+                          ]),
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 45, bottom: 20),
+                        child: Column(
+                          children: [
+                            Image.asset(AppImages.logoMenor),
+                            Text("OrganizaPET", style: TextStyles.nameAppMenu),
+                          ],
+                        ),
+                      )),
+                  ListTile(
+                    tileColor: AppColors.barraMenu,
+                    leading: Image.asset(AppImages.cronograma),
+                    title: Text(
+                      'Cronograma',
+                      style: TextStyles.textItemMenu,
+                    ),
+                    selectedTileColor: AppColors.boxListBorder,
+                    onTap: () {},
+                  ),
+                  ListTile(
+                    leading: Image.asset(AppImages.projeto),
+                    title: Text(
+                      'Meus projetos',
+                      style: TextStyles.textItemMenu,
+                    ),
+                    tileColor: AppColors.barraMenu,
+                    selectedTileColor: AppColors.boxListBorder,
+                    onTap: () {},
+                  ),
+                  ListTile(
+                    tileColor: AppColors.barraMenu,
+                    leading: Image.asset(AppImages.membros),
+                    title: Text(
+                      'Membros',
+                      style: TextStyles.textItemMenu,
+                    ),
+                    selectedTileColor: AppColors.boxListBorder,
+                    onTap: () {
+                      go_to_lista_petianos(context, user);
+                    },
+                  ),
+                  ListTile(
+                    leading: Image.asset(AppImages.projeto),
+                    title: Text(
+                      'Projetos',
+                      style: TextStyles.textItemMenu,
+                    ),
+                    tileColor: AppColors.barraMenu,
+                    selectedTileColor: AppColors.boxListBorder,
+                    onTap: () {},
+                  ),
+                  ListTile(
+                    tileColor: AppColors.barraMenu,
+                    leading: Image.asset(AppImages.usuarioBranco),
+                    title: Text(
+                      'Perfil',
+                      style: TextStyles.textItemMenu,
+                    ),
+                    selectedTileColor: AppColors.boxListBorder,
+                    onTap: () {
+                      go_to_dados_petiano(context, user);
+                    },
+                  ),
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.8,
                     decoration: BoxDecoration(
-                        color: AppColors.boxListBorder,
-                        boxShadow: [
-                          BoxShadow(
-                              blurRadius: 10,
-                              color: AppColors.nameApp.withOpacity(0.25),
-                              offset: Offset(4, 4)),
-                        ]),
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 45, bottom: 20),
-                      child: Column(
-                        children: [
-                          Image.asset(AppImages.logoMenor),
-                          Text("OrganizaPET", style: TextStyles.nameAppMenu),
-                        ],
-                      ),
-                    )),
-                ListTile(
-                  tileColor: AppColors.barraMenu,
-                  leading: Image.asset(AppImages.cronograma),
-                  title: Text(
-                    'Cronograma',
-                    style: TextStyles.textItemMenu,
+                      color: AppColors.barraMenu,
+                    ),
                   ),
-                  selectedTileColor: AppColors.boxListBorder,
-                  onTap: () {},
-                ),
-                ListTile(
-                  leading: Image.asset(AppImages.projeto),
-                  title: Text(
-                    'Meus projetos',
-                    style: TextStyles.textItemMenu,
-                  ),
-                  tileColor: AppColors.barraMenu,
-                  selectedTileColor: AppColors.boxListBorder,
-                  onTap: () {},
-                ),
-                ListTile(
-                  tileColor: AppColors.barraMenu,
-                  leading: Image.asset(AppImages.membros),
-                  title: Text(
-                    'Membros',
-                    style: TextStyles.textItemMenu,
-                  ),
-                  selectedTileColor: AppColors.boxListBorder,
-                  onTap: () {
-                    go_to_lista_petianos(context, user);
-                  },
-                ),
-                ListTile(
-                  leading: Image.asset(AppImages.projeto),
-                  title: Text(
-                    'Projetos',
-                    style: TextStyles.textItemMenu,
-                  ),
-                  tileColor: AppColors.barraMenu,
-                  selectedTileColor: AppColors.boxListBorder,
-                  onTap: () {},
-                ),
-                ListTile(
-                  tileColor: AppColors.barraMenu,
-                  leading: Image.asset(AppImages.usuarioBranco),
-                  title: Text(
-                    'Perfil',
-                    style: TextStyles.textItemMenu,
-                  ),
-                  selectedTileColor: AppColors.boxListBorder,
-                  onTap: () {
-                    go_to_dados_petiano(context, user);
-                  },
-                ),
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.8,
-                  decoration: BoxDecoration(
-                    color: AppColors.barraMenu,
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           Divider(
