@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:organizapet/modules/authentication/user_data.dart';
@@ -16,8 +17,9 @@ class MenuSanduiche extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void logout_function() async {
-      print("fodeu");
-      await GoogleSignIn().signOut();
+      if (!kIsWeb) {
+        await GoogleSignIn().signOut();
+      }
       FirebaseAuth auth = await FirebaseAuth.instance;
       await auth
           .signOut()
