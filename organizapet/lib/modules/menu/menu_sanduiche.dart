@@ -41,7 +41,7 @@ class MenuSanduiche extends StatelessWidget {
               padding: EdgeInsets.zero,
               children: <Widget>[
                 Container(
-                    height: 162,
+                    height: 182,
                     decoration: BoxDecoration(
                         color: AppColors.boxListBorder,
                         boxShadow: [
@@ -51,7 +51,7 @@ class MenuSanduiche extends StatelessWidget {
                               offset: Offset(4, 4)),
                         ]),
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 25, bottom: 20),
+                      padding: const EdgeInsets.only(top: 45, bottom: 20),
                       child: Column(
                         children: [
                           Image.asset(AppImages.logoMenor),
