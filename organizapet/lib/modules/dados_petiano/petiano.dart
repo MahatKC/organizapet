@@ -107,7 +107,7 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
                     ]),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 15),
+                    padding: const EdgeInsets.only(top: 17),
                     child: SinglePageButton(
                         buttonLabel: "Salvar", callback: save_button_function),
                   )
