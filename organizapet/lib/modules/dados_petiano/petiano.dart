@@ -106,8 +106,11 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
                           hint: "Instagram"),
                     ]),
                   ),
-                  SinglePageButton(
-                      buttonLabel: "Salvar", callback: save_button_function)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15),
+                    child: SinglePageButton(
+                        buttonLabel: "Salvar", callback: save_button_function),
+                  )
                 ],
               );
             }
