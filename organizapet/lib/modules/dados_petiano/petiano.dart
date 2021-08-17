@@ -137,7 +137,7 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
         builder: (BuildContext context) => PopupUmaOpcao(
             title: "Sucesso",
             message: nome+" adicionado(a) ao OrganizaPET!",
-            after_func: save_concluded),
+            after_func: register_concluded),
         );
       }else{
         showDialog<String>(
@@ -145,7 +145,7 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
         builder: (BuildContext context) => PopupUmaOpcao(
             title: "Sucesso",
             message: "Dados de "+nome+" atualizados!",
-            after_func: save_concluded),
+            after_func: update_concluded),
         );
       }
     } else {
@@ -162,7 +162,11 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
     createDB(controller.get_all_texts());
   }
 
-  void save_concluded() {
+  void register_concluded() {
     Navigator.popUntil(context, ModalRoute.withName('/lista_petianos'));
+  }
+
+  void update_concluded() {
+    Navigator.popUntil(context, ModalRoute.withName('/visualizar_dados_petiano'));
   }
 }

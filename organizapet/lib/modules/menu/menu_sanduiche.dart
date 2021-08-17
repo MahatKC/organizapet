@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:organizapet/modules/authentication/user_data.dart';
 import 'package:organizapet/modules/dados_petiano/petiano_arguments.dart';
+import 'package:organizapet/modules/visualizar_dados_petiano/visualizar_dados_arguments.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/themes/app_images.dart';
 import 'package:organizapet/shared/themes/app_text_styles.dart';
@@ -161,7 +162,7 @@ class MenuSanduiche extends StatelessWidget {
   }
 
   Future<void> go_to_dados_petiano(BuildContext context, UserData user) async {
-    Navigator.pushReplacementNamed(context, "/dados_petiano",
-        arguments: PetianoArguments(nome: user.name, user: user));
+    Navigator.pushReplacementNamed(context, "/visualizar_dados_petiano",
+        arguments: VisualizarDadosArguments(user.name, true, user));
   }
 }

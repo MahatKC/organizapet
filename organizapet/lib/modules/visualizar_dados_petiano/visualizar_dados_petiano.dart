@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:organizapet/modules/dados_petiano/petiano_arguments.dart';
 import 'package:organizapet/modules/dados_petiano/petianos_controller.dart';
 import 'package:organizapet/modules/dados_petiano/petianos_db_controller.dart';
-import 'package:organizapet/modules/lista_petianos/lista_petianos.dart';
 import 'package:organizapet/modules/menu/menu_sanduiche.dart';
 import 'package:organizapet/modules/useful_functions/back_to_previous.dart';
 import 'package:organizapet/modules/visualizar_dados_petiano/visualizar_dados_arguments.dart';
