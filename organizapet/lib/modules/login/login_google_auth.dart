@@ -10,6 +10,7 @@ class Authentication {
 
     if (kIsWeb) {
       GoogleAuthProvider authProvider = GoogleAuthProvider();
+      authProvider.setCustomParameters({'prompt': 'select_account'});
 
       try {
         final UserCredential userCredential =
