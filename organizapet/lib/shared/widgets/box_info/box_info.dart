@@ -20,15 +20,22 @@ class BoxInfo extends StatelessWidget {
             borderRadius: BorderRadius.circular(7),
             border: Border.all(color: AppColors.boxListBorder, width: 1)),
         child: ListTile(
-          title: Text(
-            texto,
-            style: TextStyles.infoBox,
-          ),
+          title: FittedBox(
+              fit: BoxFit.scaleDown,
+              alignment: Alignment.centerLeft,
+              child: Text(
+                texto,
+                style: TextStyles.infoBox,
+                textAlign: TextAlign.left
+              )),
           leading: Image.asset(imagem),
           onLongPress: () {
             copyToClipboard();
             final snackBar = SnackBar(
-              content: Text("Dado copiado!", style: TextStyles.textCopy,),
+              content: Text(
+                "Dado copiado!",
+                style: TextStyles.textCopy,
+              ),
             );
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
           },
