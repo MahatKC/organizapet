@@ -131,20 +131,25 @@ class MenuSanduiche extends StatelessWidget {
           ),
           ListTile(
             tileColor: AppColors.barraMenu,
-            trailing: Image.asset(AppImages.sair),
+            trailing: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                child: Image.asset(AppImages.sair),
+                onTap: (){
+                  showDialog<String>(
+                    context: context,
+                    builder: (BuildContext context) => PopupDuasOpcoes(
+                        title: "Atenção",
+                        message: "Deseja sair do OrganizaPET?",
+                        yes_callback: logout_function));
+                },
+              ),
+            ),
             selectedTileColor: AppColors.boxListBorder,
             title: Text(
               user.nomeCurto,
               style: TextStyles.textItemMenu,
             ),
-            onTap: () {
-              showDialog<String>(
-                  context: context,
-                  builder: (BuildContext context) => PopupDuasOpcoes(
-                      title: "Atenção",
-                      message: "Deseja sair do OrganizaPET?",
-                      yes_callback: logout_function));
-            },
           ),
         ],
       ),
