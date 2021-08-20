@@ -47,72 +47,83 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
               if (in_database == true && widget.dados.nome.isNotEmpty) {
                 controller.instantiateAll(dbController);
               }
-              return ListView(
-                children: [
-                  PageTitle(title: "Dados do Petiano"),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 50, right: 50),
-                    child: Column(children: [
-                      PetianoInputField(
-                          ctrl: controller.nomeController,
-                          hint: "Nome",
-                          not_in_database: !in_database),
-                      PetianoInputField(
-                          ctrl: controller.nomeCurtoController,
-                          hint: "Nome Curto"),
-                      PetianoInputField(
-                          ctrl: controller.rgController,
-                          mascara: controller.maskRg,
-                          isNumeric: true,
-                          hint: "RG"),
-                      PetianoInputField(
-                          ctrl: controller.cpfController,
-                          mascara: controller.maskCpf,
-                          isNumeric: true,
-                          hint: "CPF"),
-                      PetianoInputField(
-                          ctrl: controller.raController,
-                          isNumeric: true,
-                          hint: "RA"),
-                      PetianoInputField(
-                          ctrl: controller.telefoneController,
-                          mascara: controller.maskTelefone,
-                          isNumeric: true,
-                          hint: "Telefone"),
-                      PetianoInputField(
-                          ctrl: controller.emailController, hint: "E-mail"),
-                      PetianoInputField(
-                          ctrl: controller.dataNascimentoController,
-                          mascara: controller.maskDtNascimento,
-                          isNumeric: true,
-                          hint: "Data de nascimento"),
-                      PetianoInputField(
-                          ctrl: controller.anoController,
-                          mascara: controller.maskAno,
-                          isNumeric: true,
-                          hint: "Ano"),
-                      PetianoInputField(
-                          ctrl: controller.temaICVController, hint: "Tema ICV"),
-                      PetianoInputField(
-                          ctrl: controller.orientadorController,
-                          hint: "Orientador"),
-                      PetianoInputField(
-                          ctrl: controller.camisetaController,
-                          hint: "Camiseta"),
-                      PetianoInputField(
-                          ctrl: controller.githubController, hint: "Github"),
-                      PetianoInputField(
-                          ctrl: controller.instagramController,
-                          hint: "Instagram"),
-                    ]),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 17),
-                    child: SinglePageButton(
-                        buttonLabel: "Salvar", callback: save_button_function),
-                  )
-                ],
-              );
+              return Center(
+                  child: Container(
+                      width: 700,
+                      child: ScrollConfiguration(
+                          behavior: ScrollConfiguration.of(context)
+                              .copyWith(scrollbars: false),
+                          child: ListView(
+                            children: [
+                              PageTitle(title: "Dados do Petiano"),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 50, right: 50),
+                                child: Column(children: [
+                                  PetianoInputField(
+                                      ctrl: controller.nomeController,
+                                      hint: "Nome",
+                                      not_in_database: !in_database),
+                                  PetianoInputField(
+                                      ctrl: controller.nomeCurtoController,
+                                      hint: "Nome Curto"),
+                                  PetianoInputField(
+                                      ctrl: controller.rgController,
+                                      mascara: controller.maskRg,
+                                      isNumeric: true,
+                                      hint: "RG"),
+                                  PetianoInputField(
+                                      ctrl: controller.cpfController,
+                                      mascara: controller.maskCpf,
+                                      isNumeric: true,
+                                      hint: "CPF"),
+                                  PetianoInputField(
+                                      ctrl: controller.raController,
+                                      isNumeric: true,
+                                      hint: "RA"),
+                                  PetianoInputField(
+                                      ctrl: controller.telefoneController,
+                                      mascara: controller.maskTelefone,
+                                      isNumeric: true,
+                                      hint: "Telefone"),
+                                  PetianoInputField(
+                                      ctrl: controller.emailController,
+                                      hint: "E-mail"),
+                                  PetianoInputField(
+                                      ctrl: controller.dataNascimentoController,
+                                      mascara: controller.maskDtNascimento,
+                                      isNumeric: true,
+                                      hint: "Data de nascimento"),
+                                  PetianoInputField(
+                                      ctrl: controller.anoController,
+                                      mascara: controller.maskAno,
+                                      isNumeric: true,
+                                      hint: "Ano"),
+                                  PetianoInputField(
+                                      ctrl: controller.temaICVController,
+                                      hint: "Tema ICV"),
+                                  PetianoInputField(
+                                      ctrl: controller.orientadorController,
+                                      hint: "Orientador"),
+                                  PetianoInputField(
+                                      ctrl: controller.camisetaController,
+                                      hint: "Camiseta"),
+                                  PetianoInputField(
+                                      ctrl: controller.githubController,
+                                      hint: "Github"),
+                                  PetianoInputField(
+                                      ctrl: controller.instagramController,
+                                      hint: "Instagram"),
+                                ]),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 17),
+                                child: SinglePageButton(
+                                    buttonLabel: "Salvar",
+                                    callback: save_button_function),
+                              )
+                            ],
+                          ))));
             }
           },
         ));
@@ -130,25 +141,25 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
   void createDB(List all_texts) {
     if (all_texts.first.isNotEmpty) {
       String nome = all_texts.first;
-      
+
       var dbController = dadosPetiano(nome: nome);
       dbController.dadosPetianoFromLista(all_texts);
       dbController.write();
       if (widget.dados.nome.isEmpty) {
         showDialog<String>(
-        context: context,
-        builder: (BuildContext context) => PopupUmaOpcao(
-            title: "Sucesso",
-            message: nome+" adicionado(a) ao OrganizaPET!",
-            after_func: register_concluded),
+          context: context,
+          builder: (BuildContext context) => PopupUmaOpcao(
+              title: "Sucesso",
+              message: nome + " adicionado(a) ao OrganizaPET!",
+              after_func: register_concluded),
         );
-      }else{
+      } else {
         showDialog<String>(
-        context: context,
-        builder: (BuildContext context) => PopupUmaOpcao(
-            title: "Sucesso",
-            message: "Dados de "+nome+" atualizados!",
-            after_func: update_concluded),
+          context: context,
+          builder: (BuildContext context) => PopupUmaOpcao(
+              title: "Sucesso",
+              message: "Dados de " + nome + " atualizados!",
+              after_func: update_concluded),
         );
       }
     } else {
@@ -170,6 +181,7 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
   }
 
   void update_concluded() {
-    Navigator.popUntil(context, ModalRoute.withName('/visualizar_dados_petiano'));
+    Navigator.popUntil(
+        context, ModalRoute.withName('/visualizar_dados_petiano'));
   }
 }

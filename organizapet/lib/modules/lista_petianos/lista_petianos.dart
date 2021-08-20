@@ -32,38 +32,47 @@ class _ListaPetianosState extends State<ListaPetianos> {
         appBar: AppBar(
           title: BarraApp(),
         ),
-        body: ListView(children: [
-          PageTitle(title: "Petianos"),
-          StreamBuilder<QuerySnapshot>(
-            stream: _petianosStream,
-            builder:
-                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              if (snapshot.hasError) {
-                return Text('Erro ao acessar o banco.');
-              }
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(child: CircularProgressIndicator());
-              }
-              return new ListView(
-                shrinkWrap: true,
-                physics: ClampingScrollPhysics(),
-                children: snapshot.data!.docs.map((DocumentSnapshot document) {
-                  Map<String, dynamic> data =
-                      document.data() as Map<String, dynamic>;
-                  return new BoxList(
-                      titulo: first_and_last_name(data),
-                      subtitulo: ano_formatter(data),
-                      callback: () {
-                        bool is_self = (data['nome'] == widget.user.name);
-                        go_to_petiano(
-                            context, data['nome'], is_self, widget.user);
-                      });
-                }).toList(),
-              );
-            },
-          ),
-          enableButton(widget.user),
-        ]));
+        body: Center(
+            child: Container(
+                width: 700,
+                child: ScrollConfiguration(
+                    behavior: ScrollConfiguration.of(context)
+                        .copyWith(scrollbars: false),
+                    child: ListView(children: [
+                      PageTitle(title: "Petianos"),
+                      StreamBuilder<QuerySnapshot>(
+                        stream: _petianosStream,
+                        builder: (BuildContext context,
+                            AsyncSnapshot<QuerySnapshot> snapshot) {
+                          if (snapshot.hasError) {
+                            return Text('Erro ao acessar o banco.');
+                          }
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return Center(child: CircularProgressIndicator());
+                          }
+                          return new ListView(
+                            shrinkWrap: true,
+                            physics: ClampingScrollPhysics(),
+                            children: snapshot.data!.docs
+                                .map((DocumentSnapshot document) {
+                              Map<String, dynamic> data =
+                                  document.data() as Map<String, dynamic>;
+                              return new BoxList(
+                                  titulo: first_and_last_name(data),
+                                  subtitulo: ano_formatter(data),
+                                  callback: () {
+                                    bool is_self =
+                                        (data['nome'] == widget.user.name);
+                                    go_to_petiano(context, data['nome'],
+                                        is_self, widget.user);
+                                  });
+                            }).toList(),
+                          );
+                        },
+                      ),
+                      enableButton(widget.user),
+                    ])))));
   }
 
   void go_to_petiano(

@@ -55,70 +55,75 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
                 } else {
                   final dbController = snapshot.data as dadosPetiano;
                   controller.instantiateAll(dbController);
-                  return ListView(children: [
-                    PageTitle(title: "Dados do Petiano"),
-                    Tooltip(message: controller.nomeController.text+" copiado!",
-                    
-                    preferBelow: false,
-                    child: BoxInfo(
-                      imagem: AppImages.usuario,
-                      texto: controller.nomeController.text,
-                    )
-                    )
-                    ,
-                    BoxInfo(
-                      imagem: AppImages.rg,
-                      texto: controller.rgController.text,
-                    ),
-                    BoxInfo(
-                      imagem: AppImages.cpf,
-                      texto: controller.cpfController.text,
-                    ),
-                    BoxInfo(
-                      imagem: AppImages.unioeste,
-                      texto: controller.raController.text,
-                    ),
-                    BoxInfo(
-                      imagem: AppImages.telefone,
-                      texto: controller.telefoneController.text,
-                    ),
-                    BoxInfo(
-                      imagem: AppImages.email,
-                      texto: controller.emailController.text,
-                    ),
-                    BoxInfo(
-                      imagem: AppImages.dataNascimento,
-                      texto: controller.dataNascimentoController.text,
-                    ),
-                    BoxInfo(
-                      imagem: AppImages.ano,
-                      texto: controller.anoController.text,
-                    ),
-                    BoxInfo(
-                      imagem: AppImages.icv,
-                      texto: controller.temaICVController.text,
-                    ),
-                    BoxInfo(
-                      imagem: AppImages.orientador,
-                      texto: controller.orientadorController.text,
-                    ),
-                    BoxInfo(
-                      imagem: AppImages.camiseta,
-                      texto: controller.camisetaController.text,
-                    ),
-                    BoxInfo(
-                      imagem: AppImages.github,
-                      texto: controller.githubController.text,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 20),
-                      child: BoxInfo(
-                        imagem: AppImages.insta,
-                        texto: controller.instagramController.text,
+                  return Center(
+                    child: Container(
+                      width: 700,
+                      child: ScrollConfiguration(
+                        behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+                        child: ListView(children: [
+                          PageTitle(title: "Dados do Petiano"),
+                         
+                            BoxInfo(
+                              imagem: AppImages.usuario,
+                              texto: controller.nomeController.text,
+                            ),
+                        
+                          BoxInfo(
+                            imagem: AppImages.rg,
+                            texto: controller.rgController.text,
+                          ),
+                          BoxInfo(
+                            imagem: AppImages.cpf,
+                            texto: controller.cpfController.text,
+                          ),
+                          BoxInfo(
+                            imagem: AppImages.unioeste,
+                            texto: controller.raController.text,
+                          ),
+                          BoxInfo(
+                            imagem: AppImages.telefone,
+                            texto: controller.telefoneController.text,
+                          ),
+                          BoxInfo(
+                            imagem: AppImages.email,
+                            texto: controller.emailController.text,
+                          ),
+                          BoxInfo(
+                            imagem: AppImages.dataNascimento,
+                            texto: controller.dataNascimentoController.text,
+                          ),
+                          BoxInfo(
+                            imagem: AppImages.ano,
+                            texto: controller.anoController.text,
+                          ),
+                          BoxInfo(
+                            imagem: AppImages.icv,
+                            texto: controller.temaICVController.text,
+                          ),
+                          BoxInfo(
+                            imagem: AppImages.orientador,
+                            texto: controller.orientadorController.text,
+                          ),
+                          BoxInfo(
+                            imagem: AppImages.camiseta,
+                            texto: controller.camisetaController.text,
+                          ),
+                          BoxInfo(
+                            imagem: AppImages.github,
+                            texto: controller.githubController.text,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 20),
+                            child: BoxInfo(
+                              imagem: AppImages.insta,
+                              texto: controller.instagramController.text,
+                            ),
+                          ),
+                          enableButton(context),
+                        ]),
                       ),
                     ),
-                    enableButton(context),
-                  ]);
+                  );
                 }
               })),
     );
@@ -160,7 +165,7 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
         context: context,
         builder: (BuildContext context) => PopupUmaOpcao(
           title: "Sucesso",
-          message: widget.dados.nome+" removido do OrganizaPET!",
+          message: widget.dados.nome + " removido do OrganizaPET!",
           after_func: delete_concluded,
         ),
       );
@@ -176,13 +181,14 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
       context: context,
       builder: (BuildContext context) => PopupDuasOpcoes(
           title: "Atenção",
-          message: "Deseja remover "+widget.dados.nome+"?",
+          message: "Deseja remover " + widget.dados.nome + "?",
           yes_callback: eliminado),
     );
   }
 
   void edit_button() {
     Navigator.pushNamed(context, "/dados_petiano",
-        arguments: PetianoArguments(nome: widget.dados.nome, user: widget.dados.user));
+        arguments:
+            PetianoArguments(nome: widget.dados.nome, user: widget.dados.user));
   }
 }
