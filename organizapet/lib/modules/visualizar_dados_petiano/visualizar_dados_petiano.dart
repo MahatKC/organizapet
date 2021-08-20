@@ -110,9 +110,12 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
                       imagem: AppImages.github,
                       texto: controller.githubController.text,
                     ),
-                    BoxInfo(
-                      imagem: AppImages.insta,
-                      texto: controller.instagramController.text,
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 20),
+                      child: BoxInfo(
+                        imagem: AppImages.insta,
+                        texto: controller.instagramController.text,
+                      ),
                     ),
                     enableButton(context),
                   ]);

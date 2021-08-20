@@ -16,7 +16,7 @@ class SinglePageButton extends StatelessWidget {
       child: Center(
         child: ElevatedButton(
           style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(AppColors.button),
+              backgroundColor: MaterialStateProperty.all(Colors.blue),
               elevation: MaterialStateProperty.all(5),
               padding: MaterialStateProperty.all(
                   EdgeInsets.symmetric(horizontal: 40, vertical: 15))),
