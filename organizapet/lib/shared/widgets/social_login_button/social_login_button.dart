@@ -14,6 +14,7 @@ class SocialLoginButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
           height: 56,
+          width: 450,
           decoration: BoxDecoration(
               color: AppColors.shape,
               borderRadius: BorderRadius.circular(5),
