@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/themes/app_text_styles.dart';
 
 class SinglePageButton extends StatelessWidget {

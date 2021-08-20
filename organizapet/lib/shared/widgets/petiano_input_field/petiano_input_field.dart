@@ -38,6 +38,16 @@ class PetianoInputField extends StatelessWidget {
       keyboardType: tipo,
     );
     }
+    if (hint == "Nome") {
+      return TextField(
+      controller: ctrl,
+      decoration: InputDecoration(hintText: " " + hint),
+      enabled: enable,
+      //inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+      inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^[a-zA-Z\u00C0-\u00FF\s]*'))],
+      keyboardType: tipo,
+    );
+    }
 
     return TextField(
       controller: ctrl,
