@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:organizapet/main.dart';
 import 'package:organizapet/modules/authentication/user_data.dart';
 import 'package:organizapet/modules/splash/splash_page_widget.dart';
 
