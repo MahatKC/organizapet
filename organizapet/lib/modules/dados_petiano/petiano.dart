@@ -3,11 +3,12 @@ import 'package:organizapet/modules/dados_petiano/petiano_arguments.dart';
 import 'package:organizapet/modules/dados_petiano/petianos_controller.dart';
 import 'package:organizapet/modules/dados_petiano/petianos_db_controller.dart';
 import 'package:organizapet/modules/menu/menu_sanduiche.dart';
-import 'package:organizapet/modules/useful_functions/print_current_time.dart';
+import 'package:organizapet/modules/visualizar_dados_petiano/visualizar_dados_arguments.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/widgets/app_bar/appBar.dart';
 import 'package:organizapet/shared/widgets/page_title/page_title.dart';
 import 'package:organizapet/shared/widgets/petiano_input_field/petiano_input_field.dart';
+import 'package:organizapet/shared/widgets/popup/popup_duas_opcoes.dart';
 import 'package:organizapet/shared/widgets/popup/popup_uma_opcao.dart';
 import 'package:organizapet/shared/widgets/single_page_button/single_page_button.dart';
 
@@ -130,25 +131,23 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
   void createDB(List all_texts) {
     if (all_texts.first.isNotEmpty) {
       String nome = all_texts.first;
-      
-      var dbController = dadosPetiano(nome: nome);
-      dbController.dadosPetianoFromLista(all_texts);
-      dbController.write();
       if (widget.dados.nome.isEmpty) {
         showDialog<String>(
-        context: context,
-        builder: (BuildContext context) => PopupUmaOpcao(
-            title: "Sucesso",
-            message: nome+" adicionado(a) ao OrganizaPET!",
-            after_func: register_concluded),
+          context: context,
+          builder: (BuildContext context) => PopupDuasOpcoes(
+              title: "Atenção",
+              message: "Tem certeza que inseriu o nome de " +
+                  nome +
+                  " corretamente?",
+              yes_callback: continua_write),
         );
-      }else{
+      } else {
         showDialog<String>(
-        context: context,
-        builder: (BuildContext context) => PopupUmaOpcao(
-            title: "Sucesso",
-            message: "Dados de "+nome+" atualizados!",
-            after_func: update_concluded),
+          context: context,
+          builder: (BuildContext context) => PopupUmaOpcao(
+              title: "Sucesso",
+              message: "Dados de " + nome + " atualizados!",
+              after_func: update_concluded),
         );
       }
     } else {
@@ -161,6 +160,21 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
     }
   }
 
+  void continua_write() {
+    List all_texts = controller.get_all_texts();
+    var dbController = dadosPetiano(nome: all_texts.first);
+    dbController.dadosPetianoFromLista(all_texts);
+    dbController.write();
+
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => PopupUmaOpcao(
+          title: "Sucesso",
+          message: all_texts.first + " adicionado(a) ao OrganizaPET!",
+          after_func: register_concluded),
+    );
+  }
+
   void save_button_function() {
     createDB(controller.get_all_texts());
   }
@@ -170,6 +184,9 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
   }
 
   void update_concluded() {
-    Navigator.popUntil(context, ModalRoute.withName('/visualizar_dados_petiano'));
+    Navigator.pop(context);
+    Navigator.pushReplacementNamed(context, "/visualizar_dados_petiano",
+        arguments: VisualizarDadosArguments(widget.dados.nome,
+            widget.dados.nome == widget.dados.user.name, widget.dados.user));
   }
 }

@@ -182,7 +182,7 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
   }
 
   void edit_button() {
-    Navigator.pushNamed(context, "/dados_petiano",
+    Navigator.pushReplacementNamed(context, "/dados_petiano",
         arguments: PetianoArguments(nome: widget.dados.nome, user: widget.dados.user));
   }
 }
