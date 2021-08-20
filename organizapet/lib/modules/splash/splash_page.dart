@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:organizapet/modules/authentication/user_data.dart';
+import 'package:organizapet/modules/current_user_data/current_user_data.dart';
 import 'package:organizapet/modules/splash/splash_page_widget.dart';
 
 class SplashPage extends StatefulWidget {
@@ -26,7 +26,7 @@ class _SplashPageState extends State<SplashPage> {
           if (snapshot.connectionState != ConnectionState.done) {
             return SplashPageWidget();
           } else {
-            final UserData user = snapshot.data as UserData;
+            final CurrentUserData user = snapshot.data as CurrentUserData;
             if (user.name.isEmpty) {
               go_to_login_page(context, user);
             } else {
@@ -38,18 +38,19 @@ class _SplashPageState extends State<SplashPage> {
         });
   }
 
-  Future<void> change_screen(BuildContext context, UserData user) async {
+  Future<void> change_screen(BuildContext context, CurrentUserData user) async {
     await Future.delayed(Duration(seconds: 3));
     Navigator.pushReplacementNamed(context, "/lista_petianos", arguments: user);
   }
 
-  Future<void> go_to_login_page(BuildContext context, UserData user) async {
+  Future<void> go_to_login_page(
+      BuildContext context, CurrentUserData user) async {
     await Future.delayed(Duration(seconds: 3));
     Navigator.pushReplacementNamed(context, "/login_page", arguments: user);
   }
 
-  Future<UserData> getSharedPreferences() async {
-    UserData user = UserData();
+  Future<CurrentUserData> getSharedPreferences() async {
+    CurrentUserData user = CurrentUserData();
     await user.set_prefs();
     //await user.set_perfil(perfil_user());
     user.print_shared_prefs();

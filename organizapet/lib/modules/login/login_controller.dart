@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:organizapet/modules/authentication/user_data.dart';
+import 'package:organizapet/modules/current_user_data/current_user_data.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:organizapet/modules/dados_petiano/petianos_db_controller.dart';
+import 'package:organizapet/modules/editar_dados_petiano/editar_petianos_db_controller.dart';
 
 import 'login_google_auth.dart';
 
@@ -45,13 +45,13 @@ class loginController {
     this.name_key = data['name_key'];
   }
 
-  Future<UserData> getUser() async {
+  Future<CurrentUserData> getUser() async {
     dadosPetiano dadosUsuario = dadosPetiano(nome: "");
     await dadosUsuario.read_from_login(name_key);
 
     bool isTutor = await readIsTutor(name_key);
 
-    UserData user = UserData();
+    CurrentUserData user = CurrentUserData();
     await user.set_prefs(
         new_name: dadosUsuario.nome,
         new_nomeCurto: dadosUsuario.nomeCurto,

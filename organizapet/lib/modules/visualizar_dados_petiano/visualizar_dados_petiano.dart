@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:organizapet/modules/dados_petiano/petiano_arguments.dart';
-import 'package:organizapet/modules/dados_petiano/petianos_controller.dart';
-import 'package:organizapet/modules/dados_petiano/petianos_db_controller.dart';
+import 'package:organizapet/modules/editar_dados_petiano/editar_petiano_arguments.dart';
+import 'package:organizapet/modules/editar_dados_petiano/editar_petianos_controller.dart';
+import 'package:organizapet/modules/editar_dados_petiano/editar_petianos_db_controller.dart';
 import 'package:organizapet/modules/menu/menu_sanduiche.dart';
-import 'package:organizapet/modules/useful_functions/back_to_previous.dart';
+import 'package:organizapet/modules/useful_functions/back_to_previous_screen.dart';
 import 'package:organizapet/modules/visualizar_dados_petiano/visualizar_dados_arguments.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/themes/app_images.dart';
 import 'package:organizapet/shared/widgets/app_bar/appBar.dart';
-import 'package:organizapet/shared/widgets/box_info/box_info.dart';
-import 'package:organizapet/shared/widgets/button_picker/button_picker.dart';
+import 'package:organizapet/shared/widgets/icon_text_box/icon_text_box.dart';
+import 'package:organizapet/shared/widgets/responsive_list/responsive_list.dart';
+import 'package:organizapet/shared/widgets/single_double_button_selector/single_double_button_selector.dart';
 import 'package:organizapet/shared/widgets/page_title/page_title.dart';
 import 'package:organizapet/shared/widgets/popup/popup_duas_opcoes.dart';
 import 'package:organizapet/shared/widgets/popup/popup_uma_opcao.dart';
@@ -39,7 +40,7 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        return back_to_previous(context);
+        return back_to_previous_screen(context);
       },
       child: Scaffold(
           backgroundColor: AppColors.background,
@@ -55,74 +56,67 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
                 } else {
                   final dbController = snapshot.data as dadosPetiano;
                   controller.instantiateAll(dbController);
-                  return Center(
-                    child: Container(
-                      width: 700,
-                      child: ScrollConfiguration(
-                        behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
-                        child: ListView(children: [
+                  return ResponsiveList(list: ListView(children: [
                           PageTitle(title: "Dados do Petiano"),
-                         
-                            BoxInfo(
-                              imagem: AppImages.usuario,
-                              texto: controller.nomeController.text,
-                            ),
-                        
-                          BoxInfo(
+                          IconTextBox(
+                            imagem: AppImages.usuario,
+                            texto: controller.nomeController.text,
+                          ),
+                          IconTextBox(
                             imagem: AppImages.rg,
                             texto: controller.rgController.text,
                           ),
-                          BoxInfo(
+                          IconTextBox(
                             imagem: AppImages.cpf,
                             texto: controller.cpfController.text,
                           ),
-                          BoxInfo(
+                          IconTextBox(
                             imagem: AppImages.unioeste,
                             texto: controller.raController.text,
                           ),
-                          BoxInfo(
+                          IconTextBox(
                             imagem: AppImages.telefone,
                             texto: controller.telefoneController.text,
                           ),
-                          BoxInfo(
+                          IconTextBox(
                             imagem: AppImages.email,
                             texto: controller.emailController.text,
                           ),
-                          BoxInfo(
+                          IconTextBox(
                             imagem: AppImages.dataNascimento,
                             texto: controller.dataNascimentoController.text,
                           ),
-                          BoxInfo(
+                          IconTextBox(
                             imagem: AppImages.ano,
                             texto: controller.anoController.text,
                           ),
-                          BoxInfo(
+                          IconTextBox(
                             imagem: AppImages.icv,
                             texto: controller.temaICVController.text,
                           ),
-                          BoxInfo(
+                          IconTextBox(
                             imagem: AppImages.orientador,
                             texto: controller.orientadorController.text,
                           ),
-                          BoxInfo(
+                          IconTextBox(
                             imagem: AppImages.camiseta,
                             texto: controller.camisetaController.text,
                           ),
-                          BoxInfo(
+                          IconTextBox(
                             imagem: AppImages.github,
                             texto: controller.githubController.text,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(bottom: 20),
-                            child: BoxInfo(
+                            child: IconTextBox(
                               imagem: AppImages.insta,
                               texto: controller.instagramController.text,
                             ),
                           ),
                           enableButton(context),
                         ]),
-                      ),
-                    ),
+                  
+                    
                   );
                 }
               })),
@@ -131,7 +125,7 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
 
   Widget enableButton(BuildContext context) {
     if (widget.dados.user.isTutor == true) {
-      return ButtonPicker(
+      return SingleDoubleButtonSelector(
         isDouble: true,
         tipoBotao1: 'bla',
         tipoBotao2: 'edit',
@@ -139,7 +133,7 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
         callback2: edit_button,
       );
     } else if (widget.dados.is_self == true) {
-      return ButtonPicker(
+      return SingleDoubleButtonSelector(
           isDouble: false, tipoBotao1: 'edit', callback1: edit_button);
     } else {
       return Container();
@@ -187,7 +181,8 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
   }
 
   void edit_button() {
-    Navigator.pushReplacementNamed(context, "/dados_petiano",
-        arguments: PetianoArguments(nome: widget.dados.nome, user: widget.dados.user));
+    Navigator.pushReplacementNamed(context, "/editar_petiano",
+        arguments: EditarPetianoArguments(
+            nome: widget.dados.nome, user: widget.dados.user));
   }
 }

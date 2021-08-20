@@ -37,44 +37,37 @@ class TextStyles {
     color: Colors.white,
   );
 
-  static final titleBoxList = GoogleFonts.inter(
+  static final darkBlue = GoogleFonts.inter(
     fontSize: 19,
-    color: AppColors.button,
+    color: AppColors.darkBlue,
   );
 
-  static final subtitleBoxList = GoogleFonts.inter(
+  static final subtitleBlue = GoogleFonts.inter(
     fontSize: 14,
-    color: AppColors.subtitleBoxList,
+    color: AppColors.subtitleBlue,
   );
 
   static final infoBox = GoogleFonts.inter(
     fontSize: 18,
-    color: AppColors.infoBox,
+    color: AppColors.lightGrey,
   );
 
-  static final nameAppMenu = GoogleFonts.inter(
-    fontSize: 30,
-    color: AppColors.nameApp,
-    shadows: [
-        Shadow(
-          blurRadius: 2,
-          color: Colors.black.withOpacity(0.25),
-          offset: Offset(0, 3),
-        )
-      ]
-  );
+  static final nameAppMenu =
+      GoogleFonts.inter(fontSize: 30, color: AppColors.nameApp, shadows: [
+    Shadow(
+      blurRadius: 2,
+      color: Colors.black.withOpacity(0.25),
+      offset: Offset(0, 3),
+    )
+  ]);
 
   static final textItemMenu = GoogleFonts.inter(
     fontSize: 17,
     color: Colors.white,
-    
   );
 
   static final deuRuim = GoogleFonts.inter(
-    fontSize: 22,
-    color: Colors.yellow,
-    fontWeight: FontWeight.bold
-  );
+      fontSize: 22, color: Colors.yellow, fontWeight: FontWeight.bold);
 
   static final textCopy = GoogleFonts.inter(
     fontSize: 16,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:organizapet/modules/dados_petiano/petianos_db_controller.dart';
+import 'package:organizapet/modules/editar_dados_petiano/editar_petianos_db_controller.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class petianosController {

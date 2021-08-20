@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:organizapet/shared/widgets/double_button/double_button.dart';
 import 'package:organizapet/shared/widgets/circle_button/circle_button.dart';
 
-class ButtonPicker extends StatelessWidget {
+class SingleDoubleButtonSelector extends StatelessWidget {
   final bool isDouble;
   final String tipoBotao1;
   final String? tipoBotao2;
   final VoidCallback callback1;
   final VoidCallback? callback2;
-  const ButtonPicker(
+  const SingleDoubleButtonSelector(
       {Key? key,
       required this.isDouble,
       required this.tipoBotao1,

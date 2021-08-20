@@ -4,12 +4,17 @@ import 'package:flutter/services.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/themes/app_text_styles.dart';
 
-class BoxInfo extends StatelessWidget {
+class IconTextBox extends StatefulWidget {
   final String imagem;
   final String texto;
-  const BoxInfo({Key? key, required this.imagem, required this.texto})
+  const IconTextBox({Key? key, required this.imagem, required this.texto})
       : super(key: key);
 
+  @override
+  _IconTextBoxState createState() => _IconTextBoxState();
+}
+
+class _IconTextBoxState extends State<IconTextBox> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -18,10 +23,10 @@ class BoxInfo extends StatelessWidget {
         // height: 55,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(7),
-            border: Border.all(color: AppColors.boxListBorder, width: 1)),
+            border: Border.all(color: AppColors.lightBlueBorder, width: 1)),
         child: ListTile(
-          title: BoxWithTextAdjustment(texto: texto),
-          leading: Image.asset(imagem),
+          title: BoxWithTextAdjustment(texto: widget.texto),
+          leading: Image.asset(widget.imagem),
           onLongPress: () {
             copyToClipboard();
             final snackBar = SnackBar(
@@ -38,7 +43,7 @@ class BoxInfo extends StatelessWidget {
   }
 
   Future<void> copyToClipboard() async {
-    await Clipboard.setData(ClipboardData(text: texto));
+    await Clipboard.setData(ClipboardData(text: widget.texto));
   }
 }
 
@@ -58,9 +63,8 @@ class BoxWithTextAdjustment extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: Text(texto,
               style: TextStyles.infoBox, textAlign: TextAlign.left));
-    }else{
-      return Text(texto,
-              style: TextStyles.infoBox, textAlign: TextAlign.left);
+    } else {
+      return Text(texto, style: TextStyles.infoBox, textAlign: TextAlign.left);
     }
   }
 }

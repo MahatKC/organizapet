@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:organizapet/modules/erro_firebase/erro_firebase.dart';
+import 'package:organizapet/modules/tela_erro_firebase/tela_erro_firebase.dart';
 import 'package:organizapet/modules/splash/splash_page_widget.dart';
 import 'package:organizapet/screen_manager.dart';
 

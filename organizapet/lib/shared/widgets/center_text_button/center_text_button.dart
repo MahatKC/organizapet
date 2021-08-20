@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:organizapet/shared/themes/app_text_styles.dart';
 
-class SinglePageButton extends StatelessWidget {
+class CenterTextButton extends StatelessWidget {
   final String buttonLabel;
   final VoidCallback callback;
-  const SinglePageButton(
+  const CenterTextButton(
       {Key? key, required this.buttonLabel, required this.callback})
       : super(key: key);
 

@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:organizapet/modules/authentication/user_data.dart';
+import 'package:organizapet/modules/current_user_data/current_user_data.dart';
 import 'package:organizapet/modules/visualizar_dados_petiano/visualizar_dados_arguments.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/themes/app_images.dart';
@@ -11,7 +11,7 @@ import 'package:organizapet/shared/themes/app_text_styles.dart';
 import 'package:organizapet/shared/widgets/popup/popup_duas_opcoes.dart';
 
 class MenuSanduiche extends StatelessWidget {
-  final UserData user;
+  final CurrentUserData user;
   const MenuSanduiche({Key? key, required this.user}) : super(key: key);
 
   @override
@@ -25,7 +25,7 @@ class MenuSanduiche extends StatelessWidget {
           .signOut()
           .then((value) => print("LogOut bem sucedido."))
           .catchError((error) => print(error));
-      UserData user = UserData();
+      CurrentUserData user = CurrentUserData();
       user.clear();
       Navigator.pushReplacementNamed(context, '/splash');
     }
@@ -45,7 +45,7 @@ class MenuSanduiche extends StatelessWidget {
                   Container(
                       height: 182,
                       decoration: BoxDecoration(
-                          color: AppColors.boxListBorder,
+                          color: AppColors.lightBlueBorder,
                           boxShadow: [
                             BoxShadow(
                                 blurRadius: 10,
@@ -68,7 +68,7 @@ class MenuSanduiche extends StatelessWidget {
                       'Cronograma',
                       style: TextStyles.textItemMenu,
                     ),
-                    selectedTileColor: AppColors.boxListBorder,
+                    selectedTileColor: AppColors.lightBlueBorder,
                     onTap: () {},
                   ),
                   ListTile(
@@ -78,7 +78,7 @@ class MenuSanduiche extends StatelessWidget {
                       style: TextStyles.textItemMenu,
                     ),
                     tileColor: AppColors.barraMenu,
-                    selectedTileColor: AppColors.boxListBorder,
+                    selectedTileColor: AppColors.lightBlueBorder,
                     onTap: () {},
                   ),
                   ListTile(
@@ -88,7 +88,7 @@ class MenuSanduiche extends StatelessWidget {
                       'Membros',
                       style: TextStyles.textItemMenu,
                     ),
-                    selectedTileColor: AppColors.boxListBorder,
+                    selectedTileColor: AppColors.lightBlueBorder,
                     onTap: () {
                       go_to_lista_petianos(context, user);
                     },
@@ -100,7 +100,7 @@ class MenuSanduiche extends StatelessWidget {
                       style: TextStyles.textItemMenu,
                     ),
                     tileColor: AppColors.barraMenu,
-                    selectedTileColor: AppColors.boxListBorder,
+                    selectedTileColor: AppColors.lightBlueBorder,
                     onTap: () {},
                   ),
                   ListTile(
@@ -110,7 +110,7 @@ class MenuSanduiche extends StatelessWidget {
                       'Perfil',
                       style: TextStyles.textItemMenu,
                     ),
-                    selectedTileColor: AppColors.boxListBorder,
+                    selectedTileColor: AppColors.lightBlueBorder,
                     onTap: () {
                       go_to_dados_petiano(context, user);
                     },
@@ -135,17 +135,17 @@ class MenuSanduiche extends StatelessWidget {
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
                 child: Image.asset(AppImages.sair),
-                onTap: (){
+                onTap: () {
                   showDialog<String>(
-                    context: context,
-                    builder: (BuildContext context) => PopupDuasOpcoes(
-                        title: "Atenção",
-                        message: "Deseja sair do OrganizaPET?",
-                        yes_callback: logout_function));
+                      context: context,
+                      builder: (BuildContext context) => PopupDuasOpcoes(
+                          title: "Atenção",
+                          message: "Deseja sair do OrganizaPET?",
+                          yes_callback: logout_function));
                 },
               ),
             ),
-            selectedTileColor: AppColors.boxListBorder,
+            selectedTileColor: AppColors.lightBlueBorder,
             title: Text(
               user.nomeCurto,
               style: TextStyles.textItemMenu,
@@ -156,11 +156,13 @@ class MenuSanduiche extends StatelessWidget {
     );
   }
 
-  Future<void> go_to_lista_petianos(BuildContext context, UserData user) async {
+  Future<void> go_to_lista_petianos(
+      BuildContext context, CurrentUserData user) async {
     Navigator.pushReplacementNamed(context, "/lista_petianos", arguments: user);
   }
 
-  Future<void> go_to_dados_petiano(BuildContext context, UserData user) async {
+  Future<void> go_to_dados_petiano(
+      BuildContext context, CurrentUserData user) async {
     Navigator.pushReplacementNamed(context, "/visualizar_dados_petiano",
         arguments: VisualizarDadosArguments(user.name, true, user));
   }

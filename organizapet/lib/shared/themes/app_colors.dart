@@ -8,10 +8,10 @@ class AppColors {
   static final grey = Color(0xFF585666);
   static final barraMenu = Color(0xFF28ABE2);
   static final title = Color(0xFF000000).withOpacity(0.67);
-  static final button = Color(0xFF2085B0);
-  static final subtitleBoxList = Color(0xFF2085B0).withOpacity(0.75);
-  static final boxList = Color(0xFF6FC3E8).withOpacity(0.15);
-  static final boxListBorder = Color(0xFF6FC3E8);
+  static final darkBlue = Color(0xFF2085B0);
+  static final subtitleBlue = Color(0xFF2085B0).withOpacity(0.75);
+  static final lightBlueBackground = Color(0xFF6FC3E8).withOpacity(0.15);
+  static final lightBlueBorder = Color(0xFF6FC3E8);
   static final arrow = Color(0xFF646161).withOpacity(0.88);
-  static final infoBox = Color(0xFF666666);
+  static final lightGrey = Color(0xFF666666);
 }
