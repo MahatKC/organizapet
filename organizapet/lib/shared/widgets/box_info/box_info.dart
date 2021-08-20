@@ -20,14 +20,7 @@ class BoxInfo extends StatelessWidget {
             borderRadius: BorderRadius.circular(7),
             border: Border.all(color: AppColors.boxListBorder, width: 1)),
         child: ListTile(
-          title: FittedBox(
-              fit: BoxFit.scaleDown,
-              alignment: Alignment.centerLeft,
-              child: Text(
-                texto,
-                style: TextStyles.infoBox,
-                textAlign: TextAlign.left
-              )),
+          title: BoxWithTextAdjustment(texto: texto),
           leading: Image.asset(imagem),
           onLongPress: () {
             copyToClipboard();
@@ -46,5 +39,28 @@ class BoxInfo extends StatelessWidget {
 
   Future<void> copyToClipboard() async {
     await Clipboard.setData(ClipboardData(text: texto));
+  }
+}
+
+class BoxWithTextAdjustment extends StatelessWidget {
+  const BoxWithTextAdjustment({
+    Key? key,
+    required this.texto,
+  }) : super(key: key);
+
+  final String texto;
+
+  @override
+  Widget build(BuildContext context) {
+    if (texto.isNotEmpty) {
+      return FittedBox(
+          fit: BoxFit.scaleDown,
+          alignment: Alignment.centerLeft,
+          child: Text(texto,
+              style: TextStyles.infoBox, textAlign: TextAlign.left));
+    }else{
+      return Text(texto,
+              style: TextStyles.infoBox, textAlign: TextAlign.left);
+    }
   }
 }
