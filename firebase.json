@@ -5,7 +5,7 @@
   },
   "hosting": {
     "public": "organizapet/build/web",
-    "site": "organizapet",
+    "site": "organizapet-26677",
     "ignore": [
       "firebase.json",
       "**/.*",
