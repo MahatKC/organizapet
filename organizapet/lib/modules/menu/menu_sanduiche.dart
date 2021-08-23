@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:organizapet/modules/current_user_data/current_user_data.dart';
+import 'package:organizapet/modules/useful_functions/first_and_last_name.dart';
 import 'package:organizapet/modules/visualizar_dados_petiano/visualizar_dados_arguments.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/themes/app_images.dart';
@@ -147,7 +148,7 @@ class MenuSanduiche extends StatelessWidget {
             ),
             selectedTileColor: AppColors.lightBlueBorder,
             title: Text(
-              user.nomeCurto,
+              first_and_last_name_from_user(user),
               style: TextStyles.textItemMenu,
             ),
           ),
