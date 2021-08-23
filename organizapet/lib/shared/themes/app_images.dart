@@ -20,4 +20,7 @@ class AppImages {
   static const usuarioBranco = "assets/images/usuario_branco.png";
   static const logoMenor = "assets/images/logo_menor.png";
   static const sair = "assets/images/logout.png";
+  static const calendario = "assets/images/calendar.png";
+  static const adicionarMembro = "assets/images/adicionar_membro.png";
+  static const etiqueta = "assets/images/tag.png";
 }
