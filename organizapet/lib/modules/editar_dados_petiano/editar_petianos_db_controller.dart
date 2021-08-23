@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../useful_functions/document_title.dart';
+import 'package:organizapet/modules/useful_functions/nome_abreviado.dart';
+import '../useful_functions/database_document_title.dart';
 
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 final CollectionReference _mainCollection = _firestore.collection('petianos');
@@ -76,6 +77,7 @@ class dadosPetiano {
         .set({
           'nome': nome,
           'nome_curto': nomeCurto,
+          'nome_abreviado': nome_abreviado(nome, nomeCurto ?? ""),
           'rg': rg,
           'cpf': cpf,
           'ra': ra,
