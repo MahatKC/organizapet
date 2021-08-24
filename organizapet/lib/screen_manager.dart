@@ -9,6 +9,7 @@ import 'package:organizapet/modules/visualizar_dados_petiano/visualizar_dados_pe
 
 import 'modules/current_user_data/current_user_data.dart';
 import 'modules/editar_projeto/editar_projeto.dart';
+import 'modules/editar_projeto/editar_projeto_arguments.dart';
 import 'modules/lista_projetos/lista_projetos.dart';
 import 'modules/visualizar_projetos/visualizar_projetos.dart';
 
@@ -41,7 +42,7 @@ class ScreenManager extends StatelessWidget {
                 as VisualizarDadosArguments),
         '/editar_projeto': (context) => EditarProjeto(
             dados: ModalRoute.of(context)!.settings.arguments
-                as EditarPetianoArguments),
+                as EditarProjetoArguments),
       },
     );
   }
