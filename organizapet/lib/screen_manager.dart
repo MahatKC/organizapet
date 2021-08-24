@@ -33,7 +33,7 @@ class ScreenManager extends StatelessWidget {
             dados: ModalRoute.of(context)!.settings.arguments
                 as EditarPetianoArguments),
         '/login_page': (context) => LoginPage(),
-        '/lista_projeto': (context) => ListaProjetos(
+        '/lista_projetos': (context) => ListaProjetos(
             user:
                 ModalRoute.of(context)!.settings.arguments as CurrentUserData),
         '/visualizar_projetos': (context) => VisualizarProjetos(

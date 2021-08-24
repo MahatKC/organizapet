@@ -40,7 +40,7 @@ class _SplashPageState extends State<SplashPage> {
 
   Future<void> change_screen(BuildContext context, CurrentUserData user) async {
     await Future.delayed(Duration(seconds: 3));
-    Navigator.pushReplacementNamed(context, "/lista_petianos", arguments: user);
+    Navigator.pushReplacementNamed(context, "/lista_projetos", arguments: user);
   }
 
   Future<void> go_to_login_page(
