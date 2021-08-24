@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:organizapet/modules/editar_dados_petiano/editar_petiano_arguments.dart';
-import 'package:organizapet/modules/editar_dados_petiano/editar_petianos_controller.dart';
-import 'package:organizapet/modules/editar_dados_petiano/editar_petianos_db_controller.dart';
+import 'package:organizapet/modules/editar_projeto/editar_projeto_arguments.dart';
+import 'package:organizapet/modules/editar_projeto/editar_projeto_controller.dart';
+import 'package:organizapet/modules/editar_projeto/editar_projeto_db_controller.dart';
 import 'package:organizapet/modules/menu/menu_sanduiche.dart';
 import 'package:organizapet/modules/visualizar_dados_petiano/visualizar_dados_arguments.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
@@ -15,7 +15,7 @@ import 'package:organizapet/shared/widgets/responsive_list/responsive_list.dart'
 
 class EditarProjeto extends StatefulWidget {
   //mudar essa variável depois 
-  final EditarPetianoArguments dados;
+  final EditarProjetoArguments dados;
 
   EditarProjeto({required this.dados, Key? key}) : super(key: key);
 
@@ -24,7 +24,7 @@ class EditarProjeto extends StatefulWidget {
 }
 
 class _EditarProjetoState extends State<EditarProjeto> {
-  final controller = petianosController();
+  final controller = projetosController();
   bool in_database = false;
   late Future<void> start;
 
@@ -46,7 +46,7 @@ class _EditarProjetoState extends State<EditarProjeto> {
             if (snapshot.connectionState != ConnectionState.done) {
               return Center(child: CircularProgressIndicator());
             } else {
-              final dbController = snapshot.data as dadosPetiano;
+              final dbController = snapshot.data as dadosProjeto;
               if (in_database == true && widget.dados.nome.isNotEmpty) {
                 controller.instantiateAll(dbController);
               }
@@ -84,8 +84,8 @@ class _EditarProjetoState extends State<EditarProjeto> {
         ));
   }
 
-  Future<dadosPetiano> read_db() async {
-    var dbController = dadosPetiano(nome: widget.dados.nome);
+  Future<dadosProjeto> read_db() async {
+    var dbController = dadosProjeto(nome: widget.dados.nome);
     if (widget.dados.nome.isNotEmpty && in_database == false) {
       await dbController.read();
       in_database = true;
@@ -108,7 +108,7 @@ class _EditarProjetoState extends State<EditarProjeto> {
               yes_callback: continua_write),
         );
       } else {
-        var dbController = dadosPetiano(nome: nome);
+        var dbController = dadosProjeto(nome: nome);
         dbController.dadosPetianoFromLista(all_texts);
         dbController.write();
 
@@ -133,7 +133,7 @@ class _EditarProjetoState extends State<EditarProjeto> {
   void continua_write() {
     List all_texts = controller.get_all_texts();
     print(all_texts.first);
-    var dbController = dadosPetiano(nome: all_texts.first);
+    var dbController = dadosProjeto(nome: all_texts.first);
     dbController.dadosPetianoFromLista(all_texts);
     dbController.write();
 
