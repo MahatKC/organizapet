@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:organizapet/modules/current_user_data/current_user_data.dart';
 import 'package:organizapet/modules/splash/splash_page_widget.dart';
+import 'package:organizapet/modules/visualizar_dados_petiano/visualizar_dados_arguments.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -40,7 +41,8 @@ class _SplashPageState extends State<SplashPage> {
 
   Future<void> change_screen(BuildContext context, CurrentUserData user) async {
     await Future.delayed(Duration(seconds: 3));
-    Navigator.pushReplacementNamed(context, "/lista_projetos", arguments: user);
+    //Navigator.pushReplacementNamed(context, "/lista_projetos", arguments: user);
+    Navigator.pushReplacementNamed(context, "/visualizar_projeto", arguments: VisualizarDadosArguments("A&B Game Jam", true, user));
   }
 
   Future<void> go_to_login_page(

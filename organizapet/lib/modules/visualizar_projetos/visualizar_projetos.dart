@@ -15,12 +15,13 @@ import 'package:organizapet/shared/widgets/single_double_button_selector/single_
 import 'package:organizapet/shared/widgets/page_title/page_title.dart';
 import 'package:organizapet/shared/widgets/popup/popup_duas_opcoes.dart';
 import 'package:organizapet/shared/widgets/popup/popup_uma_opcao.dart';
+import 'package:organizapet/shared/widgets/title_subtitle_box/title_subtitle_box.dart';
+import 'package:organizapet/shared/widgets/title_subtitle_sem_icone_box/title_subtitle_box_sem_icone.dart';
 
 class VisualizarProjetos extends StatefulWidget {
   final VisualizarDadosArguments dados;
 
-  const VisualizarProjetos({required this.dados, Key? key})
-      : super(key: key);
+  const VisualizarProjetos({required this.dados, Key? key}) : super(key: key);
 
   @override
   _VisualizarProjetosState createState() => _VisualizarProjetosState();
@@ -57,29 +58,31 @@ class _VisualizarProjetosState extends State<VisualizarProjetos> {
                 } else {
                   final dbController = snapshot.data as dadosPetiano;
                   controller.instantiateAll(dbController);
-                  return ResponsiveList(list: ListView(children: [
-                          PageTitle(title: "Dados do Projeto"),
-                          IconTextBox(
-                            imagem: AppImages.projeto,
-                            texto: controller.rgController.text,
-                          ),
-                          IconTextBox(
-                            imagem: AppImages.usuario,
-                            texto: controller.nomeController.text,
-                          ),
-                          
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 40),
-                            child: IconTitleSubtitleBox(
-                              imagem: AppImages.membros,
-                              titulo: controller.instagramController.text,
-                              subtitulo: controller.instagramController.text,
-                            ),
-                          ),
-                          enableButton(context),
-                        ]),
-                  
-                    
+                  return ResponsiveList(
+                    list: ListView(children: [
+                      PageTitle(title: "Dados do Projeto"),
+                      IconTextBox(
+                        imagem: AppImages.projeto,
+                        texto: controller.rgController.text,
+                      ),
+                      IconTextBox(
+                        imagem: AppImages.usuario,
+                        texto: controller.nomeController.text,
+                      ),
+                      TitleSubtitleBoxSemIcone(
+                          titulo: "Descrição",
+                          subtitulo:
+                              "basahsuaisahsia hisaishaihsai hsiahsiahsiam klsdmlsmdsod jsiodjiasjoa hsiasi"),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 40),
+                        child: IconTitleSubtitleBox(
+                          imagem: AppImages.membros,
+                          titulo: controller.instagramController.text,
+                          subtitulo: controller.instagramController.text,
+                        ),
+                      ),
+                      enableButton(context),
+                    ]),
                   );
                 }
               })),
