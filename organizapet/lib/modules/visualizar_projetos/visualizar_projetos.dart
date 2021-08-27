@@ -62,7 +62,7 @@ class _VisualizarProjetosState extends State<VisualizarProjetos> {
                     list: ListView(children: [
                       PageTitle(title: "Dados do Projeto"),
                       IconTextBox(
-                        imagem: AppImages.projeto,
+                        imagem: AppImages.projetosAzul,
                         texto: controller.rgController.text,
                       ),
                       IconTextBox(

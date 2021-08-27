@@ -23,4 +23,6 @@ class AppImages {
   static const calendario = "assets/images/calendar.png";
   static const adicionarMembro = "assets/images/adicionar_membro.png";
   static const etiqueta = "assets/images/tag.png";
+  static const projetosAzul = "assets/images/projetos_azul.png";
+  static const membrosAzul = "assets/images/usuarios_azul.png";
 }
