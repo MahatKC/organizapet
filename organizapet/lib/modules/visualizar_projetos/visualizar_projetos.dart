@@ -72,7 +72,7 @@ class _VisualizarProjetosState extends State<VisualizarProjetos> {
                       TitleSubtitleBoxSemIcone(
                           titulo: "Descrição",
                           subtitulo:
-                              "basahsuaisahsia hisaishaihsai hsiahsiahsiam klsdmlsmdsod jsiodjiasjoa hsiasi"),
+                              "Processo semestral de avaliação dos membros e das atividades do grupo para identificação de pontos que necessitam de melhorias"),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 40),
                         child: IconTitleSubtitleBox(
