@@ -20,7 +20,7 @@ class _IconTitleSubtitleBoxState extends State<IconTitleSubtitleBox> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 20, top: 20),
+      padding: const EdgeInsets.only(bottom: 20, left: 42, right: 42),
       child: Container(
         height: 150,
         decoration: BoxDecoration(
@@ -30,6 +30,11 @@ class _IconTitleSubtitleBoxState extends State<IconTitleSubtitleBox> {
           children: [
             Row(children: [
               Expanded(
+                  flex: 1,
+                  child: IconButton(
+                      onPressed: () {},
+                      icon: Image.asset(AppImages.membrosAzul))),
+                      Expanded(
                 flex: 4,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -41,11 +46,6 @@ class _IconTitleSubtitleBoxState extends State<IconTitleSubtitleBox> {
                       )),
                 ),
               ),
-              Expanded(
-                  flex: 1,
-                  child: IconButton(
-                      onPressed: () {},
-                      icon: Image.asset(AppImages.adicionarMembro)))
             ]),
             Row(
               children: [
