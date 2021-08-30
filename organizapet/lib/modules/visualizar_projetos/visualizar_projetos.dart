@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:organizapet/modules/editar_dados_petiano/editar_petiano_arguments.dart';
-import 'package:organizapet/modules/editar_dados_petiano/editar_petianos_controller.dart';
 import 'package:organizapet/modules/editar_dados_petiano/editar_petianos_db_controller.dart';
+import 'package:organizapet/modules/editar_projeto/editar_projeto_arguments.dart';
+import 'package:organizapet/modules/editar_projeto/editar_projeto_controller.dart';
+import 'package:organizapet/modules/editar_projeto/editar_projeto_db_controller.dart';
 import 'package:organizapet/modules/menu/menu_sanduiche.dart';
 import 'package:organizapet/modules/useful_functions/back_to_previous_screen.dart';
-import 'package:organizapet/modules/visualizar_dados_petiano/visualizar_dados_arguments.dart';
 import 'package:organizapet/modules/visualizar_projetos/visualizar_projetos_arguments.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/themes/app_images.dart';
@@ -15,7 +16,6 @@ import 'package:organizapet/shared/widgets/single_double_button_selector/single_
 import 'package:organizapet/shared/widgets/page_title/page_title.dart';
 import 'package:organizapet/shared/widgets/popup/popup_duas_opcoes.dart';
 import 'package:organizapet/shared/widgets/popup/popup_uma_opcao.dart';
-import 'package:organizapet/shared/widgets/title_subtitle_box/title_subtitle_box.dart';
 import 'package:organizapet/shared/widgets/title_subtitle_sem_icone_box/title_subtitle_box_sem_icone.dart';
 
 class VisualizarProjetos extends StatefulWidget {
@@ -28,7 +28,7 @@ class VisualizarProjetos extends StatefulWidget {
 }
 
 class _VisualizarProjetosState extends State<VisualizarProjetos> {
-  final controller = petianosController();
+  final controller = projetosController();
   bool access_db = true;
   late Future<void> start;
 
@@ -56,7 +56,7 @@ class _VisualizarProjetosState extends State<VisualizarProjetos> {
                 if (snapshot.connectionState != ConnectionState.done) {
                   return Center(child: CircularProgressIndicator());
                 } else {
-                  final dbController = snapshot.data as dadosPetiano;
+                  final dbController = snapshot.data as dadosProjeto;
                   controller.instantiateAll(dbController);
                   return ResponsiveList(
                     list: ListView(children: [
@@ -67,17 +67,16 @@ class _VisualizarProjetosState extends State<VisualizarProjetos> {
                       ),
                       IconTextBox(
                         imagem: AppImages.usuario,
-                        texto: "Mateus K",
+                        texto: controller.gerentesController.text,
                       ),
                       TitleSubtitleBoxSemIcone(
                           titulo: "Descrição",
-                          subtitulo:
-                              "Processo semestral de avaliação dos membros e das atividades do grupo para identificação de pontos que necessitam de melhorias"),
+                          subtitulo: controller.descricaoController.text),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 40),
                         child: TitleSubtitleBoxSemIcone(
                           titulo:"Membros",
-                          subtitulo: "bnandfasndlasmdlkasndlkansdlknasdklnaskldnaslkdnaklsndklas"
+                          subtitulo: controller.membrosController.text
                         ),
                       ),
                       enableButton(context),
@@ -105,8 +104,8 @@ class _VisualizarProjetosState extends State<VisualizarProjetos> {
     }
   }
 
-  Future<dadosPetiano> read_db() async {
-    var dbController = dadosPetiano(nome: widget.dados.nome);
+  Future<dadosProjeto> read_db() async {
+    var dbController = dadosProjeto(nome: widget.dados.nome);
     if (access_db == true && widget.dados.nome.isNotEmpty) {
       await dbController.read();
     }
@@ -116,7 +115,7 @@ class _VisualizarProjetosState extends State<VisualizarProjetos> {
   void eliminado() {
     String nome = controller.nomeController.text;
     if (nome.isNotEmpty) {
-      final dbController = dadosPetiano(nome: nome);
+      final dbController = dadosProjeto(nome: nome);
       dbController.delete();
       Navigator.pop(context, 'sim');
 
@@ -132,7 +131,7 @@ class _VisualizarProjetosState extends State<VisualizarProjetos> {
   }
 
   void delete_concluded() {
-    Navigator.popUntil(context, ModalRoute.withName('/lista_petianos'));
+    Navigator.popUntil(context, ModalRoute.withName('/lista_projetos'));
   }
 
   void delete_button() {
@@ -140,14 +139,14 @@ class _VisualizarProjetosState extends State<VisualizarProjetos> {
       context: context,
       builder: (BuildContext context) => PopupDuasOpcoes(
           title: "Atenção",
-          message: "Deseja remover " + widget.dados.nome + "?",
+          message: "Deseja remover o projeto " + widget.dados.nome + "?",
           yes_callback: eliminado),
     );
   }
 
   void edit_button() {
-    Navigator.pushReplacementNamed(context, "/editar_petiano",
-        arguments: EditarPetianoArguments(
+    Navigator.pushReplacementNamed(context, "/editar_projeto",
+        arguments: EditarProjetoArguments(
             nome: widget.dados.nome, user: widget.dados.user));
   }
 }

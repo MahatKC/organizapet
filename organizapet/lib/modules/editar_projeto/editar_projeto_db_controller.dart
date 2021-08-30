@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:organizapet/modules/useful_functions/nome_abreviado.dart';
 import '../useful_functions/database_document_title.dart';
 
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -75,25 +74,17 @@ class dadosProjeto {
           .catchError((error) => print("Fail: $error"));
     }
   }
-
+  */
   Future<void> delete() async {
     await read();
-    _mainCollection
+    _projetos
         .doc(document_title(nome))
         .delete()
         .then((value) => print("$nome removido com sucesso"))
         .catchError((error) => print("Fail: $error"));
-    if (email != null) {
-      _firestore
-          .collection('users')
-          .doc(document_title(email!))
-          .delete()
-          .then((value) => print("Usuário $email removido com sucesso"))
-          .catchError((error) => print("Fail: $error"));
-    }
   }
-  */
 
+  
   projetosFromJson(Map<String, dynamic> data) {
     this.descricao = data['descricao'];
     this.gerente_nome = List.from(data['gerente_nome']);
@@ -131,8 +122,6 @@ class dadosProjeto {
         })
         .then((value) => print("Projeto $nome lido"))
         .catchError((error) => print("Falha $error"));
-
-    printa_tudo();
   }
 
   /*

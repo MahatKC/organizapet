@@ -63,11 +63,11 @@ class _EditarProjetoState extends State<EditarProjeto> {
                           hint: "Título",
                           not_in_database: !in_database),
                       PetianoInputField(
-                          ctrl: controller.nomeCurtoController,
+                          ctrl: controller.gerentesController,
                           hint: "Gerente"),
                       LongTextInput(textoLabel: "Descrição"),
                       PetianoInputField(
-                          ctrl: controller.cpfController,
+                          ctrl: controller.membrosController,
                           hint: "Membros"),
                     ]),
                   ),
