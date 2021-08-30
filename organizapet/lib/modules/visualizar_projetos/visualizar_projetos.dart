@@ -9,6 +9,7 @@ import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/themes/app_images.dart';
 import 'package:organizapet/shared/widgets/app_bar/appBar.dart';
 import 'package:organizapet/shared/widgets/icon_text_box/icon_text_box.dart';
+import 'package:organizapet/shared/widgets/icon_title_subtitle_box/icon_title_subtitle_box.dart';
 import 'package:organizapet/shared/widgets/responsive_list/responsive_list.dart';
 import 'package:organizapet/shared/widgets/single_double_button_selector/single_double_button_selector.dart';
 import 'package:organizapet/shared/widgets/page_title/page_title.dart';
@@ -74,8 +75,7 @@ class _VisualizarProjetosState extends State<VisualizarProjetos> {
                               "Processo semestral de avaliação dos membros e das atividades do grupo para identificação de pontos que necessitam de melhorias"),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 40),
-                        child: TitleSubtitleBoxSemIcone(
-                          titulo:"Membros",
+                        child: IconTitleSubtitleBox(
                           subtitulo: "bnandfasndlasmdlkasndlkansdlknasdklnaskldnaslkdnaklsndklas"
                         ),
                       ),
