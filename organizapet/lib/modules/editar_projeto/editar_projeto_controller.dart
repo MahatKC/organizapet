@@ -54,6 +54,7 @@ class projetosController {
     return all_texts;
   }
 
+  /*
   void instantiateAll(dadosProjeto dbController) {
     nomeController.text = dbController.nome;
     nomeCurtoController.text = dbController.nomeCurto ?? "";
@@ -70,4 +71,5 @@ class projetosController {
     githubController.text = dbController.github ?? "";
     instagramController.text = dbController.instagram ?? "";
   }
+  */
 }

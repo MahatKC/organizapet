@@ -3,42 +3,31 @@ import 'package:organizapet/modules/useful_functions/nome_abreviado.dart';
 import '../useful_functions/database_document_title.dart';
 
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-final CollectionReference _mainCollection = _firestore.collection('petianos');
+final CollectionReference _projetos = _firestore.collection('projetos');
 
 class dadosProjeto {
   String nome;
-  String? nomeCurto;
-  String? rg;
-  String? cpf;
-  String? ra;
-  String? telefone;
-  String? email;
-  String? dataNascimento;
-  String? ano;
-  String? temaICV;
-  String? orientador;
-  String? camiseta;
-  String? github;
-  String? instagram;
+  String? descricao;
+  List<String>? membros_nomes;
+  List<String>? membros_nomes_abreviados;
+  List<String>? membros_nomes_curtos;
+  List<String>? gerente_nome;
+  List<String>? gerente_nome_abreviado;
+  List<String>? gerente_nome_curto;
   bool? in_db;
 
   dadosProjeto(
       {required this.nome,
-      this.nomeCurto,
-      this.rg,
-      this.cpf,
-      this.ra,
-      this.telefone,
-      this.email,
-      this.dataNascimento,
-      this.ano,
-      this.temaICV,
-      this.orientador,
-      this.camiseta,
-      this.github,
-      this.instagram,
+      this.descricao,
+      this.membros_nomes,
+      this.membros_nomes_abreviados,
+      this.membros_nomes_curtos,
+      this.gerente_nome,
+      this.gerente_nome_abreviado,
+      this.gerente_nome_curto,
       this.in_db});
 
+  /*
   dadosPetianoFromLista(List lista) {
     this.nomeCurto = lista.elementAt(1);
     this.rg = lista.elementAt(2);
@@ -53,22 +42,6 @@ class dadosProjeto {
     this.camiseta = lista.elementAt(11);
     this.github = lista.elementAt(12);
     this.instagram = lista.elementAt(13);
-  }
-
-  dadosPetianoFromJson(Map<String, dynamic> data) {
-    this.nomeCurto = data['nome_curto'];
-    this.rg = data['rg'];
-    this.cpf = data['cpf'];
-    this.ra = data['ra'];
-    this.telefone = data['telefone'];
-    this.email = data['email'];
-    this.dataNascimento = data['dataNascimento'];
-    this.ano = data['ano'];
-    this.temaICV = data['temaICV'];
-    this.orientador = data['orientador'];
-    this.camiseta = data['camiseta'];
-    this.github = data['github'];
-    this.instagram = data['instagram'];
   }
 
   Future<void> write() async {
@@ -119,23 +92,50 @@ class dadosProjeto {
           .catchError((error) => print("Fail: $error"));
     }
   }
+  */
+
+  projetosFromJson(Map<String, dynamic> data) {
+    this.descricao = data['descricao'];
+    this.gerente_nome = List.from(data['gerente_nome']);
+    this.gerente_nome_abreviado = List.from(data['gerente_nome_abreviado']);
+    this.gerente_nome_curto = List.from(data['gerente_nome_curto']);
+    this.membros_nomes = List.from(data['membros_nomes']);
+    this.membros_nomes_abreviados = List.from(data['membros_nomes_abreviados']);
+    this.membros_nomes_curtos = List.from(data['membros_nomes_curtos']);
+  }
+
+  void printa_tudo() {
+    print(nome);
+    print(descricao);
+    print(membros_nomes);
+    print(membros_nomes_abreviados);
+    print(membros_nomes_curtos);
+    print(gerente_nome);
+    print(gerente_nome_abreviado);
+    print(gerente_nome_curto);
+  }
 
   Future<void> read() async {
-    await _mainCollection
-        .doc(document_title(nome))
+    String doc_title = document_title(nome);
+
+    await _projetos
+        .doc(doc_title)
         .get()
         .then((snapshot) {
           if (snapshot.exists) {
-            dadosPetianoFromJson(snapshot.data() as Map<String, dynamic>);
+            projetosFromJson(snapshot.data() as Map<String, dynamic>);
             in_db = true;
           } else {
             print("Non Ecziste");
           }
         })
-        .then((value) => print("$nome lido"))
+        .then((value) => print("Projeto $nome lido"))
         .catchError((error) => print("Falha $error"));
+
+    printa_tudo();
   }
 
+  /*
   Future<void> read_from_login(String name_key) async {
     await _mainCollection
         .doc(name_key)
@@ -156,4 +156,5 @@ class dadosProjeto {
     this.nome = data['nome'];
     this.nomeCurto = data['nome_curto'];
   }
+  */
 }

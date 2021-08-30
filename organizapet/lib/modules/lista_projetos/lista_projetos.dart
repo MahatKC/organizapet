@@ -2,10 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:organizapet/modules/current_user_data/current_user_data.dart';
 import 'package:organizapet/modules/editar_dados_petiano/editar_petiano_arguments.dart';
+import 'package:organizapet/modules/editar_projeto/editar_projeto_arguments.dart';
+import 'package:organizapet/modules/editar_projeto/editar_projeto_db_controller.dart';
 import 'package:organizapet/modules/menu/menu_sanduiche.dart';
 import 'package:organizapet/modules/useful_functions/ano_formatter.dart';
 import 'package:organizapet/modules/useful_functions/first_and_last_name.dart';
 import 'package:organizapet/modules/visualizar_dados_petiano/visualizar_dados_arguments.dart';
+import 'package:organizapet/modules/visualizar_projetos/visualizar_projetos_arguments.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/widgets/app_bar/appBar.dart';
 import 'package:organizapet/shared/widgets/responsive_list/responsive_list.dart';
@@ -22,8 +25,8 @@ class ListaProjetos extends StatefulWidget {
 }
 
 class _ListaProjetosState extends State<ListaProjetos> {
-  final Stream<QuerySnapshot> _petianosStream =
-      FirebaseFirestore.instance.collection('petianos').snapshots();
+  final Stream<QuerySnapshot> _projetosStream =
+      FirebaseFirestore.instance.collection('projetos').snapshots();
 
   @override
   Widget build(BuildContext context) {
@@ -33,47 +36,45 @@ class _ListaProjetosState extends State<ListaProjetos> {
         appBar: AppBar(
           title: BarraApp(),
         ),
-        body: ResponsiveList(list: ListView(children: [
-                      PageTitle(title: "Projetos"),
-                      StreamBuilder<QuerySnapshot>(
-                        stream: _petianosStream,
-                        builder: (BuildContext context,
-                            AsyncSnapshot<QuerySnapshot> snapshot) {
-                          if (snapshot.hasError) {
-                            return Text('Erro ao acessar o banco.');
-                          }
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return Center(child: CircularProgressIndicator());
-                          }
-                          return new ListView(
-                            shrinkWrap: true,
-                            physics: ClampingScrollPhysics(),
-                            children: snapshot.data!.docs
-                                .map((DocumentSnapshot document) {
-                              Map<String, dynamic> data =
-                                  document.data() as Map<String, dynamic>;
-                              return new TitleSubtitleBox(
-                                  titulo: first_and_last_name(data),
-                                  subtitulo: ano_formatter(data),
-                                  callback: () {
-                                    bool is_self =
-                                        (data['nome'] == widget.user.name);
-                                    go_to_petiano(context, data['nome'],
-                                        is_self, widget.user);
-                                  });
-                            }).toList(),
-                          );
-                        },
-                      ),
-                      enableButton(widget.user),
-                    ])));
+        body: ResponsiveList(
+            list: ListView(children: [
+          PageTitle(title: "Projetos"),
+          StreamBuilder<QuerySnapshot>(
+            stream: _projetosStream,
+            builder:
+                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (snapshot.hasError) {
+                return Text('Erro ao acessar o banco.');
+              }
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(child: CircularProgressIndicator());
+              }
+              return new ListView(
+                shrinkWrap: true,
+                physics: ClampingScrollPhysics(),
+                children: snapshot.data!.docs.map((DocumentSnapshot document) {
+                  Map<String, dynamic> data =
+                      document.data() as Map<String, dynamic>;
+                  return new TitleSubtitleBox(
+                      titulo: data['nome'],
+                      subtitulo: data['gerente_nome_abreviado'].join(", ") ?? "",
+                      callback: () {
+                        bool is_gerente = (widget.user.gerenciaProjetos.contains(data['nome']));
+                        go_to_projeto(
+                            context, data['nome'], is_gerente, widget.user);
+                      });
+                }).toList(),
+              );
+            },
+          ),
+          enableButton(widget.user),
+        ])));
   }
 
-  void go_to_petiano(
-      BuildContext context, String nome, bool is_self, CurrentUserData user) {
-    Navigator.pushNamed(context, "/visualizar_dados_petiano",
-        arguments: VisualizarDadosArguments(nome, is_self, user));
+  void go_to_projeto(
+      BuildContext context, String nome, bool is_gerente, CurrentUserData user) {
+    Navigator.pushNamed(context, "/visualizar_projeto",
+        arguments: VisualizarProjetosArguments(nome, is_gerente, user));
   }
 
   Widget enableButton(CurrentUserData user) {
@@ -89,7 +90,7 @@ class _ListaProjetosState extends State<ListaProjetos> {
   }
 
   void add_buton() {
-    Navigator.pushNamed(context, "/editar_petiano",
-        arguments: EditarPetianoArguments(nome: "", user: widget.user));
+    Navigator.pushNamed(context, "/editar_projeto",
+        arguments: EditarProjetoArguments(nome: "", user: widget.user));
   }
 }

@@ -48,7 +48,7 @@ class _EditarProjetoState extends State<EditarProjeto> {
             } else {
               final dbController = snapshot.data as dadosProjeto;
               if (in_database == true && widget.dados.nome.isNotEmpty) {
-                controller.instantiateAll(dbController);
+                //controller.instantiateAll(dbController);
               }
               return ResponsiveList(
                   list: ListView(
@@ -109,8 +109,8 @@ class _EditarProjetoState extends State<EditarProjeto> {
         );
       } else {
         var dbController = dadosProjeto(nome: nome);
-        dbController.dadosPetianoFromLista(all_texts);
-        dbController.write();
+        //dbController.dadosPetianoFromLista(all_texts);
+        //dbController.write();
 
         showDialog<String>(
           context: context,
@@ -134,8 +134,8 @@ class _EditarProjetoState extends State<EditarProjeto> {
     List all_texts = controller.get_all_texts();
     print(all_texts.first);
     var dbController = dadosProjeto(nome: all_texts.first);
-    dbController.dadosPetianoFromLista(all_texts);
-    dbController.write();
+    //dbController.dadosPetianoFromLista(all_texts);
+    //dbController.write();
 
     showDialog<String>(
       context: context,

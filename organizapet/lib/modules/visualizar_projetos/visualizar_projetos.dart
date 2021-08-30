@@ -5,6 +5,7 @@ import 'package:organizapet/modules/editar_dados_petiano/editar_petianos_db_cont
 import 'package:organizapet/modules/menu/menu_sanduiche.dart';
 import 'package:organizapet/modules/useful_functions/back_to_previous_screen.dart';
 import 'package:organizapet/modules/visualizar_dados_petiano/visualizar_dados_arguments.dart';
+import 'package:organizapet/modules/visualizar_projetos/visualizar_projetos_arguments.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/themes/app_images.dart';
 import 'package:organizapet/shared/widgets/app_bar/appBar.dart';
@@ -17,7 +18,7 @@ import 'package:organizapet/shared/widgets/popup/popup_duas_opcoes.dart';
 import 'package:organizapet/shared/widgets/popup/popup_uma_opcao.dart';
 
 class VisualizarProjetos extends StatefulWidget {
-  final VisualizarDadosArguments dados;
+  final VisualizarProjetosArguments dados;
 
   const VisualizarProjetos({required this.dados, Key? key})
       : super(key: key);
@@ -95,7 +96,7 @@ class _VisualizarProjetosState extends State<VisualizarProjetos> {
         callback1: delete_button,
         callback2: edit_button,
       );
-    } else if (widget.dados.is_self == true) {
+    } else if (widget.dados.is_gerente == true) {
       return SingleDoubleButtonSelector(
           isDouble: false, tipoBotao1: 'edit', callback1: edit_button);
     } else {

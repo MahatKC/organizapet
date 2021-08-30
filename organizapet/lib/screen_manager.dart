@@ -12,6 +12,7 @@ import 'modules/editar_projeto/editar_projeto.dart';
 import 'modules/editar_projeto/editar_projeto_arguments.dart';
 import 'modules/lista_projetos/lista_projetos.dart';
 import 'modules/visualizar_projetos/visualizar_projetos.dart';
+import 'modules/visualizar_projetos/visualizar_projetos_arguments.dart';
 
 class ScreenManager extends StatelessWidget {
   const ScreenManager({Key? key}) : super(key: key);
@@ -39,7 +40,7 @@ class ScreenManager extends StatelessWidget {
                 ModalRoute.of(context)!.settings.arguments as CurrentUserData),
         '/visualizar_projeto': (context) => VisualizarProjetos(
             dados: ModalRoute.of(context)!.settings.arguments
-                as VisualizarDadosArguments),
+                as VisualizarProjetosArguments),
         '/editar_projeto': (context) => EditarProjeto(
             dados: ModalRoute.of(context)!.settings.arguments
                 as EditarProjetoArguments),
