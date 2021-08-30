@@ -29,7 +29,10 @@ class _IconTitleSubtitleBoxState extends State<IconTitleSubtitleBox> {
         child: Column(
             children: [
               Row( children: [
-              Expanded(
+                              Expanded(
+                  flex: 1,
+                  child: IconButton(onPressed: () {}, icon: Image.asset(AppImages.adicionarMembro))),
+                  Expanded(
                 flex: 4,
                 child: 
                 Padding(
@@ -38,9 +41,6 @@ class _IconTitleSubtitleBoxState extends State<IconTitleSubtitleBox> {
                     alignment: Alignment.centerLeft,
                     child: Text("Membros", style: TextStyles.darkBlue,)),
                 ),),
-                Expanded(
-                  flex: 1,
-                  child: IconButton(onPressed: () {}, icon: Image.asset(AppImages.adicionarMembro)))
               ]
               ),
               Row(

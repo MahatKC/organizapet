@@ -68,8 +68,7 @@ class _EditarProjetoState extends State<EditarProjeto> {
                           hint: "Gerente"),
                       LongTextInput(textoLabel: "Descrição"),
                       IconTitleSubtitleBoxEditavel(
-                          ctrl: controller.membrosController,
-                          hint: "Membros"),
+                          subtitulo: "agdsadsadsadasdasdasd",)
                     ]),
                   ),
                   Padding(
