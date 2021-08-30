@@ -2,20 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
+import 'package:organizapet/shared/themes/app_images.dart';
 import 'package:organizapet/shared/themes/app_text_styles.dart';
 
-class IconTitleSubtitleBox extends StatefulWidget {
-  final String imagem;
+class IconTitleSubtitleBoxEditavel extends StatefulWidget {
+
   final String titulo;
   final String subtitulo;
-  const IconTitleSubtitleBox({Key? key, required this.imagem, required this.titulo, required this.subtitulo})
+  const IconTitleSubtitleBoxEditavel({Key? key, required this.titulo, required this.subtitulo})
       : super(key: key);
 
   @override
-  _IconTitleSubtitleBoxState createState() => _IconTitleSubtitleBoxState();
+  _IconTitleSubtitleBoxEditavelState createState() => _IconTitleSubtitleBoxEditavelState();
 }
 
-class _IconTitleSubtitleBoxState extends State<IconTitleSubtitleBox> {
+class _IconTitleSubtitleBoxEditavelState extends State<IconTitleSubtitleBoxEditavel> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -27,17 +28,8 @@ class _IconTitleSubtitleBoxState extends State<IconTitleSubtitleBox> {
         child: ListTile(
           title: BoxWithTextAdjustment(texto: widget.titulo),
           subtitle: BoxWithTextAdjustment(texto: widget.subtitulo),
-          leading: Image.asset(widget.imagem),
-          onLongPress: () {
-            copyToClipboard();
-            final snackBar = SnackBar(
-              content: Text(
-                "Dado copiado!",
-                style: TextStyles.textCopy,
-              ),
-            );
-            ScaffoldMessenger.of(context).showSnackBar(snackBar);
-          },
+          leading: Image.asset(AppImages.adicionarMembro),
+          
         ),
       ),
     );
