@@ -9,7 +9,7 @@ class LongTextInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.only(bottom: 30, left: 42, right: 42),
+        padding: const EdgeInsets.only(top: 30),
         child: TextField(
           keyboardType: TextInputType.multiline,
           maxLines: 3,
