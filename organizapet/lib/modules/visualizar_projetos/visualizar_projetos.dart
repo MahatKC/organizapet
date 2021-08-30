@@ -76,6 +76,7 @@ class _VisualizarProjetosState extends State<VisualizarProjetos> {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 40),
                         child: IconTitleSubtitleBox(
+                          titulo: "Membros",
                           subtitulo: controller.membrosController.text
                         ),
                       ),
