@@ -26,45 +26,29 @@ class dadosProjeto {
       this.gerente_nome_curto,
       this.in_db});
 
-  /*
   dadosPetianoFromLista(List lista) {
-    this.nomeCurto = lista.elementAt(1);
-    this.rg = lista.elementAt(2);
-    this.cpf = lista.elementAt(3);
-    this.ra = lista.elementAt(4);
-    this.telefone = lista.elementAt(5);
-    this.email = lista.elementAt(6);
-    this.dataNascimento = lista.elementAt(7);
-    this.ano = lista.elementAt(8);
-    this.temaICV = lista.elementAt(9);
-    this.orientador = lista.elementAt(10);
-    this.camiseta = lista.elementAt(11);
-    this.github = lista.elementAt(12);
-    this.instagram = lista.elementAt(13);
+    List lista_controller = lista[0];
+
+    this.descricao = lista_controller.elementAt(1);
+    this.membros_nomes_abreviados = lista_controller.elementAt(2).split(", ");
+    this.gerente_nome_abreviado = lista_controller.elementAt(3).split(", ");
+    this.gerente_nome = lista[1];
+    this.membros_nomes = lista[2];
+    this.gerente_nome_curto = lista[3];
+    this.membros_nomes_curtos  = lista[4];
   }
 
   Future<void> write() async {
-    await _mainCollection
+    await _projetos
         .doc(document_title(nome))
         .set({
           'nome': nome,
-          'nome_curto': nomeCurto,
-          'nome_abreviado': nome_abreviado(nome, nomeCurto ?? ""),
-          'rg': rg,
-          'cpf': cpf,
-          'ra': ra,
-          'telefone': telefone,
-          'email': email,
-          'dataNascimento': dataNascimento,
-          'ano': ano,
-          'temaICV': temaICV,
-          'orientador': orientador,
-          'camiseta': camiseta,
-          'github': github,
-          'instagram': instagram
+          'descricao': descricao
         }, SetOptions(merge: true))
         .then((value) => print("$nome atualizado com sucesso"))
         .catchError((error) => print("Fail: $error"));
+    
+    /*
     if (email != null) {
       await _firestore
           .collection('users')
@@ -72,9 +56,9 @@ class dadosProjeto {
           .set({'email': email}, SetOptions(merge: true))
           .then((value) => print("Usuário $email atualizado com sucesso"))
           .catchError((error) => print("Fail: $error"));
-    }
+    }*/
   }
-  */
+
   Future<void> delete() async {
     await read();
     _projetos
@@ -84,7 +68,6 @@ class dadosProjeto {
         .catchError((error) => print("Fail: $error"));
   }
 
-  
   projetosFromJson(Map<String, dynamic> data) {
     this.descricao = data['descricao'];
     this.gerente_nome = List.from(data['gerente_nome']);

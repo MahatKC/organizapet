@@ -16,7 +16,7 @@ import 'package:organizapet/shared/widgets/center_text_button/center_text_button
 import 'package:organizapet/shared/widgets/responsive_list/responsive_list.dart';
 
 class EditarProjeto extends StatefulWidget {
-  //mudar essa variável depois 
+  //mudar essa variável depois
   final EditarProjetoArguments dados;
 
   EditarProjeto({required this.dados, Key? key}) : super(key: key);
@@ -50,7 +50,7 @@ class _EditarProjetoState extends State<EditarProjeto> {
             } else {
               final dbController = snapshot.data as dadosProjeto;
               if (in_database == true && widget.dados.nome.isNotEmpty) {
-                //controller.instantiateAll(dbController);
+                controller.instantiateAll(dbController);
               }
               return ResponsiveList(
                   list: ListView(
@@ -64,8 +64,7 @@ class _EditarProjetoState extends State<EditarProjeto> {
                           hint: "Título",
                           not_in_database: !in_database),
                       PetianoInputField(
-                          ctrl: controller.gerentesController,
-                          hint: "Gerente"),
+                          ctrl: controller.gerentesController, hint: "Gerente"),
                       LongTextInput(textoLabel: "Descrição"),
                       IconTitleSubtitleBoxEditavel(
                           subtitulo: controller.membrosController.text,
@@ -96,20 +95,20 @@ class _EditarProjetoState extends State<EditarProjeto> {
   void createDB(List all_texts) {
     if (all_texts.first.isNotEmpty) {
       String nome = all_texts.first;
-      bool is_new_petiano = widget.dados.nome.isEmpty;
-      if (is_new_petiano) {
+      bool is_new_projeto = widget.dados.nome.isEmpty;
+      if (is_new_projeto) {
         showDialog<String>(
           context: context,
           builder: (BuildContext context) => PopupDuasOpcoes(
               title: "Atenção",
-              message: "Tem certeza que inseriu o nome de " +
+              message: "Tem certeza que inseriu o nome do projeto " +
                   nome +
                   " corretamente?",
               yes_callback: continua_write),
         );
       } else {
         var dbController = dadosProjeto(nome: nome);
-        //dbController.dadosPetianoFromLista(all_texts);
+        dbController.dadosPetianoFromLista(all_texts);
         //dbController.write();
 
         showDialog<String>(
@@ -131,23 +130,22 @@ class _EditarProjetoState extends State<EditarProjeto> {
   }
 
   void continua_write() {
-    List all_texts = controller.get_all_texts();
-    print(all_texts.first);
-    var dbController = dadosProjeto(nome: all_texts.first);
-    //dbController.dadosPetianoFromLista(all_texts);
+    List all_lists = controller.get_all_controller_info();
+    var dbController = dadosProjeto(nome: all_lists.first.first);
+    dbController.dadosPetianoFromLista(all_lists);
     //dbController.write();
 
     showDialog<String>(
       context: context,
       builder: (BuildContext context) => PopupUmaOpcao(
           title: "Sucesso",
-          message: all_texts.first + " adicionado(a) ao OrganizaPET!",
+          message: all_lists.first.first + " adicionado(a) ao OrganizaPET!",
           after_func: register_concluded),
     );
   }
 
   void save_button_function() {
-    createDB(controller.get_all_texts());
+    createDB(controller.get_all_controller_info().first);
   }
 
   void register_concluded() {
