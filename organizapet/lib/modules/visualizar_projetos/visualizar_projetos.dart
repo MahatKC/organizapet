@@ -62,11 +62,11 @@ class _VisualizarProjetosState extends State<VisualizarProjetos> {
                       PageTitle(title: "Dados do Projeto"),
                       IconTextBox(
                         imagem: AppImages.projetosAzul,
-                        texto: controller.rgController.text,
+                        texto: controller.nomeController.text,
                       ),
                       IconTextBox(
                         imagem: AppImages.usuario,
-                        texto: controller.nomeController.text,
+                        texto: "Mateus K",
                       ),
                       TitleSubtitleBoxSemIcone(
                           titulo: "Descrição",
