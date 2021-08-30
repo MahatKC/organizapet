@@ -6,6 +6,7 @@ import 'package:organizapet/modules/menu/menu_sanduiche.dart';
 import 'package:organizapet/modules/visualizar_dados_petiano/visualizar_dados_arguments.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/widgets/app_bar/appBar.dart';
+import 'package:organizapet/shared/widgets/icon_title_subtitle_box_editavel/icon_title_subtible_box_editavel.dart';
 import 'package:organizapet/shared/widgets/long_text_input/long_text_input.dart';
 import 'package:organizapet/shared/widgets/page_title/page_title.dart';
 import 'package:organizapet/shared/widgets/petiano_input_field/petiano_input_field.dart';
@@ -66,7 +67,7 @@ class _EditarProjetoState extends State<EditarProjeto> {
                           ctrl: controller.gerentesController,
                           hint: "Gerente"),
                       LongTextInput(textoLabel: "Descrição"),
-                      PetianoInputField(
+                      IconTitleSubtitleBoxEditavel(
                           ctrl: controller.membrosController,
                           hint: "Membros"),
                     ]),

@@ -5,18 +5,18 @@ import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/themes/app_images.dart';
 import 'package:organizapet/shared/themes/app_text_styles.dart';
 
-class IconTitleSubtitleBoxEditavel extends StatefulWidget {
+class IconTitleSubtitleBox extends StatefulWidget {
 
 
   final String subtitulo;
-  const IconTitleSubtitleBoxEditavel({Key? key, required this.subtitulo})
+  const IconTitleSubtitleBox({Key? key, required this.subtitulo})
       : super(key: key);
 
   @override
-  _IconTitleSubtitleBoxEditavelState createState() => _IconTitleSubtitleBoxEditavelState();
+  _IconTitleSubtitleBoxState createState() => _IconTitleSubtitleBoxState();
 }
 
-class _IconTitleSubtitleBoxEditavelState extends State<IconTitleSubtitleBoxEditavel> {
+class _IconTitleSubtitleBoxState extends State<IconTitleSubtitleBox> {
   @override
   Widget build(BuildContext context) {
     return Padding(

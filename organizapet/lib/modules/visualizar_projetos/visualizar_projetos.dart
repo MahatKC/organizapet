@@ -11,6 +11,7 @@ import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/themes/app_images.dart';
 import 'package:organizapet/shared/widgets/app_bar/appBar.dart';
 import 'package:organizapet/shared/widgets/icon_text_box/icon_text_box.dart';
+import 'package:organizapet/shared/widgets/icon_title_subtitle_box/icon_title_subtitle_box.dart';
 import 'package:organizapet/shared/widgets/responsive_list/responsive_list.dart';
 import 'package:organizapet/shared/widgets/single_double_button_selector/single_double_button_selector.dart';
 import 'package:organizapet/shared/widgets/page_title/page_title.dart';
@@ -74,7 +75,7 @@ class _VisualizarProjetosState extends State<VisualizarProjetos> {
                           subtitulo: controller.descricaoController.text),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 40),
-                        child: TitleSubtitleBoxSemIcone(
+                        child: IconTitleSubtitleBox(
                           titulo:"Membros",
                           subtitulo: controller.membrosController.text
                         ),
