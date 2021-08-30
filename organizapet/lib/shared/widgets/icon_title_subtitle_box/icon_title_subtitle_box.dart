@@ -6,10 +6,10 @@ import 'package:organizapet/shared/themes/app_images.dart';
 import 'package:organizapet/shared/themes/app_text_styles.dart';
 
 class IconTitleSubtitleBox extends StatefulWidget {
-
+  final String titulo;
 
   final String subtitulo;
-  const IconTitleSubtitleBox({Key? key, required this.subtitulo})
+  const IconTitleSubtitleBox({Key? key, required this.titulo, required this.subtitulo})
       : super(key: key);
 
   @override
@@ -27,32 +27,39 @@ class _IconTitleSubtitleBoxState extends State<IconTitleSubtitleBox> {
             borderRadius: BorderRadius.circular(7),
             border: Border.all(color: AppColors.lightBlueBorder, width: 1)),
         child: Column(
-            children: [
-              Row( children: [
-                              Expanded(
-                  flex: 1,
-                  child: IconButton(onPressed: () {}, icon: Image.asset(AppImages.adicionarMembro))),
-                  Expanded(
+          children: [
+            Row(children: [
+              Expanded(
                 flex: 4,
-                child: 
-                Padding(
+                child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text("Membros", style: TextStyles.darkBlue,)),
-                ),),
-              ]
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        widget.titulo,
+                        style: TextStyles.darkBlue,
+                      )),
+                ),
               ),
-              Row(
-                children: [
-                  Expanded(child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(widget.subtitulo, style: TextStyles.buttonGray,),
-                  ))
-                ],
-              )
-              
-            ],
+              Expanded(
+                  flex: 1,
+                  child: IconButton(
+                      onPressed: () {},
+                      icon: Image.asset(AppImages.adicionarMembro)))
+            ]),
+            Row(
+              children: [
+                Expanded(
+                    child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    widget.subtitulo,
+                    style: TextStyles.buttonGray,
+                  ),
+                ))
+              ],
+            )
+          ],
         ),
       ),
     );
