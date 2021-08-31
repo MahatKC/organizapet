@@ -93,6 +93,7 @@ class _EditarProjetoState extends State<EditarProjeto> {
   }
 
   void createDB(List all_texts) {
+    print(all_texts);
     if (all_texts.first.isNotEmpty) {
       String nome = all_texts.first;
       bool is_new_projeto = widget.dados.nome.isEmpty;
@@ -133,7 +134,7 @@ class _EditarProjetoState extends State<EditarProjeto> {
     List all_lists = controller.get_all_controller_info();
     var dbController = dadosProjeto(nome: all_lists.first.first);
     dbController.dadosPetianoFromLista(all_lists);
-    //dbController.write();
+    dbController.write();
 
     showDialog<String>(
       context: context,
@@ -145,11 +146,12 @@ class _EditarProjetoState extends State<EditarProjeto> {
   }
 
   void save_button_function() {
+    print("save button");
     createDB(controller.get_all_controller_info().first);
   }
 
   void register_concluded() {
-    Navigator.popUntil(context, ModalRoute.withName('/lista_petianos'));
+    Navigator.popUntil(context, ModalRoute.withName('/lista_projetos'));
   }
 
   void update_concluded() {

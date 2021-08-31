@@ -6,10 +6,10 @@ class projetosController {
   final descricaoController = TextEditingController();
   final membrosController = TextEditingController(); //nomes abreviados
   final gerentesController = TextEditingController(); //nomes abreviados
-  late final List<String> membros_nomes;
-  late final List<String> membros_nomes_curtos;
-  late final List<String> gerente_nome;
-  late final List<String> gerente_nome_curto;
+  List<String> membros_nomes = [];
+  List<String> membros_nomes_curtos = [];
+  List<String> gerente_nome = [];
+  List<String> gerente_nome_curto = [];
 
   projetosController();
 

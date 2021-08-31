@@ -25,6 +25,7 @@ class _ListaProjetosState extends State<ListaProjetos> {
 
   @override
   Widget build(BuildContext context) {
+    String gerentes_nomes;
     return Scaffold(
         backgroundColor: AppColors.background,
         drawer: MenuSanduiche(user: widget.user),
@@ -50,11 +51,18 @@ class _ListaProjetosState extends State<ListaProjetos> {
                 children: snapshot.data!.docs.map((DocumentSnapshot document) {
                   Map<String, dynamic> data =
                       document.data() as Map<String, dynamic>;
+                  if (data['gerente_nome_abreviado'] == null) {
+                    gerentes_nomes = "";
+                  } else {
+                    gerentes_nomes =
+                        data['gerente_nome_abreviado'].join(", ") ?? "";
+                  }
                   return new TitleSubtitleBox(
                       titulo: data['nome'],
-                      subtitulo: data['gerente_nome_abreviado'].join(", ") ?? "",
+                      subtitulo: gerentes_nomes,
                       callback: () {
-                        bool is_gerente = (widget.user.gerenciaProjetos.contains(data['nome']));
+                        bool is_gerente = (widget.user.gerenciaProjetos
+                            .contains(data['nome']));
                         go_to_projeto(
                             context, data['nome'], is_gerente, widget.user);
                       });
@@ -66,8 +74,8 @@ class _ListaProjetosState extends State<ListaProjetos> {
         ])));
   }
 
-  void go_to_projeto(
-      BuildContext context, String nome, bool is_gerente, CurrentUserData user) {
+  void go_to_projeto(BuildContext context, String nome, bool is_gerente,
+      CurrentUserData user) {
     Navigator.pushNamed(context, "/visualizar_projeto",
         arguments: VisualizarProjetosArguments(nome, is_gerente, user));
   }
