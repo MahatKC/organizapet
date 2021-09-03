@@ -18,14 +18,14 @@ import 'package:organizapet/shared/widgets/responsive_list/responsive_list.dart'
 
 class EditarTarefa extends StatefulWidget {
   final EditarProjetoArguments dados;
-  const EditarTarefa({ Key? key, required this.dados }) : super(key: key);
+  const EditarTarefa({Key? key, required this.dados}) : super(key: key);
 
   @override
   _EditarTarefaState createState() => _EditarTarefaState();
 }
 
 class _EditarTarefaState extends State<EditarTarefa> {
-   final controller = projetosController();
+  final controller = projetosController();
   bool in_database = false;
   late Future<void> start;
 
@@ -34,14 +34,14 @@ class _EditarTarefaState extends State<EditarTarefa> {
     super.initState();
     start = read_db();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColors.background,
         drawer: MenuSanduiche(user: widget.dados.user),
         appBar: AppBar(title: BarraApp()),
-        body: 
-        FutureBuilder(
+        body: FutureBuilder(
           future: start,
           builder: (context, snapshot) {
             if (snapshot.connectionState != ConnectionState.done) {
@@ -51,8 +51,7 @@ class _EditarTarefaState extends State<EditarTarefa> {
               if (in_database == true && widget.dados.nome.isNotEmpty) {
                 controller.instantiateAll(dbController);
               }
-              return 
-              ResponsiveList(
+              return ResponsiveList(
                   list: ListView(
                 children: [
                   PageTitle(title: "Dados da Tarefa"),
@@ -65,24 +64,25 @@ class _EditarTarefaState extends State<EditarTarefa> {
                           not_in_database: !in_database),
                       PetianoInputField(
                           ctrl: controller.gerentesController, hint: "Projeto"),
-                      LongTextInput(textoLabel: "Descrição", ctrl: controller.descricaoController,),
+                      LongTextInput(
+                        textoLabel: "Descrição",
+                        ctrl: controller.descricaoController,
+                      ),
                       IconTitleSubtitleBoxEditavel(
                           subtitulo: controller.membrosController.text,
                           titulo: "Membros"),
                     ]),
                   ),
                   CheckBoxTarefaCritica(),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 17),
-                    child: CenterTextButton(
-                        buttonLabel: "Salvar", callback: save_button_function),
-                  )
+                  CenterTextButton(
+                      buttonLabel: "Salvar", callback: save_button_function),
                 ],
               ));
             }
           },
         ));
   }
+
   Future<dadosProjeto> read_db() async {
     var dbController = dadosProjeto(nome: widget.dados.nome);
     if (widget.dados.nome.isNotEmpty && in_database == false) {
@@ -161,5 +161,3 @@ class _EditarTarefaState extends State<EditarTarefa> {
             widget.dados.nome == widget.dados.user.name, widget.dados.user));
   }
 }
-
-

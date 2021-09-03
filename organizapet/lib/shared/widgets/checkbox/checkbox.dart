@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
 
 class CheckBoxTarefaCritica extends StatefulWidget {
-  const CheckBoxTarefaCritica({ Key? key }) : super(key: key);
-   
+  const CheckBoxTarefaCritica({Key? key}) : super(key: key);
+
   @override
   _CheckBoxTarefaCriticaState createState() => _CheckBoxTarefaCriticaState();
 }
 
 class _CheckBoxTarefaCriticaState extends State<CheckBoxTarefaCritica> {
-  bool tarefaCritica = false;
+  bool? tarefaCritica = false;
   @override
   Widget build(BuildContext context) {
-    return CheckboxListTile(
-      title: Text("Tarefa Critica"),
-      value: tarefaCritica, onChanged: (bool? value) {
-      setState(() {
-        tarefaCritica = true;
-      });
-      
-    });
+    return Padding(
+      padding: const EdgeInsets.only(right: 100, left: 100),
+      child: CheckboxListTile(
+          title: Text("Tarefa Crítica"),
+          value: tarefaCritica,
+          onChanged: (bool? value) {
+            setState(() {
+              tarefaCritica = value;
+            });
+          }),
+    );
   }
 }
