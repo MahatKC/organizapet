@@ -4,12 +4,14 @@ import 'package:flutter/services.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/themes/app_images.dart';
 import 'package:organizapet/shared/themes/app_text_styles.dart';
+import 'package:organizapet/shared/widgets/popup/popup_adicionar_membro.dart';
 
 class IconTitleSubtitleBoxEditavel extends StatefulWidget {
   final String titulo;
 
   final String subtitulo;
-  const IconTitleSubtitleBoxEditavel({Key? key, required this.titulo, required this.subtitulo})
+  const IconTitleSubtitleBoxEditavel(
+      {Key? key, required this.titulo, required this.subtitulo})
       : super(key: key);
 
   @override
@@ -46,7 +48,11 @@ class _IconTitleSubtitleBoxEditavelState
               Expanded(
                   flex: 1,
                   child: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => PopupAdicionarMembro());
+                      },
                       icon: Image.asset(AppImages.adicionarMembro)))
             ]),
             Row(
