@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:organizapet/modules/editar_dados_petiano/editar_petiano_arguments.dart';
+import 'package:organizapet/modules/editar_tarefa/editar_tarefa.dart';
 import 'package:organizapet/modules/login/login_page.dart';
 import 'package:organizapet/modules/lista_petianos/lista_petianos.dart';
 import 'package:organizapet/modules/editar_dados_petiano/editar_petiano.dart';
@@ -42,6 +43,9 @@ class ScreenManager extends StatelessWidget {
             dados: ModalRoute.of(context)!.settings.arguments
                 as VisualizarProjetosArguments),
         '/editar_projeto': (context) => EditarProjeto(
+            dados: ModalRoute.of(context)!.settings.arguments
+                as EditarProjetoArguments),
+        '/editar_tarefa': (context) => EditarTarefa(
             dados: ModalRoute.of(context)!.settings.arguments
                 as EditarProjetoArguments),
       },

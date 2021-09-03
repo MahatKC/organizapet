@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/themes/app_images.dart';
 import 'package:organizapet/shared/themes/app_text_styles.dart';
-import 'package:organizapet/shared/widgets/popup/popup_adicionar_membro.dart';
+import 'package:organizapet/modules/popup_adicionar_pessoa/popup_adicionar_pessoa.dart';
 
 class IconTitleSubtitleBoxEditavel extends StatefulWidget {
   final String titulo;
@@ -51,7 +51,7 @@ class _IconTitleSubtitleBoxEditavelState
                       onPressed: () {
                         showDialog<String>(
                       context: context,
-                      builder: (BuildContext context) => PopupAdicionarMembro());
+                      builder: (BuildContext context) => PopupAdicionarPessoa());
                       },
                       icon: Image.asset(AppImages.adicionarMembro)))
             ]),

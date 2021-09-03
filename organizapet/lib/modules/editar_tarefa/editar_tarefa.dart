@@ -65,7 +65,7 @@ class _EditarTarefaState extends State<EditarTarefa> {
                           not_in_database: !in_database),
                       PetianoInputField(
                           ctrl: controller.gerentesController, hint: "Projeto"),
-                      LongTextInput(textoLabel: "Descrição"),
+                      LongTextInput(textoLabel: "Descrição", ctrl: controller.descricaoController,),
                       IconTitleSubtitleBoxEditavel(
                           subtitulo: controller.membrosController.text,
                           titulo: "Membros"),
