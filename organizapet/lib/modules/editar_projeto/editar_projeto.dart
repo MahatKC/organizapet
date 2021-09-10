@@ -64,8 +64,9 @@ class _EditarProjetoState extends State<EditarProjeto> {
                           ctrl: controller.nomeController,
                           hint: "Título",
                           not_in_database: !in_database),
-                      PetianoInputField(
-                          ctrl: controller.gerentesController, hint: "Gerente"),
+                      IconTitleSubtitleBoxEditavel(
+                          titulo: "Gerentes",
+                          subtitulo: controller.membrosController.text),
                       LongTextInput(
                         textoLabel: "Descrição",
                         ctrl: controller.descricaoController,
@@ -163,9 +164,10 @@ class _EditarProjetoState extends State<EditarProjeto> {
 
   void update_concluded() {
     Navigator.pop(context);
-    bool is_gerente = widget.dados.user.gerenciaProjetos.contains(widget.dados.nome);
+    bool is_gerente =
+        widget.dados.user.gerenciaProjetos.contains(widget.dados.nome);
     Navigator.pushReplacementNamed(context, "/visualizar_projeto",
-        arguments: VisualizarProjetosArguments(widget.dados.nome,
-            is_gerente, widget.dados.user));
+        arguments: VisualizarProjetosArguments(
+            widget.dados.nome, is_gerente, widget.dados.user));
   }
 }

@@ -24,7 +24,7 @@ class _IconTitleSubtitleBoxEditavelState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 20, top: 20),
+      padding: const EdgeInsets.only( top: 20),
       child: Container(
         height: 150,
         decoration: BoxDecoration(
@@ -40,7 +40,7 @@ class _IconTitleSubtitleBoxEditavelState
                   child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        "Membros",
+                        widget.titulo,
                         style: TextStyles.darkBlue,
                       )),
                 ),

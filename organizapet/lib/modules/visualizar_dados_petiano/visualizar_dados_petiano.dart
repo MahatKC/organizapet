@@ -114,9 +114,7 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
                             ),
                           ),
                           enableButton(context),
-                        ]),
-                  
-                    
+                        ]), 
                   );
                 }
               })),
