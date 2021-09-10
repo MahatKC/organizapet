@@ -162,8 +162,9 @@ class _EditarProjetoState extends State<EditarProjeto> {
 
   void update_concluded() {
     Navigator.pop(context);
-    Navigator.pushReplacementNamed(context, "/visualizar_dados_projeto",
+    bool is_gerente = widget.dados.user.gerenciaProjetos.contains(widget.dados.nome);
+    Navigator.pushReplacementNamed(context, "/visualizar_projeto",
         arguments: VisualizarProjetosArguments(widget.dados.nome,
-            widget.dados.nome == widget.dados.user.name, widget.dados.user));
+            is_gerente, widget.dados.user));
   }
 }
