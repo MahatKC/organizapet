@@ -111,7 +111,7 @@ class _EditarTarefaState extends State<EditarTarefa> {
         );
       } else {
         var dbController = dadosProjeto(nome: nome);
-        dbController.dadosPetianoFromLista(all_texts);
+        //dbController.dadosPetianoFromLista(all_texts);
         //dbController.write();
 
         showDialog<String>(
@@ -135,7 +135,7 @@ class _EditarTarefaState extends State<EditarTarefa> {
   void continua_write() {
     List all_lists = controller.get_all_controller_info();
     var dbController = dadosProjeto(nome: all_lists.first.first);
-    dbController.dadosPetianoFromLista(all_lists);
+    //dbController.dadosPetianoFromLista(all_lists);
     dbController.write();
 
     showDialog<String>(
