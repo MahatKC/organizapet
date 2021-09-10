@@ -34,6 +34,12 @@ class _PopupAdicionarPessoaState extends State<PopupAdicionarPessoa> {
           if (snapshot.connectionState != ConnectionState.done) {
             return Center(child: CircularProgressIndicator());
           } else {
+            String popuptitle;
+            if (widget.is_popup_gerentes) {
+              popuptitle = "Adicionar gerentes";
+            } else {
+              popuptitle = "Adicionar membros";
+            }
             return AlertDialog(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(20))),
@@ -48,7 +54,7 @@ class _PopupAdicionarPessoaState extends State<PopupAdicionarPessoa> {
                         Padding(
                           padding: const EdgeInsets.all(20.0),
                           child: Text(
-                            "Adicionar Membros",
+                            popuptitle,
                             style: TextStyles.darkBlue,
                           ),
                         ),

@@ -45,7 +45,7 @@ class dadosPetiano {
     this.cpf = lista.elementAt(3);
     this.ra = lista.elementAt(4);
     this.telefone = lista.elementAt(5);
-    this.email = lista.elementAt(6);
+    this.email = lista.elementAt(6).toString().toLowerCase();
     this.dataNascimento = lista.elementAt(7);
     this.ano = lista.elementAt(8);
     this.temaICV = lista.elementAt(9);
@@ -97,7 +97,7 @@ class dadosPetiano {
       await _firestore
           .collection('users')
           .doc(document_title(email!))
-          .set({'email': email}, SetOptions(merge: true))
+          .set({'email': email, 'name_key': document_title(nome)}, SetOptions(merge: true))
           .then((value) => print("Usuário $email atualizado com sucesso"))
           .catchError((error) => print("Fail: $error"));
     }
