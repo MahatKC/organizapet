@@ -8,6 +8,7 @@ import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/widgets/app_bar/appBar.dart';
 import 'package:organizapet/shared/widgets/center_text_button/center_text_button.dart';
 import 'package:organizapet/shared/widgets/checkbox/checkbox.dart';
+import 'package:organizapet/shared/widgets/icon_textfield/icon_textfield.dart';
 import 'package:organizapet/shared/widgets/icon_title_subtitle_box_editavel/icon_title_subtible_box_editavel.dart';
 import 'package:organizapet/shared/widgets/long_text_input/long_text_input.dart';
 import 'package:organizapet/shared/widgets/page_title/page_title.dart';
@@ -68,6 +69,7 @@ class _EditarTarefaState extends State<EditarTarefa> {
                         textoLabel: "Descrição",
                         ctrl: controller.descricaoController,
                       ),
+                      IconTextField(),
                       IconTitleSubtitleBoxEditavel(
                           subtitulo: controller.membrosController.text,
                           titulo: "Membros"),
