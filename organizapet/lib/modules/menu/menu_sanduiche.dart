@@ -102,7 +102,9 @@ class MenuSanduiche extends StatelessWidget {
                     ),
                     tileColor: AppColors.barraMenu,
                     selectedTileColor: AppColors.lightBlueBorder,
-                    onTap: () {},
+                    onTap: () {
+                      go_to_lista_projetos(context, user);
+                    },
                   ),
                   ListTile(
                     tileColor: AppColors.barraMenu,
@@ -160,6 +162,11 @@ class MenuSanduiche extends StatelessWidget {
   Future<void> go_to_lista_petianos(
       BuildContext context, CurrentUserData user) async {
     Navigator.pushReplacementNamed(context, "/lista_petianos", arguments: user);
+  }
+
+  Future<void> go_to_lista_projetos(
+      BuildContext context, CurrentUserData user) async {
+    Navigator.pushReplacementNamed(context, "/lista_projetos", arguments: user);
   }
 
   Future<void> go_to_dados_petiano(
