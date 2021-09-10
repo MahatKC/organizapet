@@ -13,8 +13,8 @@ import 'modules/current_user_data/current_user_data.dart';
 import 'modules/editar_projeto/editar_projeto.dart';
 import 'modules/editar_projeto/editar_projeto_arguments.dart';
 import 'modules/lista_projetos/lista_projetos.dart';
-import 'modules/visualizar_projeto/visualizar_projeto.dart';
-import 'modules/visualizar_projeto/visualizar_projeto_arguments.dart';
+import 'modules/visualizar_projetos/visualizar_projetos.dart';
+import 'modules/visualizar_projetos/visualizar_projetos_arguments.dart';
 
 class ScreenManager extends StatelessWidget {
   const ScreenManager({Key? key}) : super(key: key);

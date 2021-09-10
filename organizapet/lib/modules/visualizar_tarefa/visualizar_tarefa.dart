@@ -6,7 +6,7 @@ import 'package:organizapet/modules/editar_projeto/editar_projeto_controller.dar
 import 'package:organizapet/modules/editar_projeto/editar_projeto_db_controller.dart';
 import 'package:organizapet/modules/menu/menu_sanduiche.dart';
 import 'package:organizapet/modules/useful_functions/back_to_previous_screen.dart';
-import 'package:organizapet/modules/visualizar_projeto/visualizar_projeto_arguments.dart';
+import 'package:organizapet/modules/visualizar_projetos/visualizar_projetos_arguments.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/themes/app_images.dart';
 import 'package:organizapet/shared/widgets/app_bar/appBar.dart';
