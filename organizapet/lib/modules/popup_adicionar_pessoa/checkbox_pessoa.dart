@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:organizapet/modules/popup_adicionar_pessoa/popup_adicionar_pessoa_controller.dart';
 
 class CheckboxPessoa extends StatefulWidget {
-  //final String nome;
+  final String nome_projeto;
   final List<String> petianos_names;
   final List<bool> petianos_membros;
-  //popupAdicionarPessoaController ctrl;
 
   const CheckboxPessoa(
-      {Key? key, required this.petianos_names, required this.petianos_membros})
+      {Key? key,
+      required this.petianos_names,
+      required this.petianos_membros,
+      required this.nome_projeto})
       : super(key: key);
 
   @override
@@ -16,7 +17,6 @@ class CheckboxPessoa extends StatefulWidget {
 }
 
 class _CheckboxPessoaState extends State<CheckboxPessoa> {
-
   @override
   Widget build(BuildContext context) {
     print("checkbox foi");

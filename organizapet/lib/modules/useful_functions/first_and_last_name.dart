@@ -13,8 +13,8 @@ String first_and_last_name(Map<String, dynamic> data) {
 }
 
 String first_and_last_name_from_string(String nome, String nomeCurto) {
-  if (nomeCurto != "" &&
-      nomeCurto != " ") {
+  print(nome + " / "+ nomeCurto);
+  if (nomeCurto != "" && nomeCurto != " ") {
     return nomeCurto;
   } else {
     List name_list = nome.split(" ");
@@ -24,8 +24,7 @@ String first_and_last_name_from_string(String nome, String nomeCurto) {
 }
 
 String first_and_last_name_from_user(CurrentUserData user) {
-  if (user.nomeCurto != "" &&
-      user.nomeCurto != " ") {
+  if (user.nomeCurto != "" && user.nomeCurto != " ") {
     return user.nomeCurto;
   } else {
     List name_list = user.name.split(" ");

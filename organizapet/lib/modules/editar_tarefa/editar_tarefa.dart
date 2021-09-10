@@ -71,6 +71,7 @@ class _EditarTarefaState extends State<EditarTarefa> {
                       ),
                       IconTextField(),
                       IconTitleSubtitleBoxEditavel(
+                          nome_projeto: widget.dados.nome,
                           subtitulo: controller.membrosController.text,
                           titulo: "Membros"),
                     ]),

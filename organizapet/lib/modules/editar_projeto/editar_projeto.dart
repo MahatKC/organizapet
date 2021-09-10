@@ -71,6 +71,7 @@ class _EditarProjetoState extends State<EditarProjeto> {
                         ctrl: controller.descricaoController,
                       ),
                       IconTitleSubtitleBoxEditavel(
+                          nome_projeto: widget.dados.nome,
                           subtitulo: controller.membrosController.text,
                           titulo: "Membros"),
                     ]),
