@@ -26,40 +26,56 @@ class _IconTitleSubtitleBoxState extends State<IconTitleSubtitleBox> {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(7),
             border: Border.all(color: AppColors.lightBlueBorder, width: 1)),
-        child: Column(
-          children: [
-            Row(children: [
-              Expanded(
-                  flex: 1,
-                  child: IconButton(
-                      onPressed: () {},
-                      icon: Image.asset(AppImages.membrosAzul))),
-                      Expanded(
-                flex: 4,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        widget.titulo,
-                        style: TextStyles.darkBlue,
-                      )),
-                ),
-              ),
-            ]),
-            Row(
+        child: MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: GestureDetector(
+            child: Column(
               children: [
-                Expanded(
+                Row(children: [
+                  Expanded(
+                      flex: 1,
+                      child: IconButton(
+                          onPressed: () {},
+                          icon: Image.asset(AppImages.membrosAzul))),
+                          Expanded(
+                    flex: 4,
                     child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    widget.subtitulo,
-                    style: TextStyles.buttonGray,
+                      padding: const EdgeInsets.all(8.0),
+                      child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            widget.titulo,
+                            style: TextStyles.darkBlue,
+                          )),
+                    ),
                   ),
-                ))
+                ]),
+                Row(
+                  children: [
+                    Expanded(
+                        child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        widget.subtitulo,
+                        style: TextStyles.buttonGray,
+                      ),
+                    ),
+                    )
+                  ],
+                )
               ],
-            )
-          ],
+            ),
+            onLongPress: () {
+                  copyToClipboard();
+                  final snackBar = SnackBar(
+                    content: Text(
+                      "Dado copiado!",
+                      style: TextStyles.textCopy,
+                    ),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                },
+          ),
         ),
       ),
     );
