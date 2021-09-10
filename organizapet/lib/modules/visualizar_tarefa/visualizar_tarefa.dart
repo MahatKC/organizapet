@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:organizapet/modules/editar_dados_petiano/editar_petiano_arguments.dart';
-import 'package:organizapet/modules/editar_dados_petiano/editar_petianos_db_controller.dart';
 import 'package:organizapet/modules/editar_projeto/editar_projeto_arguments.dart';
 import 'package:organizapet/modules/editar_projeto/editar_projeto_controller.dart';
 import 'package:organizapet/modules/editar_projeto/editar_projeto_db_controller.dart';

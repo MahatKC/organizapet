@@ -3,7 +3,6 @@ import 'package:organizapet/modules/editar_projeto/editar_projeto_arguments.dart
 import 'package:organizapet/modules/editar_projeto/editar_projeto_controller.dart';
 import 'package:organizapet/modules/editar_projeto/editar_projeto_db_controller.dart';
 import 'package:organizapet/modules/menu/menu_sanduiche.dart';
-import 'package:organizapet/modules/visualizar_dados_petiano/visualizar_dados_arguments.dart';
 import 'package:organizapet/modules/visualizar_projetos/visualizar_projetos_arguments.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/widgets/app_bar/appBar.dart';
@@ -65,8 +64,9 @@ class _EditarProjetoState extends State<EditarProjeto> {
                           hint: "Título",
                           not_in_database: !in_database),
                       IconTitleSubtitleBoxEditavel(
+                          nome_projeto: widget.dados.nome,
                           titulo: "Gerentes",
-                          subtitulo: controller.membrosController.text),
+                          subtitulo: controller.gerentesController.text),
                       LongTextInput(
                         textoLabel: "Descrição",
                         ctrl: controller.descricaoController,
@@ -99,7 +99,6 @@ class _EditarProjetoState extends State<EditarProjeto> {
   }
 
   void createDB(List all_texts) {
-    print(all_texts);
     if (all_texts.first.isNotEmpty) {
       String nome = all_texts.first.first;
       bool is_new_projeto = widget.dados.nome.isEmpty;
@@ -115,8 +114,6 @@ class _EditarProjetoState extends State<EditarProjeto> {
         );
       } else {
         var dbController = dadosProjeto(nome: nome);
-        print(all_texts);
-        print("-----");
         dbController.dadosProjetoFromLista(all_texts);
         dbController.printa_tudo();
         dbController.write();

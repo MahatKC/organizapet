@@ -19,7 +19,6 @@ class CheckboxPessoa extends StatefulWidget {
 class _CheckboxPessoaState extends State<CheckboxPessoa> {
   @override
   Widget build(BuildContext context) {
-    print("checkbox foi");
     return ListView.builder(
         shrinkWrap: true,
         itemCount: widget.petianos_names.length,

@@ -169,7 +169,6 @@ class _EditarPetianoState extends State<EditarPetiano> {
 
   void continua_write() {
     List all_texts = controller.get_all_texts();
-    print(all_texts.first);
     var dbController = dadosPetiano(nome: all_texts.first);
     dbController.dadosPetianoFromLista(all_texts);
     dbController.write();

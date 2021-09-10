@@ -50,11 +50,9 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<void> loginDone(bool has_access) async {
     if (has_access) {
-      print("no sistema");
       CurrentUserData user = await controller.getUser();
       change_screen(context, user);
     } else {
-      print("fora do sistema");
       showDialog<String>(
         context: context,
         builder: (BuildContext context) =>

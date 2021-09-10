@@ -53,7 +53,7 @@ class _IconTitleSubtitleBoxEditavelState
                             context: context,
                             builder: (BuildContext context) =>
                                 PopupAdicionarPessoa(
-                                  is_popup_gerentes: false,
+                                  is_popup_gerentes: widget.titulo=="Gerentes",
                                   nome_projeto: widget.nome_projeto,
                                 ));
                       },

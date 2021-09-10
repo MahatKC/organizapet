@@ -34,9 +34,6 @@ class _PopupAdicionarPessoaState extends State<PopupAdicionarPessoa> {
           if (snapshot.connectionState != ConnectionState.done) {
             return Center(child: CircularProgressIndicator());
           } else {
-            print(controller.petianos_names);
-            print(controller.petianos_membros);
-            //print(controller.petianos_gerentes);
             return AlertDialog(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(20))),
@@ -58,7 +55,7 @@ class _PopupAdicionarPessoaState extends State<PopupAdicionarPessoa> {
                         // CheckboxPessoa(ctrl: controller.petianos, size: 4),
                         CheckboxPessoa(
                           nome_projeto: widget.nome_projeto,
-                          petianos_membros: controller.petianos_membros,
+                          petianos_membros: controller.petianos,
                           petianos_names: controller.petianos_names,
                         ),
                         SizedBox(

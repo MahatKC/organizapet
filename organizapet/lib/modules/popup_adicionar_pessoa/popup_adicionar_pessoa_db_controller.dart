@@ -60,7 +60,7 @@ class popupAdicionarPessoaDBController {
       querySnapshot.docs.forEach((doc) {
         membros.add(first_and_last_name_from_string(doc["nome"], doc["nome_curto"]));
       });
-    }).catchError((error) => print("Falha $error"));
+    });
 
     return membros;
   }

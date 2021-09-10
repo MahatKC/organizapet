@@ -2,21 +2,21 @@ import 'package:organizapet/modules/popup_adicionar_pessoa/popup_adicionar_pesso
 
 class popupAdicionarPessoaController {
   late List<String> petianos_names;
-  late List<bool> petianos_membros;
-  late List<bool> petianos_gerentes;
+  late List<bool> petianos;
   final db = popupAdicionarPessoaDBController();
 
   popupAdicionarPessoaController();
 
-  Future<void> populateController(bool is_popup_gerentes, String nome_projeto) async {
+  Future<void> populateController(
+      bool is_popup_gerentes, String nome_projeto) async {
     List<String> names;
     petianos_names = await db.readAll();
     if (is_popup_gerentes) {
       names = await db.readGerentes(nome_projeto);
-      petianos_gerentes = getBoolList(names, petianos_names);
+      petianos = getBoolList(names, petianos_names);
     } else {
       names = await db.readMembros(nome_projeto);
-      petianos_membros = getBoolList(names, petianos_names);
+      petianos = getBoolList(names, petianos_names);
     }
   }
 

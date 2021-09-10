@@ -96,7 +96,6 @@ class _EditarTarefaState extends State<EditarTarefa> {
   }
 
   void createDB(List all_texts) {
-    print(all_texts);
     if (all_texts.first.isNotEmpty) {
       String nome = all_texts.first;
       bool is_new_projeto = widget.dados.nome.isEmpty;
@@ -111,7 +110,7 @@ class _EditarTarefaState extends State<EditarTarefa> {
               yes_callback: continua_write),
         );
       } else {
-        var dbController = dadosProjeto(nome: nome);
+        //var dbController = dadosProjeto(nome: nome);
         //dbController.dadosPetianoFromLista(all_texts);
         //dbController.write();
 

@@ -13,7 +13,6 @@ String first_and_last_name(Map<String, dynamic> data) {
 }
 
 String first_and_last_name_from_string(String nome, String nomeCurto) {
-  print(nome + " / "+ nomeCurto);
   if (nomeCurto != "" && nomeCurto != " ") {
     return nomeCurto;
   } else {

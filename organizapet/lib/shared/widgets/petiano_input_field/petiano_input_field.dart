@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:organizapet/modules/popup_adicionar_pessoa/popup_adicionar_pessoa.dart';
 import 'package:organizapet/shared/themes/app_images.dart';
-import 'package:organizapet/shared/widgets/icon_textfield/icon_textfield.dart';
 
 class PetianoInputField extends StatelessWidget {
   final TextEditingController ctrl;
@@ -11,15 +10,17 @@ class PetianoInputField extends StatelessWidget {
   final String hint;
   final bool? isNumeric;
   final bool? not_in_database;
+  final String? nome_projeto;
 
-  const PetianoInputField({
-    Key? key,
-    required this.ctrl,
-    this.mascara,
-    required this.hint,
-    this.isNumeric,
-    this.not_in_database,
-  }) : super(key: key);
+  const PetianoInputField(
+      {Key? key,
+      required this.ctrl,
+      this.mascara,
+      required this.hint,
+      this.isNumeric,
+      this.not_in_database,
+      this.nome_projeto})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +64,10 @@ class PetianoInputField extends StatelessWidget {
               onPressed: () {
                 showDialog<String>(
                     context: context,
-                    builder: (BuildContext context) => PopupAdicionarPessoa());
+                    builder: (BuildContext context) => PopupAdicionarPessoa(
+                          nome_projeto: nome_projeto ?? "",
+                          is_popup_gerentes: true,
+                        ));
               },
               icon: Image.asset(AppImages.adicionarMembro)),
           hintText: "Gerente",
