@@ -50,8 +50,9 @@ class _IconTitleSubtitleBoxEditavelState
                   child: IconButton(
                       onPressed: () {
                         showDialog<String>(
-                      context: context,
-                      builder: (BuildContext context) => PopupAdicionarPessoa());
+                            context: context,
+                            builder: (BuildContext context) =>
+                                PopupAdicionarPessoa());
                       },
                       icon: Image.asset(AppImages.adicionarMembro)))
             ]),

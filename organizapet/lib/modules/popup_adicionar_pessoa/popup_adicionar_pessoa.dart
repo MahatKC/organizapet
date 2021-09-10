@@ -5,7 +5,7 @@ import 'package:organizapet/shared/themes/app_text_styles.dart';
 import 'package:organizapet/shared/widgets/center_text_button/center_text_button.dart';
 
 class PopupAdicionarPessoa extends StatefulWidget {
-  const PopupAdicionarPessoa({ Key? key }) : super(key: key);
+  const PopupAdicionarPessoa({Key? key}) : super(key: key);
 
   @override
   _PopupAdicionarPessoaState createState() => _PopupAdicionarPessoaState();
@@ -16,12 +16,15 @@ class _PopupAdicionarPessoaState extends State<PopupAdicionarPessoa> {
 
   @override
   Widget build(BuildContext context) {
+    print("popup foi");
     return AlertDialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(20))),
       actions: <Widget>[
         Container(
             width: 400,
-            child: Column(
+            height: 500,
+            child: SingleChildScrollView(child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Padding(
@@ -31,16 +34,18 @@ class _PopupAdicionarPessoaState extends State<PopupAdicionarPessoa> {
                     style: TextStyles.darkBlue,
                   ),
                 ),
-               // CheckboxPessoa(ctrl: controller.petianos, size: 4),
-                CheckboxPessoa(nome: "Davi"),
-                CheckboxPessoa(nome: "Roberta"),
+                // CheckboxPessoa(ctrl: controller.petianos, size: 4),
+                CheckboxPessoa(
+                  petianos_membros: [true, false, true, false, true, false, true, false],
+                  petianos_names: ["Davi", "Roberta", "Davi", "Roberta", "Davi", "Roberta", "Davi", "Roberta"],
+                ),
                 SizedBox(
                   height: 5,
                 ),
                 CenterTextButton(
                     buttonLabel: "Adicionar", callback: adicionar_membro_button)
               ],
-            ))
+            )))
       ],
     );
   }
