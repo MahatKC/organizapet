@@ -4,6 +4,7 @@ import 'package:organizapet/modules/editar_projeto/editar_projeto_controller.dar
 import 'package:organizapet/modules/editar_projeto/editar_projeto_db_controller.dart';
 import 'package:organizapet/modules/menu/menu_sanduiche.dart';
 import 'package:organizapet/modules/visualizar_dados_petiano/visualizar_dados_arguments.dart';
+import 'package:organizapet/modules/visualizar_projetos/visualizar_projetos_arguments.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/widgets/app_bar/appBar.dart';
 import 'package:organizapet/shared/widgets/icon_title_subtitle_box_editavel/icon_title_subtible_box_editavel.dart';
@@ -65,7 +66,10 @@ class _EditarProjetoState extends State<EditarProjeto> {
                           not_in_database: !in_database),
                       PetianoInputField(
                           ctrl: controller.gerentesController, hint: "Gerente"),
-                      LongTextInput(textoLabel: "Descrição", ctrl: controller.descricaoController,),
+                      LongTextInput(
+                        textoLabel: "Descrição",
+                        ctrl: controller.descricaoController,
+                      ),
                       IconTitleSubtitleBoxEditavel(
                           subtitulo: controller.membrosController.text,
                           titulo: "Membros"),
@@ -95,7 +99,7 @@ class _EditarProjetoState extends State<EditarProjeto> {
   void createDB(List all_texts) {
     print(all_texts);
     if (all_texts.first.isNotEmpty) {
-      String nome = all_texts.first;
+      String nome = all_texts.first.first;
       bool is_new_projeto = widget.dados.nome.isEmpty;
       if (is_new_projeto) {
         showDialog<String>(
@@ -109,14 +113,17 @@ class _EditarProjetoState extends State<EditarProjeto> {
         );
       } else {
         var dbController = dadosProjeto(nome: nome);
-        dbController.dadosPetianoFromLista(all_texts);
-        //dbController.write();
+        print(all_texts);
+        print("-----");
+        dbController.dadosProjetoFromLista(all_texts);
+        dbController.printa_tudo();
+        dbController.write();
 
         showDialog<String>(
           context: context,
           builder: (BuildContext context) => PopupUmaOpcao(
               title: "Sucesso",
-              message: "Dados de " + nome + " atualizados!",
+              message: "Dados do projeto " + nome + " atualizados!",
               after_func: update_concluded),
         );
       }
@@ -133,7 +140,7 @@ class _EditarProjetoState extends State<EditarProjeto> {
   void continua_write() {
     List all_lists = controller.get_all_controller_info();
     var dbController = dadosProjeto(nome: all_lists.first.first);
-    dbController.dadosPetianoFromLista(all_lists);
+    dbController.dadosProjetoFromLista(all_lists);
     dbController.write();
 
     showDialog<String>(
@@ -146,8 +153,7 @@ class _EditarProjetoState extends State<EditarProjeto> {
   }
 
   void save_button_function() {
-    print("save button");
-    createDB(controller.get_all_controller_info().first);
+    createDB(controller.get_all_controller_info());
   }
 
   void register_concluded() {
@@ -156,8 +162,8 @@ class _EditarProjetoState extends State<EditarProjeto> {
 
   void update_concluded() {
     Navigator.pop(context);
-    Navigator.pushReplacementNamed(context, "/visualizar_dados_petiano",
-        arguments: VisualizarDadosArguments(widget.dados.nome,
+    Navigator.pushReplacementNamed(context, "/visualizar_dados_projeto",
+        arguments: VisualizarProjetosArguments(widget.dados.nome,
             widget.dados.nome == widget.dados.user.name, widget.dados.user));
   }
 }

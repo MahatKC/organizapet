@@ -18,8 +18,8 @@ class projetosController {
 
     all_texts.add(nomeController.text);
     all_texts.add(descricaoController.text);
-    all_texts.add(membrosController.text);
-    all_texts.add(gerentesController.text);
+    all_texts.add(membrosController.text);  //nomes abreviados
+    all_texts.add(gerentesController.text); //nomes abreviados
 
     return [
       all_texts,

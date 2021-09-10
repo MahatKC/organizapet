@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:organizapet/modules/useful_functions/data_list_to_string.dart';
 import '../useful_functions/database_document_title.dart';
 
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -26,28 +27,25 @@ class dadosProjeto {
       this.gerente_nome_curto,
       this.in_db});
 
-  dadosPetianoFromLista(List lista) {
-    List lista_controller = lista[0];
+  dadosProjetoFromLista(List lista) {
+    List<String> lista_controller = lista[0];
 
     this.descricao = lista_controller.elementAt(1);
-    this.membros_nomes_abreviados = lista_controller.elementAt(2).split(", ");
-    this.gerente_nome_abreviado = lista_controller.elementAt(3).split(", ");
+    this.membros_nomes_abreviados = string_to_list(lista_controller, 2);
+    this.gerente_nome_abreviado = string_to_list(lista_controller, 3);
     this.gerente_nome = lista[1];
     this.membros_nomes = lista[2];
     this.gerente_nome_curto = lista[3];
-    this.membros_nomes_curtos  = lista[4];
+    this.membros_nomes_curtos = lista[4];
   }
 
   Future<void> write() async {
     await _projetos
         .doc(document_title(nome))
-        .set({
-          'nome': nome,
-          'descricao': descricao
-        }, SetOptions(merge: true))
+        .set({'nome': nome, 'descricao': descricao}, SetOptions(merge: true))
         .then((value) => print("$nome atualizado com sucesso"))
         .catchError((error) => print("Fail: $error"));
-    
+
     /*
     if (email != null) {
       await _firestore
@@ -69,13 +67,13 @@ class dadosProjeto {
   }
 
   projetosFromJson(Map<String, dynamic> data) {
-    this.descricao = data['descricao'];
-    this.gerente_nome = List.from(data['gerente_nome']);
-    this.gerente_nome_abreviado = List.from(data['gerente_nome_abreviado']);
-    this.gerente_nome_curto = List.from(data['gerente_nome_curto']);
-    this.membros_nomes = List.from(data['membros_nomes']);
-    this.membros_nomes_abreviados = List.from(data['membros_nomes_abreviados']);
-    this.membros_nomes_curtos = List.from(data['membros_nomes_curtos']);
+    this.descricao = data['descricao'] ?? "";
+    this.gerente_nome = List.from(data['gerente_nome'] ?? []);
+    this.gerente_nome_abreviado = List.from(data['gerente_nome_abreviado'] ?? []);
+    this.gerente_nome_curto = List.from(data['gerente_nome_curto'] ?? []);
+    this.membros_nomes = List.from(data['membros_nomes'] ?? []);
+    this.membros_nomes_abreviados = List.from(data['membros_nomes_abreviados'] ?? []);
+    this.membros_nomes_curtos = List.from(data['membros_nomes_curtos'] ?? []);
   }
 
   void printa_tudo() {

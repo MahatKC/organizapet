@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:organizapet/modules/current_user_data/current_user_data.dart';
 import 'package:organizapet/modules/editar_projeto/editar_projeto_arguments.dart';
 import 'package:organizapet/modules/menu/menu_sanduiche.dart';
+import 'package:organizapet/modules/useful_functions/data_list_to_string.dart';
 import 'package:organizapet/modules/visualizar_projetos/visualizar_projetos_arguments.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/widgets/app_bar/appBar.dart';
@@ -25,7 +26,6 @@ class _ListaProjetosState extends State<ListaProjetos> {
 
   @override
   Widget build(BuildContext context) {
-    String gerentes_nomes;
     return Scaffold(
         backgroundColor: AppColors.background,
         drawer: MenuSanduiche(user: widget.user),
@@ -51,15 +51,9 @@ class _ListaProjetosState extends State<ListaProjetos> {
                 children: snapshot.data!.docs.map((DocumentSnapshot document) {
                   Map<String, dynamic> data =
                       document.data() as Map<String, dynamic>;
-                  if (data['gerente_nome_abreviado'] == null) {
-                    gerentes_nomes = "";
-                  } else {
-                    gerentes_nomes =
-                        data['gerente_nome_abreviado'].join(", ") ?? "";
-                  }
                   return new TitleSubtitleBox(
                       titulo: data['nome'],
-                      subtitulo: gerentes_nomes,
+                      subtitulo: data_list_to_string(data, 'gerente_nome_abreviado'),
                       callback: () {
                         bool is_gerente = (widget.user.gerenciaProjetos
                             .contains(data['nome']));
