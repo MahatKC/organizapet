@@ -31,9 +31,7 @@ class _IconTitleSubtitleBoxState extends State<IconTitleSubtitleBox> {
             Row(children: [
               Expanded(
                   flex: 1,
-                  child: IconButton(
-                      onPressed: () {},
-                      icon: Image.asset(AppImages.membrosAzul))),
+                  child: Image.asset(AppImages.membrosAzul)),
                       Expanded(
                 flex: 4,
                 child: Padding(
