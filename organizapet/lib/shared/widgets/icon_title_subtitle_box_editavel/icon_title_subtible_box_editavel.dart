@@ -23,10 +23,16 @@ class _IconTitleSubtitleBoxEditavelState
     extends State<IconTitleSubtitleBoxEditavel> {
   @override
   Widget build(BuildContext context) {
+    double sizeHeight;
+    if(widget.titulo == "Gerentes"){
+        sizeHeight = 90;
+    }else{
+      sizeHeight = 150;
+    }
     return Padding(
       padding: const EdgeInsets.only( top: 20),
       child: Container(
-        height: 150,
+        height: sizeHeight,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(7),
             border: Border.all(color: AppColors.lightBlueBorder, width: 1)),
@@ -80,6 +86,7 @@ class _IconTitleSubtitleBoxEditavelState
   Future<void> copyToClipboard() async {
     await Clipboard.setData(ClipboardData(text: widget.subtitulo));
   }
+
 }
 
 class BoxWithTextAdjustment extends StatelessWidget {
