@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:organizapet/modules/editar_projeto/editar_projeto_arguments.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/themes/app_images.dart';
 import 'package:organizapet/shared/themes/app_text_styles.dart';
 import 'package:organizapet/modules/popup_adicionar_pessoa/popup_adicionar_pessoa.dart';
 
 class IconTitleSubtitleBoxEditavel extends StatefulWidget {
+  final EditarProjetoArguments dados;
   final String titulo;
   final String subtitulo;
   final String nome_projeto;
   const IconTitleSubtitleBoxEditavel(
-      {Key? key, required this.titulo, required this.subtitulo, required this.nome_projeto})
+      {Key? key,
+      required this.dados,
+      required this.titulo,
+      required this.subtitulo,
+      required this.nome_projeto})
       : super(key: key);
 
   @override
@@ -24,13 +30,13 @@ class _IconTitleSubtitleBoxEditavelState
   @override
   Widget build(BuildContext context) {
     double sizeHeight;
-    if(widget.titulo == "Gerentes"){
-        sizeHeight = 90;
-    }else{
+    if (widget.titulo == "Gerentes") {
+      sizeHeight = 90;
+    } else {
       sizeHeight = 150;
     }
     return Padding(
-      padding: const EdgeInsets.only( top: 20),
+      padding: const EdgeInsets.only(top: 20),
       child: Container(
         height: sizeHeight,
         decoration: BoxDecoration(
@@ -59,7 +65,9 @@ class _IconTitleSubtitleBoxEditavelState
                             context: context,
                             builder: (BuildContext context) =>
                                 PopupAdicionarPessoa(
-                                  is_popup_gerentes: widget.titulo=="Gerentes",
+                                  dados: widget.dados,
+                                  is_popup_gerentes:
+                                      widget.titulo == "Gerentes",
                                   nome_projeto: widget.nome_projeto,
                                 ));
                       },
@@ -86,7 +94,6 @@ class _IconTitleSubtitleBoxEditavelState
   Future<void> copyToClipboard() async {
     await Clipboard.setData(ClipboardData(text: widget.subtitulo));
   }
-
 }
 
 class BoxWithTextAdjustment extends StatelessWidget {

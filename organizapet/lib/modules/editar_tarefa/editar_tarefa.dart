@@ -70,10 +70,10 @@ class _EditarTarefaState extends State<EditarTarefa> {
                         ctrl: controller.descricaoController,
                       ),
                       IconTextField(),
-                      IconTitleSubtitleBoxEditavel(
+                      /*IconTitleSubtitleBoxEditavel(
                           nome_projeto: widget.dados.nome,
                           subtitulo: controller.membrosController.text,
-                          titulo: "Membros"),
+                          titulo: "Membros"),*/
                     ]),
                   ),
                   CheckBoxTarefaCritica(),

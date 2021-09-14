@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:organizapet/modules/popup_adicionar_pessoa/popup_adicionar_pessoa_controller.dart';
 
 class CheckboxPessoa extends StatefulWidget {
   final String nome_projeto;
-  final List<String> petianos_names;
-  final List<bool> petianos_membros;
+  final popupAdicionarPessoaController controller;
 
   const CheckboxPessoa(
-      {Key? key,
-      required this.petianos_names,
-      required this.petianos_membros,
-      required this.nome_projeto})
+      {Key? key, required this.nome_projeto, required this.controller})
       : super(key: key);
 
   @override
@@ -21,15 +18,15 @@ class _CheckboxPessoaState extends State<CheckboxPessoa> {
   Widget build(BuildContext context) {
     return ListView.builder(
         shrinkWrap: true,
-        itemCount: widget.petianos_names.length,
+        itemCount: widget.controller.petianos_names.length,
         physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return CheckboxListTile(
-              title: Text(widget.petianos_names[index]),
-              value: widget.petianos_membros[index],
+              title: Text(widget.controller.petianos_names[index]),
+              value: widget.controller.petianos[index],
               onChanged: (bool? newValue) {
                 setState(() {
-                  widget.petianos_membros[index] = newValue ?? false;
+                  widget.controller.petianos[index] = newValue ?? false;
                 });
               });
         });

@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:organizapet/modules/editar_projeto/editar_projeto_arguments.dart';
 import 'package:organizapet/modules/popup_adicionar_pessoa/checkbox_pessoa.dart';
 import 'package:organizapet/modules/popup_adicionar_pessoa/popup_adicionar_pessoa_controller.dart';
 import 'package:organizapet/shared/themes/app_text_styles.dart';
 import 'package:organizapet/shared/widgets/center_text_button/center_text_button.dart';
 
 class PopupAdicionarPessoa extends StatefulWidget {
+  final EditarProjetoArguments dados;
   final bool is_popup_gerentes;
   final String nome_projeto;
   const PopupAdicionarPessoa(
-      {Key? key, required this.nome_projeto, required this.is_popup_gerentes})
+      {Key? key,
+      required this.nome_projeto,
+      required this.is_popup_gerentes,
+      required this.dados})
       : super(key: key);
 
   @override
@@ -61,15 +66,14 @@ class _PopupAdicionarPessoaState extends State<PopupAdicionarPessoa> {
                         // CheckboxPessoa(ctrl: controller.petianos, size: 4),
                         CheckboxPessoa(
                           nome_projeto: widget.nome_projeto,
-                          petianos_membros: controller.petianos,
-                          petianos_names: controller.petianos_names,
+                          controller: controller,
                         ),
                         SizedBox(
                           height: 5,
                         ),
                         CenterTextButton(
                             buttonLabel: "Adicionar",
-                            callback: adicionar_membro_button)
+                            callback: adicionar_button)
                       ],
                     )))
               ],
@@ -77,8 +81,50 @@ class _PopupAdicionarPessoaState extends State<PopupAdicionarPessoa> {
           }
         });
   }
-}
 
-void adicionar_membro_button() {
-  print("adicionar membro button");
+  void adicionar_button() {
+    if (widget.is_popup_gerentes) {
+      adicionar_gerente();
+    } else {
+      adicionar_membro();
+    }
+
+    remove_popup_and_refresh(context);
+  }
+
+  Future<void> adicionar_membro() async {
+    List<int> indices = [];
+    for (int i = 0; i < controller.petianos_old.length; i++) {
+      if (controller.petianos[i] != controller.petianos_old[i]) {
+        indices.add(i);
+      }
+    }
+    await controller.write_membro(indices, widget.nome_projeto);
+
+    Navigator.pushNamed(context, "/editar_projeto",
+        arguments: EditarProjetoArguments(
+            nome: widget.dados.nome, user: widget.dados.user));
+  }
+
+  Future<void> adicionar_gerente() async {
+    List<int> indices = [];
+    for (int i = 0; i < controller.petianos_old.length; i++) {
+      if (controller.petianos[i] != controller.petianos_old[i]) {
+        indices.add(i);
+      }
+    }
+    await controller.write_gerente(indices, widget.nome_projeto);
+
+    
+    //Navigator.of(context).pushNamedAndRemoveUntil('/editar_projeto', ModalRoute.withName('/visualizar_projeto'));
+    //(context, ModalRoute.withName('/editar_projeto'));
+    /**/
+  }
+
+  void remove_popup_and_refresh(BuildContext context) {
+    Navigator.pop(context);
+    Navigator.pushReplacementNamed(context, "/editar_projeto",
+        arguments: EditarProjetoArguments(
+            nome: widget.dados.nome, user: widget.dados.user));
+  }
 }

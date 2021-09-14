@@ -64,6 +64,7 @@ class _EditarProjetoState extends State<EditarProjeto> {
                           hint: "Título",
                           not_in_database: !in_database),
                       IconTitleSubtitleBoxEditavel(
+                          dados: widget.dados,
                           nome_projeto: widget.dados.nome,
                           titulo: "Gerentes",
                           subtitulo: controller.gerentesController.text),
@@ -72,6 +73,7 @@ class _EditarProjetoState extends State<EditarProjeto> {
                         ctrl: controller.descricaoController,
                       ),
                       IconTitleSubtitleBoxEditavel(
+                          dados: widget.dados,
                           nome_projeto: widget.dados.nome,
                           subtitulo: controller.membrosController.text,
                           titulo: "Membros"),

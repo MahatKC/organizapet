@@ -57,7 +57,7 @@ class PetianoInputField extends StatelessWidget {
         keyboardType: tipo,
       );
     }
-    if (hint == "Gerente") {
+    /*if (hint == "Gerente") {
       return TextField(
         decoration: InputDecoration(
           suffixIcon: IconButton(
@@ -65,6 +65,7 @@ class PetianoInputField extends StatelessWidget {
                 showDialog<String>(
                     context: context,
                     builder: (BuildContext context) => PopupAdicionarPessoa(
+
                           nome_projeto: nome_projeto ?? "",
                           is_popup_gerentes: true,
                         ));
@@ -73,7 +74,7 @@ class PetianoInputField extends StatelessWidget {
           hintText: "Gerente",
         ),
       );
-    }
+    }*/
     return TextField(
       controller: ctrl,
       decoration: InputDecoration(hintText: " " + hint),
