@@ -12,18 +12,31 @@ class popupAdicionarPessoaController {
 
   Future<void> populateController(
       bool is_popup_gerentes, String nome_projeto) async {
+
     List<String> names;
     List<List<String>> list = await db.readAll();
     petianos_names_full = list[0];
     petianos_names = list[1];
-    if (is_popup_gerentes) {
-      names = await db.readGerentes(nome_projeto);
-      petianos = getBoolList(names, petianos_names);
-      petianos_old = getBoolList(names, petianos_names);
+
+    if (nome_projeto == "") {
+      print("entrou");
+      names = [];
+      petianos = [];
+      petianos_old = [];
+      for (int j = 0; j < petianos_names.length; j++) {
+        petianos.add(false);
+        petianos_old.add(false);
+      }
     } else {
-      names = await db.readMembros(nome_projeto);
-      petianos = getBoolList(names, petianos_names);
-      petianos_old = getBoolList(names, petianos_names);
+      if (is_popup_gerentes) {
+        names = await db.readGerentes(nome_projeto);
+        petianos = getBoolList(names, petianos_names);
+        petianos_old = getBoolList(names, petianos_names);
+      } else {
+        names = await db.readMembros(nome_projeto);
+        petianos = getBoolList(names, petianos_names);
+        petianos_old = getBoolList(names, petianos_names);
+      }
     }
   }
 
@@ -49,7 +62,6 @@ class popupAdicionarPessoaController {
 
   Future<void> write_operation(
       List<int> indices, String nome_projeto, String tipo) async {
-    
     List<String> add_nome = [];
     List<String> add_nome_curto = [];
     List<String> add_nome_abrv = [];

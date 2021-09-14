@@ -33,6 +33,7 @@ class _PopupAdicionarPessoaState extends State<PopupAdicionarPessoa> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.nome_projeto);
     return FutureBuilder(
         future: start,
         builder: (context, snapshot) {
@@ -63,7 +64,6 @@ class _PopupAdicionarPessoaState extends State<PopupAdicionarPessoa> {
                             style: TextStyles.darkBlue,
                           ),
                         ),
-                        // CheckboxPessoa(ctrl: controller.petianos, size: 4),
                         CheckboxPessoa(
                           nome_projeto: widget.nome_projeto,
                           controller: controller,
@@ -83,12 +83,13 @@ class _PopupAdicionarPessoaState extends State<PopupAdicionarPessoa> {
   }
 
   void adicionar_button() {
-    if (widget.is_popup_gerentes) {
-      adicionar_gerente();
-    } else {
-      adicionar_membro();
+    if (widget.nome_projeto != "") {
+      if (widget.is_popup_gerentes) {
+        adicionar_gerente();
+      } else {
+        adicionar_membro();
+      }
     }
-
     remove_popup_and_refresh(context);
   }
 
@@ -100,10 +101,6 @@ class _PopupAdicionarPessoaState extends State<PopupAdicionarPessoa> {
       }
     }
     await controller.write_membro(indices, widget.nome_projeto);
-
-    Navigator.pushNamed(context, "/editar_projeto",
-        arguments: EditarProjetoArguments(
-            nome: widget.dados.nome, user: widget.dados.user));
   }
 
   Future<void> adicionar_gerente() async {
@@ -114,17 +111,12 @@ class _PopupAdicionarPessoaState extends State<PopupAdicionarPessoa> {
       }
     }
     await controller.write_gerente(indices, widget.nome_projeto);
-
-    
-    //Navigator.of(context).pushNamedAndRemoveUntil('/editar_projeto', ModalRoute.withName('/visualizar_projeto'));
-    //(context, ModalRoute.withName('/editar_projeto'));
-    /**/
   }
 
   void remove_popup_and_refresh(BuildContext context) {
     Navigator.pop(context);
     Navigator.pushReplacementNamed(context, "/editar_projeto",
         arguments: EditarProjetoArguments(
-            nome: widget.dados.nome, user: widget.dados.user));
+            nome: widget.nome_projeto, user: widget.dados.user));
   }
 }

@@ -16,7 +16,6 @@ import 'package:organizapet/shared/widgets/center_text_button/center_text_button
 import 'package:organizapet/shared/widgets/responsive_list/responsive_list.dart';
 
 class EditarProjeto extends StatefulWidget {
-  //mudar essa variável depois
   final EditarProjetoArguments dados;
 
   EditarProjeto({required this.dados, Key? key}) : super(key: key);
@@ -65,7 +64,7 @@ class _EditarProjetoState extends State<EditarProjeto> {
                           not_in_database: !in_database),
                       IconTitleSubtitleBoxEditavel(
                           dados: widget.dados,
-                          nome_projeto: widget.dados.nome,
+                          nome_projeto_controller: controller.nomeController,
                           titulo: "Gerentes",
                           subtitulo: controller.gerentesController.text),
                       LongTextInput(
@@ -74,7 +73,7 @@ class _EditarProjetoState extends State<EditarProjeto> {
                       ),
                       IconTitleSubtitleBoxEditavel(
                           dados: widget.dados,
-                          nome_projeto: widget.dados.nome,
+                          nome_projeto_controller: controller.nomeController,
                           subtitulo: controller.membrosController.text,
                           titulo: "Membros"),
                     ]),

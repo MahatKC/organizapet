@@ -19,6 +19,7 @@ class popupAdicionarPessoaDBController {
             gerentes =
                 gerentesFromJson(snapshot.data() as Map<String, dynamic>);
           } else {
+            gerentes = [];
             print("Non Ecziste");
           }
         })
@@ -42,6 +43,7 @@ class popupAdicionarPessoaDBController {
           if (snapshot.exists) {
             membros = membrosFromJson(snapshot.data() as Map<String, dynamic>);
           } else {
+            membros = [];
             print("Non Ecziste");
           }
         })

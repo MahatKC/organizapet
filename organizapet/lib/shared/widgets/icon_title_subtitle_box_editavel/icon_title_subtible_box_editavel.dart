@@ -11,13 +11,13 @@ class IconTitleSubtitleBoxEditavel extends StatefulWidget {
   final EditarProjetoArguments dados;
   final String titulo;
   final String subtitulo;
-  final String nome_projeto;
+  final nome_projeto_controller;
   const IconTitleSubtitleBoxEditavel(
       {Key? key,
       required this.dados,
       required this.titulo,
       required this.subtitulo,
-      required this.nome_projeto})
+      required this.nome_projeto_controller})
       : super(key: key);
 
   @override
@@ -61,6 +61,7 @@ class _IconTitleSubtitleBoxEditavelState
                   flex: 1,
                   child: IconButton(
                       onPressed: () {
+
                         showDialog<String>(
                             context: context,
                             builder: (BuildContext context) =>
@@ -68,7 +69,7 @@ class _IconTitleSubtitleBoxEditavelState
                                   dados: widget.dados,
                                   is_popup_gerentes:
                                       widget.titulo == "Gerentes",
-                                  nome_projeto: widget.nome_projeto,
+                                  nome_projeto: get_projeto_nome(widget.dados.nome, widget.nome_projeto_controller.text),
                                 ));
                       },
                       icon: Image.asset(AppImages.adicionarMembro)))
@@ -93,6 +94,18 @@ class _IconTitleSubtitleBoxEditavelState
 
   Future<void> copyToClipboard() async {
     await Clipboard.setData(ClipboardData(text: widget.subtitulo));
+  }
+
+  String get_projeto_nome(String dados_nome, String controller_nome) {
+    String nome;
+
+    if (dados_nome == "") {
+      nome = controller_nome;
+    } else {
+      nome = dados_nome;
+    }
+
+    return nome;
   }
 }
 

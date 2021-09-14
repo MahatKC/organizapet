@@ -16,19 +16,23 @@ class CheckboxPessoa extends StatefulWidget {
 class _CheckboxPessoaState extends State<CheckboxPessoa> {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        shrinkWrap: true,
-        itemCount: widget.controller.petianos_names.length,
-        physics: NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) {
-          return CheckboxListTile(
-              title: Text(widget.controller.petianos_names[index]),
-              value: widget.controller.petianos[index],
-              onChanged: (bool? newValue) {
-                setState(() {
-                  widget.controller.petianos[index] = newValue ?? false;
+    if (widget.nome_projeto == "") {
+      return Text("Erro. Insira o nome do projeto primeiro e tente novamente.");
+    } else {
+      return ListView.builder(
+          shrinkWrap: true,
+          itemCount: widget.controller.petianos_names.length,
+          physics: NeverScrollableScrollPhysics(),
+          itemBuilder: (context, index) {
+            return CheckboxListTile(
+                title: Text(widget.controller.petianos_names[index]),
+                value: widget.controller.petianos[index],
+                onChanged: (bool? newValue) {
+                  setState(() {
+                    widget.controller.petianos[index] = newValue ?? false;
+                  });
                 });
-              });
-        });
+          });
+    }
   }
 }
