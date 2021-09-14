@@ -89,14 +89,14 @@ class popupAdicionarPessoaDBController {
         .catchError((error) => print("Fail: $error"));
 
     var projeto_nome = [nome_projeto];
-    for (int i = 0; i < nome.length; i++) {
+    nome.forEach((nome) async {
       await _petianos
-          .doc(document_title(nome[i]))
+          .doc(document_title(nome))
           .set({"projetos_membro": FieldValue.arrayUnion(projeto_nome)},
               SetOptions(merge: true))
           .then((value) => print("Membro $nome_projeto atualizado com sucesso"))
           .catchError((error) => print("Fail: $error"));
-    }
+    });
   }
 
   Future<void> write_gerente(List<String> nome, List<String> nome_curto,
@@ -112,15 +112,15 @@ class popupAdicionarPessoaDBController {
         .catchError((error) => print("Fail: $error"));
 
     var projeto_nome = [nome_projeto];
-    for (int i = 0; i < nome.length; i++) {
+    nome.forEach((nome) async {
       await _petianos
-          .doc(document_title(nome[i]))
+          .doc(document_title(nome))
           .set({"projetos_gerente": FieldValue.arrayUnion(projeto_nome)},
               SetOptions(merge: true))
           .then(
               (value) => print("Gerente $nome_projeto atualizado com sucesso"))
           .catchError((error) => print("Fail: $error"));
-    }
+    });
   }
 
   Future<void> remove_membro(List<String> nome, List<String> nome_curto,
@@ -136,15 +136,14 @@ class popupAdicionarPessoaDBController {
         .catchError((error) => print("Fail: $error"));
 
     var projeto_nome = [nome_projeto];
-    for (int i = 0; i < nome.length; i++) {
-      String nome_petiano = nome[i];
+    nome.forEach((nome_petiano) async {
       await _petianos
           .doc(document_title(nome_petiano))
           .set({"projetos_membro": FieldValue.arrayRemove(projeto_nome)},
               SetOptions(merge: true))
           .then((value) => print("Membro $nome_petiano atualizado com sucesso"))
           .catchError((error) => print("Fail: $error"));
-    }
+    });
   }
 
   Future<void> remove_gerente(List<String> nome, List<String> nome_curto,
@@ -160,14 +159,13 @@ class popupAdicionarPessoaDBController {
         .catchError((error) => print("Fail: $error"));
 
     var projeto_nome = [nome_projeto];
-    for (int i = 0; i < nome.length; i++) {
-      String nome_petiano = nome[i];
+    nome.forEach((nome_petiano) async {
       await _petianos
           .doc(document_title(nome_petiano))
           .set({"projetos_gerente": FieldValue.arrayRemove(projeto_nome)},
               SetOptions(merge: true))
           .then((value) => print("Membro $nome_petiano atualizado com sucesso"))
           .catchError((error) => print("Fail: $error"));
-    }
+    });
   }
 }

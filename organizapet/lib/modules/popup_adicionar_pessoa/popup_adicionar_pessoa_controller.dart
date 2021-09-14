@@ -19,7 +19,6 @@ class popupAdicionarPessoaController {
     petianos_names = list[1];
 
     if (nome_projeto == "") {
-      print("entrou");
       names = [];
       petianos = [];
       petianos_old = [];

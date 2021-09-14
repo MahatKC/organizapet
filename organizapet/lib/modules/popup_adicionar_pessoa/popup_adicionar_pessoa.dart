@@ -33,7 +33,6 @@ class _PopupAdicionarPessoaState extends State<PopupAdicionarPessoa> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.nome_projeto);
     return FutureBuilder(
         future: start,
         builder: (context, snapshot) {

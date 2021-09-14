@@ -4,6 +4,7 @@ import '../useful_functions/database_document_title.dart';
 
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 final CollectionReference _mainCollection = _firestore.collection('petianos');
+final CollectionReference _projetos = _firestore.collection('projetos');
 
 class dadosPetiano {
   String nome;
@@ -97,27 +98,78 @@ class dadosPetiano {
       await _firestore
           .collection('users')
           .doc(document_title(email!))
-          .set({'email': email, 'name_key': document_title(nome)}, SetOptions(merge: true))
+          .set({'email': email, 'name_key': document_title(nome)},
+              SetOptions(merge: true))
           .then((value) => print("Usuário $email atualizado com sucesso"))
           .catchError((error) => print("Fail: $error"));
     }
   }
 
   Future<void> delete() async {
-    await read();
+    late List<String> projetos_membro;
+    late List<String> projetos_gerente;
+
+    await _mainCollection
+        .doc(document_title(nome))
+        .get()
+        .then((snapshot) {
+          if (snapshot.exists) {
+            projetos_membro =
+                projetosMembroFromJson(snapshot.data() as Map<String, dynamic>);
+            projetos_gerente = projetosGerenteFromJson(
+                snapshot.data() as Map<String, dynamic>);
+          } else {
+            projetos_membro = [];
+            projetos_gerente = [];
+            print("Non Ecziste");
+          }
+        })
+        .then((value) => print("Projetos membro $nome lido"))
+        .catchError((error) => print("Falha $error"));
+
+    projetos_membro.forEach((projeto) async {
+      await _projetos
+          .doc(document_title(projeto))
+          .set({"membros_nomes": FieldValue.arrayRemove([nome]),
+          "membros_nomes_curtos": FieldValue.arrayRemove([nomeCurto]),
+          "membros_nomes_abreviados": FieldValue.arrayRemove([nome_abreviado(nome, nomeCurto ?? "")])},
+              SetOptions(merge: true))
+          .then((value) => print("Projeto $projeto atualizado com sucesso"))
+          .catchError((error) => print("Fail: $error"));
+    });
+
+    projetos_gerente.forEach((projeto) async {
+      await _projetos
+          .doc(document_title(projeto))
+          .set({"gerente_nome": FieldValue.arrayRemove([nome]),
+          "gerente_nome_curto": FieldValue.arrayRemove([nomeCurto]),
+          "gerente_nome_abreviado": FieldValue.arrayRemove([nome_abreviado(nome, nomeCurto ?? "")])},
+              SetOptions(merge: true))
+          .then((value) => print("Projeto $projeto atualizado com sucesso"))
+          .catchError((error) => print("Fail: $error"));
+    });
+
     _mainCollection
         .doc(document_title(nome))
         .delete()
         .then((value) => print("$nome removido com sucesso"))
         .catchError((error) => print("Fail: $error"));
     if (email != null) {
-      _firestore
+      await _firestore
           .collection('users')
           .doc(document_title(email!))
           .delete()
           .then((value) => print("Usuário $email removido com sucesso"))
           .catchError((error) => print("Fail: $error"));
     }
+  }
+
+  List<String> projetosMembroFromJson(Map<String, dynamic> data) {
+    return List.from(data['projetos_membro'] ?? []);
+  }
+
+  List<String> projetosGerenteFromJson(Map<String, dynamic> data) {
+    return List.from(data['projetos_gerente'] ?? []);
   }
 
   Future<void> read() async {

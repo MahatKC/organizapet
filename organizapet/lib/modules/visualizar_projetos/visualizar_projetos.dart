@@ -30,6 +30,7 @@ class _VisualizarProjetosState extends State<VisualizarProjetos> {
   final controller = projetosController();
   bool access_db = true;
   late Future<void> start;
+  late dadosProjeto dbController;
 
   @override
   void initState() {
@@ -55,7 +56,7 @@ class _VisualizarProjetosState extends State<VisualizarProjetos> {
                 if (snapshot.connectionState != ConnectionState.done) {
                   return Center(child: CircularProgressIndicator());
                 } else {
-                  final dbController = snapshot.data as dadosProjeto;
+                  dbController = snapshot.data as dadosProjeto;
                   controller.instantiateAll(dbController);
                   return ResponsiveList(
                     list: ListView(children: [
@@ -74,9 +75,8 @@ class _VisualizarProjetosState extends State<VisualizarProjetos> {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 40),
                         child: IconTitleSubtitleBox(
-                          titulo: "Membros",
-                          subtitulo: controller.membrosController.text
-                        ),
+                            titulo: "Membros",
+                            subtitulo: controller.membrosController.text),
                       ),
                       enableButton(context),
                     ]),
@@ -114,7 +114,6 @@ class _VisualizarProjetosState extends State<VisualizarProjetos> {
   void eliminado() {
     String nome = controller.nomeController.text;
     if (nome.isNotEmpty) {
-      final dbController = dadosProjeto(nome: nome);
       dbController.delete();
       Navigator.pop(context, 'sim');
 

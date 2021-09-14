@@ -28,6 +28,7 @@ class VisualizarDadosPetiano extends StatefulWidget {
 class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
   final controller = petianosController();
   bool access_db = true;
+  late dadosPetiano dbController;
   late Future<void> start;
 
   @override
@@ -54,67 +55,68 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
                 if (snapshot.connectionState != ConnectionState.done) {
                   return Center(child: CircularProgressIndicator());
                 } else {
-                  final dbController = snapshot.data as dadosPetiano;
+                  dbController = snapshot.data as dadosPetiano;
                   controller.instantiateAll(dbController);
-                  return ResponsiveList(list: ListView(children: [
-                          PageTitle(title: "Dados do Petiano"),
-                          IconTextBox(
-                            imagem: AppImages.usuario,
-                            texto: controller.nomeController.text,
-                          ),
-                          IconTextBox(
-                            imagem: AppImages.rg,
-                            texto: controller.rgController.text,
-                          ),
-                          IconTextBox(
-                            imagem: AppImages.cpf,
-                            texto: controller.cpfController.text,
-                          ),
-                          IconTextBox(
-                            imagem: AppImages.unioeste,
-                            texto: controller.raController.text,
-                          ),
-                          IconTextBox(
-                            imagem: AppImages.telefone,
-                            texto: controller.telefoneController.text,
-                          ),
-                          IconTextBox(
-                            imagem: AppImages.email,
-                            texto: controller.emailController.text,
-                          ),
-                          IconTextBox(
-                            imagem: AppImages.dataNascimento,
-                            texto: controller.dataNascimentoController.text,
-                          ),
-                          IconTextBox(
-                            imagem: AppImages.ano,
-                            texto: controller.anoController.text,
-                          ),
-                          IconTextBox(
-                            imagem: AppImages.icv,
-                            texto: controller.temaICVController.text,
-                          ),
-                          IconTextBox(
-                            imagem: AppImages.orientador,
-                            texto: controller.orientadorController.text,
-                          ),
-                          IconTextBox(
-                            imagem: AppImages.camiseta,
-                            texto: controller.camisetaController.text,
-                          ),
-                          IconTextBox(
-                            imagem: AppImages.github,
-                            texto: controller.githubController.text,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 20),
-                            child: IconTextBox(
-                              imagem: AppImages.insta,
-                              texto: controller.instagramController.text,
-                            ),
-                          ),
-                          enableButton(context),
-                        ]), 
+                  return ResponsiveList(
+                    list: ListView(children: [
+                      PageTitle(title: "Dados do Petiano"),
+                      IconTextBox(
+                        imagem: AppImages.usuario,
+                        texto: controller.nomeController.text,
+                      ),
+                      IconTextBox(
+                        imagem: AppImages.rg,
+                        texto: controller.rgController.text,
+                      ),
+                      IconTextBox(
+                        imagem: AppImages.cpf,
+                        texto: controller.cpfController.text,
+                      ),
+                      IconTextBox(
+                        imagem: AppImages.unioeste,
+                        texto: controller.raController.text,
+                      ),
+                      IconTextBox(
+                        imagem: AppImages.telefone,
+                        texto: controller.telefoneController.text,
+                      ),
+                      IconTextBox(
+                        imagem: AppImages.email,
+                        texto: controller.emailController.text,
+                      ),
+                      IconTextBox(
+                        imagem: AppImages.dataNascimento,
+                        texto: controller.dataNascimentoController.text,
+                      ),
+                      IconTextBox(
+                        imagem: AppImages.ano,
+                        texto: controller.anoController.text,
+                      ),
+                      IconTextBox(
+                        imagem: AppImages.icv,
+                        texto: controller.temaICVController.text,
+                      ),
+                      IconTextBox(
+                        imagem: AppImages.orientador,
+                        texto: controller.orientadorController.text,
+                      ),
+                      IconTextBox(
+                        imagem: AppImages.camiseta,
+                        texto: controller.camisetaController.text,
+                      ),
+                      IconTextBox(
+                        imagem: AppImages.github,
+                        texto: controller.githubController.text,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 20),
+                        child: IconTextBox(
+                          imagem: AppImages.insta,
+                          texto: controller.instagramController.text,
+                        ),
+                      ),
+                      enableButton(context),
+                    ]),
                   );
                 }
               })),
@@ -149,7 +151,6 @@ class _VisualizarDadosPetianoState extends State<VisualizarDadosPetiano> {
   void eliminado() {
     String nome = controller.nomeController.text;
     if (nome.isNotEmpty) {
-      final dbController = dadosPetiano(nome: nome);
       dbController.delete();
       Navigator.pop(context, 'sim');
 

@@ -4,6 +4,7 @@ import '../useful_functions/database_document_title.dart';
 
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 final CollectionReference _projetos = _firestore.collection('projetos');
+final CollectionReference _petianos = _firestore.collection('petianos');
 
 class dadosProjeto {
   String nome;
@@ -58,8 +59,23 @@ class dadosProjeto {
   }
 
   Future<void> delete() async {
-    await read();
-    _projetos
+    membros_nomes!.forEach((membro) async {
+      await _petianos
+          .doc(document_title(membro))
+          .set({"projetos_membro": FieldValue.arrayRemove([nome])},
+              SetOptions(merge: true))
+          .then((value) => print("Membro $membro atualizado com sucesso"))
+          .catchError((error) => print("Fail: $error"));
+    });
+    gerente_nome!.forEach((gerente) async {
+      await _petianos
+          .doc(document_title(gerente))
+          .set({"projetos_gerente": FieldValue.arrayRemove([nome])},
+              SetOptions(merge: true))
+          .then((value) => print("Membro $gerente atualizado com sucesso"))
+          .catchError((error) => print("Fail: $error"));
+    });
+    await _projetos
         .doc(document_title(nome))
         .delete()
         .then((value) => print("$nome removido com sucesso"))
@@ -69,10 +85,12 @@ class dadosProjeto {
   projetosFromJson(Map<String, dynamic> data) {
     this.descricao = data['descricao'] ?? "";
     this.gerente_nome = List.from(data['gerente_nome'] ?? []);
-    this.gerente_nome_abreviado = List.from(data['gerente_nome_abreviado'] ?? []);
+    this.gerente_nome_abreviado =
+        List.from(data['gerente_nome_abreviado'] ?? []);
     this.gerente_nome_curto = List.from(data['gerente_nome_curto'] ?? []);
     this.membros_nomes = List.from(data['membros_nomes'] ?? []);
-    this.membros_nomes_abreviados = List.from(data['membros_nomes_abreviados'] ?? []);
+    this.membros_nomes_abreviados =
+        List.from(data['membros_nomes_abreviados'] ?? []);
     this.membros_nomes_curtos = List.from(data['membros_nomes_curtos'] ?? []);
   }
 
