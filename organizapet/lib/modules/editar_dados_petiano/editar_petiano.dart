@@ -3,12 +3,14 @@ import 'package:organizapet/modules/editar_dados_petiano/editar_petiano_argument
 import 'package:organizapet/modules/editar_dados_petiano/editar_petianos_controller.dart';
 import 'package:organizapet/modules/editar_dados_petiano/editar_petianos_db_controller.dart';
 import 'package:organizapet/modules/menu/menu_sanduiche.dart';
+import 'package:organizapet/modules/popup_adicionar_projeto/popup_adicionar_projeto.dart';
 import 'package:organizapet/modules/visualizar_dados_petiano/visualizar_dados_arguments.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/widgets/app_bar/appBar.dart';
 import 'package:organizapet/shared/widgets/page_title/page_title.dart';
 import 'package:organizapet/shared/widgets/petiano_input_field/petiano_input_field.dart';
 import 'package:organizapet/shared/widgets/popup/popup_duas_opcoes.dart';
+import 'package:organizapet/shared/widgets/popup/popup_duas_opcoes_duas_funcoes.dart';
 import 'package:organizapet/shared/widgets/popup/popup_uma_opcao.dart';
 import 'package:organizapet/shared/widgets/center_text_button/center_text_button.dart';
 import 'package:organizapet/shared/widgets/responsive_list/responsive_list.dart';
@@ -25,6 +27,7 @@ class EditarPetiano extends StatefulWidget {
 class _EditarPetianoState extends State<EditarPetiano> {
   final controller = petianosController();
   bool in_database = false;
+  late String new_name;
   late Future<void> start;
 
   @override
@@ -132,7 +135,7 @@ class _EditarPetianoState extends State<EditarPetiano> {
 
   void createDB(List all_texts) {
     if (all_texts.first.isNotEmpty) {
-      String nome = all_texts.first;
+      new_name = all_texts.first;
       bool is_new_petiano = widget.dados.nome.isEmpty;
       if (is_new_petiano) {
         showDialog<String>(
@@ -140,12 +143,12 @@ class _EditarPetianoState extends State<EditarPetiano> {
           builder: (BuildContext context) => PopupDuasOpcoes(
               title: "Atenção",
               message: "Tem certeza que inseriu o nome de " +
-                  nome +
+                  new_name +
                   " corretamente?",
               yes_callback: continua_write),
         );
       } else {
-        var dbController = dadosPetiano(nome: nome);
+        var dbController = dadosPetiano(nome: new_name);
         dbController.dadosPetianoFromLista(all_texts);
         dbController.write();
 
@@ -153,7 +156,7 @@ class _EditarPetianoState extends State<EditarPetiano> {
           context: context,
           builder: (BuildContext context) => PopupUmaOpcao(
               title: "Sucesso",
-              message: "Dados de " + nome + " atualizados!",
+              message: "Dados de " + new_name + " atualizados!",
               after_func: update_concluded),
         );
       }
@@ -187,6 +190,25 @@ class _EditarPetianoState extends State<EditarPetiano> {
   }
 
   void register_concluded() {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => PopupDuasOpcoesDuasFuncoes(
+          title: "Atenção",
+          message: "Deseja adicionar " + new_name + " aos projetos do grupo?",
+          yes_callback: adiciona_projeto,
+          no_callback: close_screen),
+    );
+  }
+
+  void adiciona_projeto() {
+    create_popup_widget(context);
+  }
+
+  Widget create_popup_widget(BuildContext context) {
+    return PopupAdicionarProjeto(dados: widget.dados, nome_membro: new_name);
+  }
+
+  void close_screen() {
     Navigator.popUntil(context, ModalRoute.withName('/lista_petianos'));
   }
 
