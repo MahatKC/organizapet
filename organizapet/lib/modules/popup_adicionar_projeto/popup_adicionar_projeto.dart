@@ -10,9 +10,7 @@ class PopupAdicionarProjeto extends StatefulWidget {
   final EditarPetianoArguments dados;
   final String nome_membro;
   const PopupAdicionarProjeto(
-      {Key? key,
-      required this.dados,
-      required this.nome_membro})
+      {Key? key, required this.dados, required this.nome_membro})
       : super(key: key);
 
   @override
@@ -90,8 +88,8 @@ class _PopupAdicionarProjetoState extends State<PopupAdicionarProjeto> {
   }
 
   void remove_popup_and_refresh(BuildContext context) {
-    Navigator.pop(context);
-    Navigator.pushReplacementNamed(context, "/visualizar_dados_petiano",
+    Navigator.popUntil(context, ModalRoute.withName('/lista_petianos'));
+    Navigator.pushNamed(context, "/visualizar_dados_petiano",
         arguments: VisualizarDadosArguments(
             widget.nome_membro, false, widget.dados.user));
   }

@@ -1,8 +1,9 @@
 import 'package:organizapet/modules/popup_adicionar_projeto/popup_adicionar_projeto_db_controller.dart';
+import 'package:organizapet/modules/useful_functions/first_and_last_name.dart';
 
 class popupAdicionarProjetoController {
   late List<String> projetos;
-  late List<bool> projetos_selecionados;
+  List<bool> projetos_selecionados = [];
   late String nome_curto;
   final db = popupAdicionarProjetoDBController();
 
@@ -11,6 +12,7 @@ class popupAdicionarProjetoController {
   Future<void> populateController(String nome_membro) async {
     projetos = await db.readAll();
     nome_curto = await db.read_nome_curto(nome_membro);
+    nome_curto = first_and_last_name_from_string(nome_membro, nome_curto);
     for (int i = 0; i < projetos.length; i++) {
       projetos_selecionados.add(false);
     }

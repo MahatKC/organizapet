@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:organizapet/modules/useful_functions/first_and_last_name.dart';
 import 'package:organizapet/modules/useful_functions/nome_abreviado.dart';
 import '../useful_functions/database_document_title.dart';
 
@@ -131,7 +132,7 @@ class dadosPetiano {
       await _projetos
           .doc(document_title(projeto))
           .set({"membros_nomes": FieldValue.arrayRemove([nome]),
-          "membros_nomes_curtos": FieldValue.arrayRemove([nomeCurto]),
+          "membros_nomes_curtos": FieldValue.arrayRemove([first_and_last_name_from_string(nome, nomeCurto ?? "")]),
           "membros_nomes_abreviados": FieldValue.arrayRemove([nome_abreviado(nome, nomeCurto ?? "")])},
               SetOptions(merge: true))
           .then((value) => print("Projeto $projeto atualizado com sucesso"))
@@ -142,18 +143,19 @@ class dadosPetiano {
       await _projetos
           .doc(document_title(projeto))
           .set({"gerente_nome": FieldValue.arrayRemove([nome]),
-          "gerente_nome_curto": FieldValue.arrayRemove([nomeCurto]),
+          "gerente_nome_curto": FieldValue.arrayRemove([first_and_last_name_from_string(nome, nomeCurto ?? "")]),
           "gerente_nome_abreviado": FieldValue.arrayRemove([nome_abreviado(nome, nomeCurto ?? "")])},
               SetOptions(merge: true))
           .then((value) => print("Projeto $projeto atualizado com sucesso"))
           .catchError((error) => print("Fail: $error"));
     });
 
-    _mainCollection
+    await _mainCollection
         .doc(document_title(nome))
         .delete()
         .then((value) => print("$nome removido com sucesso"))
         .catchError((error) => print("Fail: $error"));
+
     if (email != null) {
       await _firestore
           .collection('users')

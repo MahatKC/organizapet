@@ -46,7 +46,7 @@ class popupAdicionarProjetoDBController {
 
   Future<void> write_projeto(List<String> nomes_projetos, String nome_membro,
       String nome_curto) async {
-    await _projetos
+    await _petianos
         .doc(document_title(nome_membro))
         .set({
           "projetos_membro": FieldValue.arrayUnion(nomes_projetos),
@@ -55,7 +55,7 @@ class popupAdicionarProjetoDBController {
         .catchError((error) => print("Fail: $error"));
 
     nomes_projetos.forEach((projeto) async {
-      await _petianos
+      await _projetos
           .doc(document_title(projeto))
           .set({
             "membros_nomes": FieldValue.arrayUnion([nome_membro]),
