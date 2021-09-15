@@ -4,7 +4,6 @@ import 'package:organizapet/modules/editar_dados_petiano/editar_petianos_control
 import 'package:organizapet/modules/editar_dados_petiano/editar_petianos_db_controller.dart';
 import 'package:organizapet/modules/menu/menu_sanduiche.dart';
 import 'package:organizapet/modules/popup_adicionar_projeto/popup_adicionar_projeto.dart';
-import 'package:organizapet/modules/popup_adicionar_projeto/popup_adicionar_projeto_selector.dart';
 import 'package:organizapet/modules/visualizar_dados_petiano/visualizar_dados_arguments.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/widgets/app_bar/appBar.dart';
@@ -119,10 +118,6 @@ class _EditarPetianoState extends State<EditarPetiano> {
                     child: CenterTextButton(
                         buttonLabel: "Salvar", callback: save_button_function),
                   ),
-                  /*PopupAdicionarProjetoSelector(
-                      dados: widget.dados,
-                      nome_membro: new_name,
-                      activate: load_popup)*/
                 ],
               ));
             }
@@ -215,14 +210,6 @@ class _EditarPetianoState extends State<EditarPetiano> {
         pageBuilder: (context, _, __) =>
             PopupAdicionarProjeto(dados: widget.dados, nome_membro: new_name),
         opaque: false));
-    /*showDialog<String>(
-        context: context,
-        builder: (BuildContext context) => PopupAdicionarProjeto(
-              dados: widget.dados,
-              nome_membro: new_name,
-            ));*/
-    //Navigator.popUntil(context, ModalRoute.withName('/editar_petiano'));
-    //setState(() {});
   }
 
   void close_screen() {
