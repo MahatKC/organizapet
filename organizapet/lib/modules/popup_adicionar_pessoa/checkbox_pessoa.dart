@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:organizapet/modules/popup_adicionar_pessoa/popup_adicionar_pessoa_controller.dart';
+import 'package:organizapet/shared/themes/app_text_styles.dart';
 
 class CheckboxPessoa extends StatefulWidget {
   final String nome_projeto;
@@ -17,7 +18,27 @@ class _CheckboxPessoaState extends State<CheckboxPessoa> {
   @override
   Widget build(BuildContext context) {
     if (widget.nome_projeto == "") {
-      return Text("Erro. Insira o nome do projeto primeiro e tente novamente.");
+      return Container(
+        width: 300,
+        height: 320,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 40, bottom: 25),
+              child: Icon(
+                Icons.warning_rounded,
+                size: 100,
+                color: Colors.orange,
+              ),
+            ),
+            Text(
+              "Não é possivel adicionar membros/gerentes sem o nome do projeto preenchido. \n\nInsira-o e tente novamente.",
+              textAlign: TextAlign.center,
+              style: TextStyles.textCheckBoxPessoa,
+            ),
+          ],
+        ),
+      );
     } else {
       return ListView.builder(
           shrinkWrap: true,
