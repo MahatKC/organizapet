@@ -50,7 +50,7 @@ class TitleSubtitleBox extends StatelessWidget {
       return AutoSizeText(
         titulo,
         style: TextStyles.darkBlue,
-        minFontSize: 16,
+        minFontSize: 15,
         maxLines: 1,
       );
     } else {

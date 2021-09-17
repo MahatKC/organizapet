@@ -73,4 +73,8 @@ class TextStyles {
     fontSize: 16,
     color: Colors.white,
   );
+  static final textCheckBoxPessoa = GoogleFonts.inter(
+    fontSize: 15,
+    color: Colors.grey.shade700
+  );
 }
