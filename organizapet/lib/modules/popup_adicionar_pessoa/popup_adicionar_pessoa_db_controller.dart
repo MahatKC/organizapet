@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:organizapet/modules/useful_functions/database_document_title.dart';
 import 'package:organizapet/modules/useful_functions/first_and_last_name.dart';
-import 'package:organizapet/modules/useful_functions/nome_abreviado.dart';
 
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 final CollectionReference _projetos = _firestore.collection('projetos');

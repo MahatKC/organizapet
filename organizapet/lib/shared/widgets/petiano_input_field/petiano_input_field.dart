@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:organizapet/modules/popup_adicionar_pessoa/popup_adicionar_pessoa.dart';
-import 'package:organizapet/shared/themes/app_images.dart';
 
 class PetianoInputField extends StatelessWidget {
   final TextEditingController ctrl;

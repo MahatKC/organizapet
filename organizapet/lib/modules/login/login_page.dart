@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:organizapet/modules/current_user_data/current_user_data.dart';
 import 'package:organizapet/modules/login/login_controller.dart';
-import 'package:organizapet/modules/visualizar_projetos/visualizar_projetos_arguments.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/themes/app_images.dart';
 import 'package:organizapet/shared/themes/app_text_styles.dart';
