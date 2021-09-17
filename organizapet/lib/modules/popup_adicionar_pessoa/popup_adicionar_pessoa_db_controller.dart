@@ -76,6 +76,13 @@ class popupAdicionarPessoaDBController {
     return lista_de_listas;
   }
 
+  Future<void> write_project_name(String nome_projeto) async{
+    await _projetos.doc(document_title(nome_projeto))
+        .set({"nome": nome_projeto}, SetOptions(merge: true))
+        .then((value) => print("$nome_projeto atualizado com sucesso"))
+        .catchError((error) => print("Fail: $error"));
+  }
+
   Future<void> write_membro(List<String> nome, List<String> nome_curto,
       List<String> nome_abrv, String nome_projeto) async {
     await _projetos

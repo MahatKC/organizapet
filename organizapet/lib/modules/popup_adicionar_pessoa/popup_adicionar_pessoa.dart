@@ -7,13 +7,15 @@ import 'package:organizapet/shared/widgets/center_text_button/center_text_button
 
 class PopupAdicionarPessoa extends StatefulWidget {
   final EditarProjetoArguments dados;
+  final String descricao;
   final bool is_popup_gerentes;
   final String nome_projeto;
   const PopupAdicionarPessoa(
       {Key? key,
       required this.nome_projeto,
       required this.is_popup_gerentes,
-      required this.dados})
+      required this.dados,
+      required this.descricao})
       : super(key: key);
 
   @override
@@ -33,6 +35,7 @@ class _PopupAdicionarPessoaState extends State<PopupAdicionarPessoa> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.descricao);
     return FutureBuilder(
         future: start,
         builder: (context, snapshot) {
@@ -116,6 +119,8 @@ class _PopupAdicionarPessoaState extends State<PopupAdicionarPessoa> {
     Navigator.pop(context);
     Navigator.pushReplacementNamed(context, "/editar_projeto",
         arguments: EditarProjetoArguments(
-            nome: widget.nome_projeto, user: widget.dados.user));
+            nome: widget.nome_projeto,
+            user: widget.dados.user,
+            descricao: widget.descricao));
   }
 }

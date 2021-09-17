@@ -7,7 +7,6 @@ import 'package:organizapet/modules/editar_dados_petiano/editar_petiano.dart';
 import 'package:organizapet/modules/splash/splash_page.dart';
 import 'package:organizapet/modules/visualizar_dados_petiano/visualizar_dados_arguments.dart';
 import 'package:organizapet/modules/visualizar_dados_petiano/visualizar_dados_petiano.dart';
-import 'package:organizapet/modules/visualizar_tarefa/visualizar_tarefa.dart';
 
 import 'modules/current_user_data/current_user_data.dart';
 import 'modules/editar_projeto/editar_projeto.dart';
@@ -41,9 +40,6 @@ class ScreenManager extends StatelessWidget {
             user:
                 ModalRoute.of(context)!.settings.arguments as CurrentUserData),
         '/visualizar_projeto': (context) => VisualizarProjetos(
-            dados: ModalRoute.of(context)!.settings.arguments
-                as VisualizarProjetosArguments),
-        '/visualizar_tarefa': (context) => VisualizarTarefa(
             dados: ModalRoute.of(context)!.settings.arguments
                 as VisualizarProjetosArguments),
         '/editar_projeto': (context) => EditarProjeto(

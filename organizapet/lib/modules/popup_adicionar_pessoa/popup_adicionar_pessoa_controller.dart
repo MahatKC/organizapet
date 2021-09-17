@@ -12,7 +12,6 @@ class popupAdicionarPessoaController {
 
   Future<void> populateController(
       bool is_popup_gerentes, String nome_projeto) async {
-
     List<String> names;
     List<List<String>> list = await db.readAll();
     petianos_names_full = list[0];
@@ -82,6 +81,8 @@ class popupAdicionarPessoaController {
         remove_nome_abrv.add(nome_abreviado(nome, nomeCurto));
       }
     }
+
+    db.write_project_name(nome_projeto);
 
     if (tipo == "gerente") {
       if (add_nome.length > 0) {

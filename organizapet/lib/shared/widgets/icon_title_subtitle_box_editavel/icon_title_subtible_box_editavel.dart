@@ -9,6 +9,7 @@ import 'package:organizapet/modules/popup_adicionar_pessoa/popup_adicionar_pesso
 
 class IconTitleSubtitleBoxEditavel extends StatefulWidget {
   final EditarProjetoArguments dados;
+  final descricao_controller;
   final String titulo;
   final String subtitulo;
   final nome_projeto_controller;
@@ -17,7 +18,8 @@ class IconTitleSubtitleBoxEditavel extends StatefulWidget {
       required this.dados,
       required this.titulo,
       required this.subtitulo,
-      required this.nome_projeto_controller})
+      required this.nome_projeto_controller,
+      required this.descricao_controller})
       : super(key: key);
 
   @override
@@ -61,15 +63,17 @@ class _IconTitleSubtitleBoxEditavelState
                   flex: 1,
                   child: IconButton(
                       onPressed: () {
-
                         showDialog<String>(
                             context: context,
                             builder: (BuildContext context) =>
                                 PopupAdicionarPessoa(
+                                  descricao: widget.descricao_controller.text,
                                   dados: widget.dados,
                                   is_popup_gerentes:
                                       widget.titulo == "Gerentes",
-                                  nome_projeto: get_projeto_nome(widget.dados.nome, widget.nome_projeto_controller.text),
+                                  nome_projeto: get_projeto_nome(
+                                      widget.dados.nome,
+                                      widget.nome_projeto_controller.text),
                                 ));
                       },
                       icon: Image.asset(AppImages.adicionarMembro)))

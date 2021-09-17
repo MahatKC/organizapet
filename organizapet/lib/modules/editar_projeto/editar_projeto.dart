@@ -50,6 +50,7 @@ class _EditarProjetoState extends State<EditarProjeto> {
               final dbController = snapshot.data as dadosProjeto;
               if (in_database == true && widget.dados.nome.isNotEmpty) {
                 controller.instantiateAll(dbController);
+                instantiate_description();
               }
               return ResponsiveList(
                   list: ListView(
@@ -64,6 +65,7 @@ class _EditarProjetoState extends State<EditarProjeto> {
                           not_in_database: !in_database),
                       IconTitleSubtitleBoxEditavel(
                           dados: widget.dados,
+                          descricao_controller: controller.descricaoController,
                           nome_projeto_controller: controller.nomeController,
                           titulo: "Gerentes",
                           subtitulo: controller.gerentesController.text),
@@ -73,6 +75,7 @@ class _EditarProjetoState extends State<EditarProjeto> {
                       ),
                       IconTitleSubtitleBoxEditavel(
                           dados: widget.dados,
+                          descricao_controller: controller.descricaoController,
                           nome_projeto_controller: controller.nomeController,
                           subtitulo: controller.membrosController.text,
                           titulo: "Membros"),
@@ -167,5 +170,11 @@ class _EditarProjetoState extends State<EditarProjeto> {
     Navigator.pushReplacementNamed(context, "/visualizar_projeto",
         arguments: VisualizarProjetosArguments(
             widget.dados.nome, is_gerente, widget.dados.user));
+  }
+
+  void instantiate_description() {
+    if (widget.dados.descricao != null && widget.dados.descricao != "") {
+      controller.descricaoController.text = widget.dados.descricao ?? "";
+    }
   }
 }

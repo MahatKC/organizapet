@@ -47,15 +47,6 @@ class dadosProjeto {
         .then((value) => print("$nome atualizado com sucesso"))
         .catchError((error) => print("Fail: $error"));
 
-    /*
-    if (email != null) {
-      await _firestore
-          .collection('users')
-          .doc(document_title(email!))
-          .set({'email': email}, SetOptions(merge: true))
-          .then((value) => print("Usuário $email atualizado com sucesso"))
-          .catchError((error) => print("Fail: $error"));
-    }*/
   }
 
   Future<void> delete() async {
