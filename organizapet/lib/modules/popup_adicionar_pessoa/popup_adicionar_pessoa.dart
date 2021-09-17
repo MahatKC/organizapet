@@ -117,10 +117,12 @@ class _PopupAdicionarPessoaState extends State<PopupAdicionarPessoa> {
 
   void remove_popup_and_refresh(BuildContext context) {
     Navigator.pop(context);
-    Navigator.pushReplacementNamed(context, "/editar_projeto",
+    if(widget.nome_projeto.isNotEmpty){
+      Navigator.pushReplacementNamed(context, "/editar_projeto",
         arguments: EditarProjetoArguments(
             nome: widget.nome_projeto,
             user: widget.dados.user,
             descricao: widget.descricao));
+    }
   }
 }
