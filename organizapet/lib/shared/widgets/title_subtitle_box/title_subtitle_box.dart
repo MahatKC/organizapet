@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
 import 'package:organizapet/shared/themes/app_text_styles.dart';
@@ -27,15 +28,11 @@ class TitleSubtitleBox extends StatelessWidget {
               border: Border.all(color: AppColors.lightBlueBorder, width: 1)),
           child: Align(
             child: ListTile(
-                title: Text(
-                  titulo,
-                  style: TextStyles.darkBlue,
-                ),
+                title: dimensionarTexto(titulo),
                 subtitle: Text(
                   subtitulo,
                   style: TextStyles.subtitleBlue,
                 ),
-                // leading: Icon(Icons.flash_on),
                 trailing: IconButton(
                   icon: Icon(
                     Icons.keyboard_arrow_right,
@@ -46,5 +43,19 @@ class TitleSubtitleBox extends StatelessWidget {
                 )),
           )),
     );
+  }
+
+  dimensionarTexto(String titulo) {
+    if (titulo.isNotEmpty) {
+      return AutoSizeText(
+        titulo,
+        style: TextStyles.darkBlue,
+        minFontSize: 16,
+        maxLines: 1,
+      );
+    } else {
+      return Text(titulo,
+          style: TextStyles.darkBlue, textAlign: TextAlign.left);
+    }
   }
 }
