@@ -10,6 +10,7 @@ String data_list_to_string(Map<String,dynamic> data, String key_access) {
 
 List<String> string_to_list(List<String> lista, int position){
   List<String> transformed_list =[];
+  // ignore: unnecessary_null_comparison
   if (lista[position] == null) {
     transformed_list = [];
   } else {
