@@ -42,6 +42,7 @@ class _ListaProjetosState extends State<ListaProjetos> {
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.hasError) {
+                print(snapshot.error);
                 return Text('Erro ao acessar o banco.');
               }
               if (snapshot.connectionState == ConnectionState.waiting) {
@@ -55,7 +56,8 @@ class _ListaProjetosState extends State<ListaProjetos> {
                       document.data() as Map<String, dynamic>;
                   return new TitleSubtitleBox(
                       titulo: data['nome'],
-                      subtitulo: data_list_to_string(data, 'gerente_nome_abreviado'),
+                      subtitulo:
+                          data_list_to_string(data, 'gerente_nome_abreviado'),
                       callback: () {
                         bool is_gerente = (widget.user.gerenciaProjetos
                             .contains(data['nome']));
