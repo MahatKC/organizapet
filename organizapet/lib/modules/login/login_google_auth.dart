@@ -42,12 +42,12 @@ class Authentication {
           user = userCredential.user;
         } on FirebaseAuthException catch (e) {
           if (e.code == 'account-exists-with-different-credential') {
-            // ...
+            print("ERROR: account-exists-with-different-credential");
           } else if (e.code == 'invalid-credential') {
-            // ...
+            print("ERRO: account-exists-with-different-credential");
           }
         } catch (e) {
-          // ...
+          print("ERRO: e");
         }
       }
     }
