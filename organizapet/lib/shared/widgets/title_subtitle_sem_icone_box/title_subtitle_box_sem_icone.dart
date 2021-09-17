@@ -22,29 +22,33 @@ class _TitleSubtitleBoxSemIconeState extends State<TitleSubtitleBoxSemIcone> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 30, left: 42, right: 42),
       child: Container(
-          height: 110,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(5)),
-              border: Border.all(color: AppColors.lightBlueBorder, width: 1)),
+        height: 120,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(5)),
+            border: Border.all(color: AppColors.lightBlueBorder, width: 1)),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
           child: Align(
             child: ListTile(
+              hoverColor: AppColors.background,
               title: Text(
                 widget.titulo,
                 style: TextStyles.darkBlue,
               ),
-              subtitle: dimensionarTexto(widget.subtitulo),
-              onLongPress: () {
-                copyToClipboard();
-                final snackBar = SnackBar(
-                  content: Text(
-                    "Dado copiado!",
-                    style: TextStyles.textCopy,
-                  ),
-                );
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
-              },
-            ),
+            subtitle: dimensionarTexto(widget.subtitulo),
+            onLongPress: () {
+              copyToClipboard();
+              final snackBar = SnackBar(
+                content: Text(
+                  "Dado copiado!",
+                  style: TextStyles.textCopy,
+                ),
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            },
           )),
+        ),
+      ),
     );
   }
 
@@ -59,7 +63,7 @@ dimensionarTexto(String subtitulo) {
       subtitulo,
       style: TextStyles.infoBox,
       minFontSize: 15,
-      maxLines: 3,
+      //maxLines: 7,
     );
   } else {
     return Text(subtitulo,

@@ -70,8 +70,8 @@ class _VisualizarProjetosState extends State<VisualizarProjetos> {
                         texto: controller.gerentesController.text,
                       ),
                       TitleSubtitleBoxSemIcone(
-                          titulo: "Descrição",
-                          subtitulo: controller.descricaoController.text),
+                        titulo: "Descrição",
+                        subtitulo: controller.descricaoController.text),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 40),
                         child: IconTitleSubtitleBox(
