@@ -122,27 +122,4 @@ class dadosProjeto {
         .then((value) => print("Projeto $nome lido"))
         .catchError((error) => print("Falha $error"));
   }
-
-  /*
-  Future<void> read_from_login(String name_key) async {
-    await _mainCollection
-        .doc(name_key)
-        .get()
-        .then((snapshot) {
-          if (snapshot.exists) {
-            dadosUsuarioFromJson(snapshot.data() as Map<String, dynamic>);
-            in_db = true;
-          } else {
-            print("Non Ecziste");
-          }
-        })
-        .then((value) => print("$nome lido"))
-        .catchError((error) => print("Falha $error"));
-  }
-
-  dadosUsuarioFromJson(Map<String, dynamic> data) {
-    this.nome = data['nome'];
-    this.nomeCurto = data['nome_curto'];
-  }
-  */
 }
