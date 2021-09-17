@@ -161,11 +161,13 @@ class MenuSanduiche extends StatelessWidget {
 
   Future<void> go_to_lista_petianos(
       BuildContext context, CurrentUserData user) async {
+    user.print_shared_prefs();
     Navigator.pushReplacementNamed(context, "/lista_petianos", arguments: user);
   }
 
   Future<void> go_to_lista_projetos(
       BuildContext context, CurrentUserData user) async {
+    user.print_shared_prefs();
     Navigator.pushReplacementNamed(context, "/lista_projetos", arguments: user);
   }
 
