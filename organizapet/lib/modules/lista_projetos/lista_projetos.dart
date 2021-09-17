@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:organizapet/modules/current_user_data/current_user_data.dart';
@@ -7,7 +6,6 @@ import 'package:organizapet/modules/menu/menu_sanduiche.dart';
 import 'package:organizapet/modules/useful_functions/data_list_to_string.dart';
 import 'package:organizapet/modules/visualizar_projetos/visualizar_projetos_arguments.dart';
 import 'package:organizapet/shared/themes/app_colors.dart';
-import 'package:organizapet/shared/themes/app_text_styles.dart';
 import 'package:organizapet/shared/widgets/app_bar/appBar.dart';
 import 'package:organizapet/shared/widgets/responsive_list/responsive_list.dart';
 import 'package:organizapet/shared/widgets/title_subtitle_box/title_subtitle_box.dart';
@@ -42,6 +40,7 @@ class _ListaProjetosState extends State<ListaProjetos> {
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.hasError) {
+                print(snapshot.error);
                 return Text('Erro ao acessar o banco.');
               }
               if (snapshot.connectionState == ConnectionState.waiting) {
@@ -55,7 +54,8 @@ class _ListaProjetosState extends State<ListaProjetos> {
                       document.data() as Map<String, dynamic>;
                   return new TitleSubtitleBox(
                       titulo: data['nome'],
-                      subtitulo: data_list_to_string(data, 'gerente_nome_abreviado'),
+                      subtitulo:
+                          data_list_to_string(data, 'gerente_nome_abreviado'),
                       callback: () {
                         bool is_gerente = (widget.user.gerenciaProjetos
                             .contains(data['nome']));

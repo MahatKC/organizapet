@@ -103,7 +103,7 @@ class _EditarProjetoState extends State<EditarProjeto> {
   }
 
   void createDB(List all_texts) {
-    if (all_texts.first.isNotEmpty) {
+    if (all_texts.first.first.isNotEmpty) {
       String nome = all_texts.first.first;
       bool is_new_projeto = widget.dados.nome.isEmpty;
       if (is_new_projeto) {

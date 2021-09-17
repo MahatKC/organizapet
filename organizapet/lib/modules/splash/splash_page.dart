@@ -40,11 +40,7 @@ class _SplashPageState extends State<SplashPage> {
 
   Future<void> change_screen(BuildContext context, CurrentUserData user) async {
     await Future.delayed(Duration(seconds: 3));
-    //Navigator.pushReplacementNamed(context, "/editar_tarefa", arguments: EditarProjetoArguments(nome: "A&B Game Jam", user: user));
-    //Navigator.pushReplacementNamed(context, "/visualizar_tarefa", arguments: VisualizarProjetosArguments("A&B Game Jam", true, user));
     Navigator.pushReplacementNamed(context, "/lista_projetos", arguments: user);
-    //Navigator.pushReplacementNamed(context, "/visualizar_projeto", arguments: VisualizarProjetosArguments("A&B Game Jam", true, user));
-    //Navigator.pushReplacementNamed(context, "/editar_projeto", arguments: EditarProjetoArguments(nome: "A&B Game Jam", user: user));
   }
 
   Future<void> go_to_login_page(

@@ -40,6 +40,7 @@ class _ListaPetianosState extends State<ListaPetianos> {
                         builder: (BuildContext context,
                             AsyncSnapshot<QuerySnapshot> snapshot) {
                           if (snapshot.hasError) {
+                            print(snapshot.error);
                             return Text('Erro ao acessar o banco.');
                           }
                           if (snapshot.connectionState ==
