@@ -51,11 +51,14 @@ class loginController {
 
     bool isTutor = await readIsTutor(name_key);
 
+    List<String> gerente = await readGerente(name_key);
+
     CurrentUserData user = CurrentUserData();
     await user.set_prefs(
         new_name: dadosUsuario.nome,
         new_nomeCurto: dadosUsuario.nomeCurto,
-        new_isTutor: isTutor);
+        new_isTutor: isTutor,
+        new_gerenciaProjetos: gerente);
 
     return user;
   }
@@ -83,5 +86,28 @@ class loginController {
         .catchError((error) => print("Falha $error"));
 
     return isTutor;
+  }
+
+  Future<List<String>> readGerente(String name_key) async {
+    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    final CollectionReference _petianos = _firestore.collection('petianos');
+    List<String> projetos = [];
+
+    await _petianos
+        .doc(name_key)
+        .get()
+        .then((snapshot) {
+          if (snapshot.exists) {
+            projetos = gerenteFromJson(snapshot.data() as Map<String, dynamic>);
+          }
+        })
+        .then((value) => print("Tutor lido"))
+        .catchError((error) => print("Falha $error"));
+
+    return projetos;
+  }
+
+  List<String> gerenteFromJson(Map<String, dynamic> data) {
+    return List.from(data['projetos_gerente'] ?? []);
   }
 }
