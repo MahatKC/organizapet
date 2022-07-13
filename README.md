@@ -2,7 +2,7 @@
 
 Project developed by  [@MahatKC](https://www.github.com/MahatKC), [@robertaalcantara](https://github.com/robertaalcantara) and [@EnergyFall266](https://github.com/EnergyFall266) in 2021.
 
-This project was an assignment for the Software Engineering class we took in our 3th year of Computer Science.
+This project was an assignment for the Software Engineering class we took in our 3rd year of Computer Science.
 
 Developed in Flutter and Dart with usage of Firebase Firestore, it is a cross-platform mobile/web app for task management within the PETComp research and outreach group.
 
